@@ -1,20 +1,30 @@
-import React from 'react';
-import { BrowserRouter as Router, NavLink } from "react-router-dom"
-// import { renderRoutes } from "react-router-config"
+import React, { Component, Fragment } from 'react';
+import { BrowserRouter as Router, NavLink } from 'react-router-dom'
+// import { renderRoutes } from 'react-router-config'
 
-// import router from "../router"
+// import router from '../router'
+import { AppDiv } from './AppDiv'
+import Menu from './Menu'
 
-import logo from "../assets/images/logo.png"
-import "../assets/styles/reset.css"
-import "../assets/styles/font.css"
-import './App.less'
+import logo from '../assets/images/logo.png'
+import '../assets/styles/reset.css'
+import '../assets/styles/font.css'
+// 引入全局样式
+import { GlobalStyle } from '../assets/styles/style';
 
-class App extends React.Component {
+class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      menuShow: false
+      menuShow: false,
+      activeIndex: 0 // 激活第几个tab
     }
+  }
+  // 显示菜单
+  handleMenu (show) {
+    this.setState({
+      menuShow: show
+    })
   }
   
   render () {
@@ -37,37 +47,46 @@ class App extends React.Component {
       }
     ]
     return (
-      <Router>
-        <div className="app">
-          <header className="app-header">
-            <i className="icon-et-more app-more" onClick={() => { this.setState({ menuShow: true }); }}></i>
-            <img src={logo} className="app-logo" alt="logo" />
-            <h1 className="app-title">Mango Music</h1>
-          </header>
-          <div className="app-tab">
-            {
-              tabsList.map((item, index) => {
-                return (
-                  <div className="app-tab__item" key={item + index}>
+      <Fragment>
+        <Router>
+          <AppDiv>
+            <header className="app-header">
+              <i
+                className="icon-et-more app-more"
+                onClick={this.handleMenu.bind(this, true)}>
+              </i>
+              <img src={logo} className="app-logo" alt="logo" />
+              <h1 className="app-title">React Music webApp</h1>
+            </header>
+            <div className="app-tab">
+              {
+                tabsList.map((item, index) => {
+                  return (
                     <NavLink
                       to={item.path}
+                      key={item + index}
                       className="nav-link"
                       activeClassName="nav-link__active"
                       activeStyle={{color: '#31C27C'}}>
-                      <span>{item.name}</span>
+                      {item.name}
                     </NavLink>
-                  </div>
-                )
-              })
-            }
-          </div>
-          {/* <Switch>
-            <Redirect from="/" to="/recommend" exact /> */}
-            {/* 渲染 Route */}
-            {/* { renderRoutes(router) }
-          </Switch> */}
-        </div>
-      </Router>
+                  )
+                })
+              }
+            </div>
+            {/* <Switch>
+              <Redirect from="/" to="/recommend" exact /> */}
+              {/* 渲染 Route */}
+              {/* { renderRoutes(router) }
+            </Switch> */}
+            <Menu
+              show={this.state.menuShow}
+              closeMenu={this.handleMenu.bind(this, false)}
+            />
+          </AppDiv>
+        </Router>
+        <GlobalStyle />
+      </Fragment>
     )
   }
 }

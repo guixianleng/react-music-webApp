@@ -1,12 +1,17 @@
+import styled from 'styled-components'
+
+export const AppDiv = styled.div`
 .app {
   width: 100%;
   height: 100%;
+  position: relative;
   &-header{
     height: 50px;
     line-height: 50px;
     text-align: center;
     position: relative;
-    background-color:#31C27C;
+    background-color: ${props => props.backgroundColor || '#31C27C'};
+    color: #fff;
   }
   &-more {
     position: absolute;
@@ -29,21 +34,19 @@
   }
   &-tab {
     display: flex;
-    // justify-content: space-around;
+    justify-content: space-around;
     align-items: center;
     text-align: center;
-    margin-top: 5px;
-    &__item {
-      flex: 1
-    }
+    margin-top: 10px;
   }
 }
 
 .nav-link {
   text-decoration: none;
   color: inherit;
+  display: block;
+  width: 100%;
   &__active {
-    transition: all .5s linear;
     position: relative;
     &::after {
       display: block;
@@ -52,9 +55,10 @@
       width: 100%;
       background-color: #31C27C;
       position: absolute;
-      bottom: -8px;
+      bottom: -12px;
       left: 0;
       right: 0;
     }
   }
 }
+`

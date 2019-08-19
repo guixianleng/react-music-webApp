@@ -2,25 +2,28 @@ import styled from 'styled-components';
 
 export const Header = styled.div`
   position: fixed;
-  width: 100%;
-  height: 40px;
+  top: 0;
+  left: 0;
+  right: 0;
   color: #fff;
-  text-align: center;
   font-size: 14px;
-  background-color: #31C27C;
+  height: 50px;
+  background-color: ${props => props.themeColor || '#31C27C'};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding: 0 15px;
+  z-index: 9999;
   .header {
     &-back {
-      position: absolute;
-      top: 14px;
-      left: 10px;
       font-size: 14px;
     }
     &-title {
-      margin: 0 40px;
-      line-height: 40px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      font-size: 16px;
     }
   }
 `
