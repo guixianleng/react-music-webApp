@@ -32,6 +32,10 @@ export default class Menu extends Component {
   handleClose () {
     this.props.closeMenu()
   }
+  // 
+  handleTheme (obj) {
+    this.props.triggerTheme(obj)
+  }
   render() {
     return (
       <div>
@@ -55,7 +59,10 @@ export default class Menu extends Component {
             </div>
           </Cover>
         </CSSTransition>
-        <Skin show={this.state.showCenter} close={this.skinCenter.bind(this)} />
+        <Skin
+          show={this.state.showCenter}
+          theme={this.handleTheme.bind(this)}
+          close={this.skinCenter.bind(this)} />
       </div>
     )
   }

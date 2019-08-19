@@ -10,6 +10,7 @@ const initState = { // 默认数据
 function skin (defaultSkin = initState.skin, action) {
   switch (action.type) {
     case ActionTypes.SET_SKIN:
+      storage.setSkin(action.skin)
       return action.skin
     default:
       return defaultSkin

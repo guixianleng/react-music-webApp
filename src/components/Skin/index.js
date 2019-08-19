@@ -3,8 +3,10 @@ import { CSSTransition } from 'react-transition-group'
 import PropTypes from 'prop-types'
 
 import { SkinDiv } from './style'
-import NavHeader from '../NavHeader'
+import NavBar from '../NavBar'
 import skinBg from '../../assets/images/skin_bg.jpg'
+
+import { skins, setSkinStyle } from '../../utils/skin'
 
 export default class Skin extends Component {
   constructor(props) {
@@ -12,7 +14,7 @@ export default class Skin extends Component {
     this.skinRef = React.createRef()
     this.state = {
       skins: [
-        { key: 'mangoYellow', name: '芒果黄', color: '#FFD700' },
+        { key: 'mangoYellow', name: '芒果黄', color: '#FFA500' },
         { key: 'coolBlack', name: '炫酷黑', color: '#212121' },
         { key: 'kuGouBlue', name: '酷狗蓝', color: '#2CA2F9' },
         { key: 'netBaseRed', name: '网易红', color: '#D43C33' },
@@ -21,30 +23,33 @@ export default class Skin extends Component {
     }
   }
   static propTypes = {
-    // currentSkin: PropTypes.string.isRequired,
     show: PropTypes.bool.isRequired,
-    close: PropTypes.func
+    close: PropTypes.func.isRequired
   }
   // 取消设置皮肤
   handleCancel() {
-    console.log(this)
     this.props.close()
   }
   // 设置当前皮肤
-  setCurrentSkin (key) {
-    console.log(key)
+  handleSetSkin (key) {
+    this.props.setCurrentSkin(key)
+    // 关闭皮肤中心
+    this.props.close()
+    // 切换皮肤
+    this.props.theme(setSkinStyle(skins[key]))
   }
   render() {
     return (
       <CSSTransition in={this.props.show} timeout={300} classNames="pop"
         onEnter={() => {
-          this.skinRef.current.style.display = "block";
+          this.skinRef.current.style.display = 'block';
         }}
         onExited={() => {
-          this.skinRef.current.style.display = "none";
+          this.skinRef.current.style.display = 'none';
         }}>
         <SkinDiv ref={this.skinRef} imgUrl={skinBg}>
-          <NavHeader
+          <NavBar
+            showLeft={false}
             title="皮肤中心"
             rightText="取消"
             cancel={this.handleCancel.bind(this)}
@@ -54,14 +59,14 @@ export default class Skin extends Component {
               this.state.skins.map(skin => (
                 <div
                   className="skin-wrapper"
-                  onClick={this.setCurrentSkin.bind(this, skin.key)}
+                  onClick={this.handleSetSkin.bind(this, skin.key)}
                   key={skin.key}
                 >
                   <div
                     className="skin-color"
                     style={{ backgroundColor: skin.color, boxShadow: `0 0 3px ${skin.color}` }}
                   >
-                    <i className="icon-right" style={{ display: skin.key === this.props.currentSkin ? "" : "none" }}></i>
+                    <i className="icon-right" style={{ display: skin.key === this.props.currentSkin ? '' : 'none' }}></i>
                   </div>
                   <span>{skin.name}</span>
                 </div>
