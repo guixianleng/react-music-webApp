@@ -9,17 +9,16 @@ import Menu from './Menu'
 import Header from '../components/Header'
 import Tabs from '../components/Tabs'
 
-import '../assets/styles/reset.css'
-import '../assets/styles/font.css'
 import storage from '../utils/storage'
 import { skins, setSkinStyle } from '../utils/skin'
+import emitter from '../utils/events'
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      menuShow: false,
-      theme: setSkinStyle(skins[storage.getSkin()])
+      menuShow: false, // 显示菜单
+      theme: setSkinStyle(skins[storage.getSkin()]) // 当前皮肤主题
     }
   }
   // 显示菜单
@@ -28,13 +27,18 @@ class App extends Component {
       menuShow: show
     })
   }
-
-  handleTheme (themeObj) {
-    this.setState({
-      theme: themeObj
+  componentDidMount() {
+    // 切换皮肤
+    this.eventEmitter = emitter.addListener('triggerTheme', (theme) => {
+      this.setState({
+        theme
+      })
     })
   }
-
+  // 事件销毁
+  componentWillUnmount() {
+    emitter.removeListener(this.eventEmitter)
+  }
   render() {
     return (
       <Fragment>
@@ -55,7 +59,6 @@ class App extends Component {
               </Switch> */}
               <Menu
                 show={this.state.menuShow}
-                triggerTheme={this.handleTheme.bind(this)}
                 closeMenu={this.handleMenu.bind(this, false)}
               />
             </AppDiv>

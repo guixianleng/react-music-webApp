@@ -1,8 +1,6 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-	v2.0 | 20110126
-	License: none (public domain)
-*/
+import { createGlobalStyle } from 'styled-components'
 
+export const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -31,6 +29,9 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 }
+html, body{
+	background: #f2f3f4;
+}
 ol, ul {
 	list-style: none;
 }
@@ -46,3 +47,8 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+a{
+	text-decoration: none;
+	color: #fff;
+}
+`

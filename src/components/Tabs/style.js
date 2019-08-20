@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Tabs = styled.div`
+export const Tab = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;

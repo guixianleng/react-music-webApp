@@ -32,10 +32,6 @@ export default class Menu extends Component {
   handleClose () {
     this.props.closeMenu()
   }
-  // 
-  handleTheme (obj) {
-    this.props.triggerTheme(obj)
-  }
   render() {
     return (
       <div>

@@ -10,7 +10,7 @@ export const HeaderDiv = styled.header`
   .header {
     &-more {
       position: absolute;
-      top: 15px;
+      top: 0;
       left: 15px;
       font-size: 20px;
     }

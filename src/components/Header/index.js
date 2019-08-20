@@ -16,8 +16,9 @@ export default class index extends Component {
     return (
       <HeaderDiv>
         <i
-          className="icon-et-more header-more"
+          className="iconfont header-more"
           onClick={this.handleMenu.bind(this, true)}>
+            &#xe610;
         </i>
         <img src={logo} className="header-logo" alt="logo" />
         <h1 className="header-title">

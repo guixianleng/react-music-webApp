@@ -1,9 +1,20 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 
-import { Tabs } from './style'
+import { Tab } from './style'
 
-export default class index extends Component {
+export default class Tabs extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {  }
+  }
+  static propTypes = {
+    color: PropTypes.string.isRequired
+  }
+  static defaultProps = {
+    color: '#31C27C'
+  }
   render() {
     const tabsList = [
       {
@@ -24,7 +35,7 @@ export default class index extends Component {
       }
     ]
     return (
-      <Tabs>
+      <Tab>
         {
           tabsList.map((item, index) => {
             return (
@@ -33,13 +44,13 @@ export default class index extends Component {
                 key={item + index}
                 className="nav-link"
                 activeClassName="nav-link__active"
-                activeStyle={{color: this.props.color || '#31C27C'}}>
+                activeStyle={{color: this.props.color}}>
                 {item.name}
               </NavLink>
             )
           })
         }
-      </Tabs>
+      </Tab>
     )
   }
 }

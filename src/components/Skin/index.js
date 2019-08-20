@@ -7,6 +7,7 @@ import NavBar from '../NavBar'
 import skinBg from '../../assets/images/skin_bg.jpg'
 
 import { skins, setSkinStyle } from '../../utils/skin'
+import emitter from '../../utils/events'
 
 export default class Skin extends Component {
   constructor(props) {
@@ -36,7 +37,7 @@ export default class Skin extends Component {
     // 关闭皮肤中心
     this.props.close()
     // 切换皮肤
-    this.props.theme(setSkinStyle(skins[key]))
+    emitter.emit('triggerTheme', setSkinStyle(skins[key]))
   }
   render() {
     return (
@@ -66,7 +67,12 @@ export default class Skin extends Component {
                     className="skin-color"
                     style={{ backgroundColor: skin.color, boxShadow: `0 0 3px ${skin.color}` }}
                   >
-                    <i className="icon-right" style={{ display: skin.key === this.props.currentSkin ? '' : 'none' }}></i>
+                    <i
+                      className="iconfont icon-right"
+                      style={{ display: skin.key === this.props.currentSkin ? '' : 'none' }}
+                    >
+                      &#xe648;
+                    </i>
                   </div>
                   <span>{skin.name}</span>
                 </div>

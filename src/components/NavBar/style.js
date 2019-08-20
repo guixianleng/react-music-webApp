@@ -8,7 +8,6 @@ export const Header = styled.div`
   color: #fff;
   font-size: 14px;
   height: 50px;
-  /* background-color: ${props => props.themeColor || '#31C27C'}; */
   background-color: transparent;
   display: flex;
   justify-content: space-between;
@@ -18,7 +17,9 @@ export const Header = styled.div`
   z-index: 9999;
   .header {
     &-back {
-      font-size: 14px;
+      .iconfont {
+        font-size: 20px;
+      }
     }
     &-title {
       overflow: hidden;

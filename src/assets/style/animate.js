@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-export const GlobalStyle = createGlobalStyle`
+export const AnimateStyle = createGlobalStyle`
   /* 菜单动画 */
   .fade {
     &-enter {

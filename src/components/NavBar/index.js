@@ -32,10 +32,11 @@ export default class NavBar extends Component {
       <Header>
         <div className="header-back">
           <i
-            className="icon-back"
+            className="iconfont"
             style={{ display: this.props.showLeft ? '' : 'none' }}
             onClick={this.handleBack.bind(this)}
           >
+            &#xeb15;
           </i>
         </div>
         <div className="header-title">
