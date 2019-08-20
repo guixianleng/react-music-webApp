@@ -13,4 +13,19 @@ export const AppDiv = styled.div`
     width: 100%;
   }
 }
+.pull-down-desc {
+  margin-top: 10px;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  .iconfont {
+    color: ${props => props.theme.color};
+    font-size: 14px;
+  }
+  span {
+    font-size: 12px;
+    color: #333;
+    padding-left: 6px;
+  }
+}
 `

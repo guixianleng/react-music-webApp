@@ -20,6 +20,7 @@ class App extends Component {
       menuShow: false, // 显示菜单
       theme: setSkinStyle(skins[storage.getSkin()]) // 当前皮肤主题
     }
+    console.log(this)
   }
   // 显示菜单
   handleMenu(show) {
@@ -52,10 +53,14 @@ class App extends Component {
               <Tabs 
                 color={this.state.theme.color}
               />
+              <div className="pull-down-desc">
+                <i className="iconfont">&#xe6bb;</i>
+                <span>首页根据您的听歌口味生成</span>
+              </div>
               <div className="app-content">
                 <Switch>
                   <Redirect from="/" to="/recommend" exact /> */}
-                渲染 Route
+                {/* 渲染 Route */}
                 { renderRoutes(router) }
                 </Switch>
               </div>

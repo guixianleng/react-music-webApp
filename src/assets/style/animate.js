@@ -71,4 +71,27 @@ export const AnimateStyle = createGlobalStyle`
       }
     }
   }
+  .fly {
+    &-enter {
+      transform: rotateZ(30deg) translate3d(100%, 0, 0);
+      &-active {
+        transition: transform .3s;
+        transform: rotateZ(0deg) translate3d(0, 0, 0);
+      }
+    }
+    &-appear {
+      transform: rotateZ(30deg) translate3d(100%, 0, 0);
+      &-active {
+        transition: transform .3s;
+        transform: rotateZ(0deg) translate3d(0, 0, 0);
+      }
+    }
+    &-exit{
+      transform: rotateZ(0deg) translate3d(0, 0, 0);
+      &-active{
+        transition: transform .3s;
+        transform: rotateZ(30deg) translate3d(100%, 0, 0);
+      }
+    }
+  }
 `

@@ -18,14 +18,15 @@ export const Header = styled.div`
   .header {
     &-back {
       .iconfont {
-        font-size: 20px;
+        font-size: 22px;
       }
     }
     &-title {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      font-size: 16px;
+      font-size: 18px;
+      font-weight: 400
     }
   }
 `

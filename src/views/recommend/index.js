@@ -56,8 +56,7 @@ export default class index extends Component {
   }
 
   handleDetail (id) {
-    // console.log(this.props.history, id)
-    // this.props.history.push(`/recommend/${id}`)
+    this.props.history.push(`/recommend/${id}`)
   }
 
   render() {

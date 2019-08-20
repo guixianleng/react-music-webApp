@@ -18,7 +18,7 @@ export default class List extends Component {
               // 通过函数创建专辑对象
               const album = AlbumModel.createAlbumByList(item)
               return (
-                <ListItem key={album.mId} onClick={this.handleDetail(album.mId)}>
+                <ListItem key={album.mId} onClick={this.handleDetail.bind(this, album.mId)}>
                   <div className="img_wrapper">
                     <div className="decorate"></div>
                     <LazyLoad placeholder={<img width="100%" height="100%" src={require('../../assets/images/music.png')} alt="music" />}>
