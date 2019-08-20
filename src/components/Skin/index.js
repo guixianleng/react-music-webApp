@@ -41,7 +41,7 @@ export default class Skin extends Component {
   }
   render() {
     return (
-      <CSSTransition in={this.props.show} timeout={300} classNames="pop"
+      <CSSTransition in={this.props.show} timeout={300} classNames="pop-right"
         onEnter={() => {
           this.skinRef.current.style.display = 'block';
         }}

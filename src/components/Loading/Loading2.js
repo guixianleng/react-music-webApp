@@ -22,33 +22,47 @@ const ScaledInner = keyframes`
 `
 
 const LoadingDiv = styled.div`
-  width: 10px;
-  height: 10px;
-  margin: auto;
-  z-index: 1;
-  position: relative;
-  background-color: #E08A84;
-  border-radius: 50%;
-  animation: ${ScaledOut} .9s ease-in-out infinite;
-  &::before {
-    content: '';
-    z-index: -1;
+  display: ${props => props.show ? '' : 'none'};
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #f0f0f0;
+  z-index: 9999;
+  div {
+    width: 10px;
+    height: 10px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 5px;
-    height: 5px;
+    background-color: #E08A84;
     border-radius: 50%;
-    background-color: #D96057;
-    transform-origin: center;
-    animation: ${ScaledInner} .9s ease-in-out infinite
+    animation: ${ScaledOut} .9s ease-in-out infinite;
+    &::before {
+      content: '';
+      z-index: -1;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: #D96057;
+      transform-origin: center;
+      animation: ${ScaledInner} .9s ease-in-out infinite
+    }
   }
 `;
 
-function Loading2 () {
+const Loading2 = (props) => {
   return (
-    <LoadingDiv />
+    <LoadingDiv show={props.show}>
+      <div></div>
+    </LoadingDiv>
   )
 }
 

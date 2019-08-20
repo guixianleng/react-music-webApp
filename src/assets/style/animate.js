@@ -20,6 +20,23 @@ export const AnimateStyle = createGlobalStyle`
       }
     }
   }
+  /* 菜单动画 */
+  .fade-left {
+    &-enter {
+      transform: translate3d(-90%, 0, 0);
+      &-active {
+        transition: transform .3s;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+    &-exit {
+      transform: translate3d(0, 0, 0);
+      &-active {
+        transition: transform .3s;
+        transform: translate3d(-100%, 0, 0);
+      }
+    }
+  }
   /* 皮肤中心过度动画效果 */
   .pop {
     &-enter {
@@ -34,6 +51,23 @@ export const AnimateStyle = createGlobalStyle`
       &-active {
         transition: transform .3s;
         transform: translate3d(0, 100%, 0);
+      }
+    }
+  }
+  /* 皮肤中心过度动画效果 */
+  .pop-right {
+    &-enter {
+      transform: translate3d(100%, 0, 0);
+      &-active {
+        transition: transform .3s;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+    &-exit {
+      transform: translate3d(0, 0, 0);
+      &-active {
+        transition: transform .3s;
+        transform: translate3d(100%, 0, 0);
       }
     }
   }

@@ -15,7 +15,7 @@ export default class Menu extends Component {
   }
   // 类型静态校验
   static propTypes = {
-    showMenu: PropTypes.bool,
+    showMenu: PropTypes.bool
   }
   // 默认props
   static defaultProps = {
@@ -37,7 +37,7 @@ export default class Menu extends Component {
       <div>
         <CSSTransition
           in={this.props.show}
-          timeout={300} classNames="fade"
+          timeout={300} classNames="fade-left"
           onEnter={() => {
             this.coverRef.current.style.display = "block";
           }}
@@ -57,7 +57,6 @@ export default class Menu extends Component {
         </CSSTransition>
         <Skin
           show={this.state.showCenter}
-          theme={this.handleTheme.bind(this)}
           close={this.skinCenter.bind(this)} />
       </div>
     )

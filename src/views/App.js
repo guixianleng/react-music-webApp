@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components' // 换肤
 
-// import { renderRoutes } from 'react-router-config'
-// import router from '../router'
+import { renderRoutes } from 'react-router-config'
+import router from '../router'
 import { AppDiv } from './AppDiv'
 import Menu from './Menu'
 import Header from '../components/Header'
@@ -52,11 +52,13 @@ class App extends Component {
               <Tabs 
                 color={this.state.theme.color}
               />
-              {/* <Switch>
-                <Redirect from="/" to="/recommend" exact /> */}
-              {/* 渲染 Route */}
-              {/* { renderRoutes(router) }
-              </Switch> */}
+              <div className="app-content">
+                <Switch>
+                  <Redirect from="/" to="/recommend" exact /> */}
+                渲染 Route
+                { renderRoutes(router) }
+                </Switch>
+              </div>
               <Menu
                 show={this.state.menuShow}
                 closeMenu={this.handleMenu.bind(this, false)}

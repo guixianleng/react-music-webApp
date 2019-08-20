@@ -25,7 +25,7 @@ export const HeaderDiv = styled.header`
       height: 55px;
       margin-left: 10px;
       font-size: 18px;
-      font-weight: 300;
+      font-weight: 400;
     }
   }
 `

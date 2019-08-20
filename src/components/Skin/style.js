@@ -32,7 +32,7 @@ export const SkinDiv = styled.div`
         position: absolute;
         right: 5px;
         bottom: 5px;
-        font-size: 20px;
+        font-size: 18px;
       }
     }
   }
