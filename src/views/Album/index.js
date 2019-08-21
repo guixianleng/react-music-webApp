@@ -20,7 +20,7 @@ export default class Album extends Component {
     super(props)
     this.state = {
       show: false,
-      loading: false,
+      loading: true,
       album: {},
       songs: []
     }

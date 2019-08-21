@@ -29,7 +29,7 @@ const LoadingDiv = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  background-color: #f0f0f0;
+  background-color: transparent;
   z-index: 9999;
   div {
     width: 10px;
