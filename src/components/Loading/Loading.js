@@ -11,6 +11,7 @@ const Dance = keyframes`
   }
 `;
 const LoadingDiv = styled.div`
+  display: ${props => props.show ? '' : 'none'};
   height: 10px;
   width: 100%;
   margin: auto;
@@ -18,7 +19,7 @@ const LoadingDiv = styled.div`
   font-size: 10px;
   > div {
     display: inline-block;
-    background-color: ${props => props.themeColor || '#D43C33'};
+    background-color: ${props => props.color || '#D43C33'};
     height: 100%;
     width: 2px;
     margin-right: 4px;
@@ -38,14 +39,15 @@ const LoadingDiv = styled.div`
   }
 `
 
-function Loading () {
+const Loading = (props) => {
   return (
-    <LoadingDiv>
+    <LoadingDiv color={props.themeColor} show={props.show}>
       <div></div>
       <div></div>
       <div></div>
       <div></div>
       <div></div>
+      <span>{props.title}</span>
     </LoadingDiv>
   )
 }

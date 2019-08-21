@@ -65,6 +65,7 @@ export const ListItem = styled.div`
       font-size: 12px;
       color: #999;
       margin-bottom: 15px;
+      line-height: 1.2;
     }
   }
 `

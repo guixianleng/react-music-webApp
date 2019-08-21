@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Switch } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components' // 换肤
 
 import { renderRoutes } from 'react-router-config'
@@ -54,14 +54,12 @@ class App extends Component {
                 color={this.state.theme.color}
               />
               <div className="pull-down-desc">
-                <i className="iconfont">&#xe6bb;</i>
+                <i className="iconfont">&#xe601;</i>
                 <span>首页根据您的听歌口味生成</span>
               </div>
               <div className="app-content">
                 <Switch>
-                  <Redirect from="/" to="/recommend" exact /> */}
-                {/* 渲染 Route */}
-                { renderRoutes(router) }
+                  { renderRoutes(router) }
                 </Switch>
               </div>
               <Menu

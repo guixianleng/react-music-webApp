@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react'
+import { Redirect } from 'react-router-dom'
 
-// 使用Suspense做Code-Splitting
-const withSuspense = (Component) => {
+const suspenseComponent = (Component) => {
   return (props) => (
     <Suspense fallback={null}>
       <Component {...props} />
@@ -9,67 +9,74 @@ const withSuspense = (Component) => {
   )
 }
 
-const Recommend = withSuspense(lazy(() => import('../views/recommend')))
-const Album = withSuspense(lazy(() => import('../views/Album')))
-// const Rankings = withSuspense(lazy(() => import('../views/ranking/Ranking')))
-// const SingerList = withSuspense(lazy(() => import('../views/singer/SingerList')))
-// const Search = withSuspense(lazy(() => import('../containers/Search')))
+const Recommend = suspenseComponent(lazy(() => import('../views/recommend')))
+const Album = suspenseComponent(lazy(() => import('../views/Album')))
+const Rank = suspenseComponent(lazy(() => import('../views/rank')))
+const Singers = suspenseComponent(lazy(() => import('../views/singer')))
+const Search = suspenseComponent(lazy(() => import('../connects/Search')))
 
-// const Album = withSuspense(lazy(() => import('../containers/Album')))
-// const Ranking = withSuspense(lazy(() => import('../containers/Ranking')))
-// const Singer = withSuspense(lazy(() => import('../containers/Singer')))
+// const Album = suspenseComponent(lazy(() => import('../containers/Album')))
+// const Ranking = suspenseComponent(lazy(() => import('../containers/Ranking')))
+const Singer = suspenseComponent(lazy(() => import('../connects/Singer')))
 
 const router = [
   {
-    path: '/recommend',
+    path: '/',
     component: Recommend,
     routes: [
       {
-        path: '/recommend/:id',
+        path: '/',
+        exact: true,
+        render: () => (
+          <Redirect to={'/recommend'} />
+        )
+      },
+      {
+        path: '/recommend/',
+        key: 'home',
+        component: Recommend,
+        routes: [
+          {
+            path: '/recommend/:id',
+            component: Album,
+          }
+        ]
+      },
+      {
+        path: '/singers',
+        component: Singers,
+        key: 'singers',
+        routes: [
+          {
+            path: '/singers/:id',
+            component: Singer
+          }
+        ]
+      },
+      {
+        path: '/rank',
+        component: Rank,
+        key: 'rank',
+        routes: [
+          {
+            path: '/rank/:id',
+            component: Album,
+          }
+        ]
+      },
+      {
+        path: '/album/:id',
+        exact: true,
+        key: 'album',
         component: Album
+      },
+      {
+        path: '/search',
+        exact: true,
+        key: 'search',
+        component: Search
       }
     ]
-  },
-  // {
-  //   path: '/ranking',
-  //   component: Rankings,
-  //   routes: [
-  //     {
-  //       path: '/ranking/:id',
-  //       component: Ranking
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '/singer',
-  //   component: SingerList,
-  //   routes: [
-  //     {
-  //       path: '/singer/:id',
-  //       component: Singer
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '/search',
-  //   component: Search,
-  //   routes: [
-  //     {
-  //       path: '/search/album/:id',
-  //       component: Album
-  //     },
-  //     {
-  //       path: '/search/singer/:id',
-  //       component: Singer
-  //     }
-  //   ]
-  // },
-  {
-    component: () => (
-      <div style={{marginTop: 100, textAlign: 'center'}}>
-        请求的页面不存在
-      </div>
-    )
   }
 ]
 

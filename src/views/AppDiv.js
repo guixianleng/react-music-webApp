@@ -18,14 +18,17 @@ export const AppDiv = styled.div`
   text-align: center;
   height: 30px;
   line-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   .iconfont {
     color: ${props => props.theme.color};
-    font-size: 14px;
+    font-size: 18px;
   }
   span {
     font-size: 12px;
-    color: #333;
-    padding-left: 6px;
+    color: ${props => props.theme.color};
+    padding-left: 4px;
   }
 }
 `

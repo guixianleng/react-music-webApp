@@ -29,7 +29,7 @@ export default class NavBar extends Component {
   }
   render() {
     return (
-      <Header>
+      <Header className="header">
         <div className="header-back">
           <i
             className="iconfont"
