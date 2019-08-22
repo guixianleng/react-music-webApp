@@ -9,5 +9,4 @@ export const Container = styled.div`
   z-index: 100;
   background: #F5F5F5;
   width: 100%;
-  overflow: hidden;
 `

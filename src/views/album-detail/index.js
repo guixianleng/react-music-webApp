@@ -1,11 +1,27 @@
 import React, { Component, Fragment } from 'react'
 import SongList from '../../components/SongList'
 import { AlbumImg, Menu } from './style'
+import Share from '../../components/Share'
 
 export default class Detail extends Component {
   constructor(props) {
     super(props)
-    this.state = {  }
+    this.state = {
+      showShare: false,
+      isFavorite: false
+    }
+  }
+  // 分享
+  handleShare () {
+    this.setState({
+      showShare: false
+    })
+  }
+  // 收藏
+  handleFavorite () {
+    this.setState({
+      isFavorite: !this.state.isFavorite
+    })
   }
   render() {
     const { albumInfo } = this.props
@@ -35,19 +51,27 @@ export default class Detail extends Component {
         </AlbumImg>
         <Menu>
           <div>
-            <i className="iconfont">&#xe64f;</i>
+            <i
+              className={`iconfont ${this.state.isFavorite ? 'favorite' : ''}`}
+              onClick={this.handleFavorite.bind(this)}
+              dangerouslySetInnerHTML={{__html: this.state.isFavorite ? '&#xe60a;' : '&#xe64f;'}}
+            >
+            </i>
             <span>收藏</span>
           </div>
           <div>
             <i className="iconfont">&#xe61a;</i>
             <span>评论</span>
           </div>
-          <div>
+          <div onClick={() => this.setState({ showShare: true })}>
             <i className="iconfont">&#xe632;</i>
             <span>分享</span>
           </div>
         </Menu>
         <SongList songList={this.props.songs}></SongList>
+        <Share
+          close={this.handleShare.bind(this)}
+          show={this.state.showShare} />
       </Fragment>
     )
   }

@@ -59,6 +59,7 @@ export const AlbumImg = styled.div`
     .title {
       color: #fff;
       font-size: 16px;
+      line-height: 1.4
     }
     .person{
       display: flex;
@@ -82,18 +83,20 @@ export const AlbumImg = styled.div`
   .brief {
     display: flex;
     align-items: center;
+    height: 40px;
+    line-height: 40px;
     span {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
       color: #fff;
-      font-size: 14px;
+      font-size: 12px;
       width: 180px;
       display: inline-block
     }
     .iconfont {
       color: #fff;
-      font-size: 14px;
+      font-size: 12px;
     }
   }
 `
@@ -111,10 +114,12 @@ export const Menu = styled.div`
     text-align: center;
     font-size: 14px;
     color: #FFF;
-    z-index: 1000;
     .iconfont {
       font-size: 24px;
       padding-right: 6px
+    }
+    .favorite {
+      color: #d81e06
     }
   }
 `

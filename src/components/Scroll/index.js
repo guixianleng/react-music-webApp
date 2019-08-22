@@ -39,6 +39,7 @@ class Scroll extends Component {
         scrollY: this.props.direction === "vertical",
         // 实时派发scroll事件
         probeType: 3,
+        stopPropagation: true,
         click: this.props.click
       })
 

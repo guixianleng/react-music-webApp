@@ -7,7 +7,6 @@ import NavBar from '../../components/NavBar'
 import Loading from '../../components/Loading/Loading2'
 import AlbumDetail from '../album-detail'
 import { Container } from './style'
-import bgImg from '../../assets/images/skin_bg.jpg'
 
 import { getAlbumInfo } from "../../api/recommend"
 import { getSongVKey } from "../../api/song"
@@ -22,7 +21,8 @@ export default class Album extends Component {
       show: false,
       loading: true,
       album: {},
-      songs: []
+      songs: [],
+      bgImg: ''
     }
   }
   componentDidMount() {
@@ -34,22 +34,22 @@ export default class Album extends Component {
         if (res.code === CODE_SUCCESS) {
           let album = AlbumModel.createAlbumByDetail(res.data)
           album.desc = res.data.desc
-          let songList = res.data.list;
-          let songs = [];
+          let songList = res.data.list
+          let songs = []
           songList.forEach(item => {
             let song = SongModel.createSong(item)
             // 获取歌曲 vkey
             this.getSongUrl(song, item.songmid)
             songs.push(song)
-          });
+          })
           this.setState({
             loading: false,
             album: album,
             songs: songs
-          });
+          })
         }
       }
-    });
+    })
   }
   componentWillUnmount() {
     this.setState({
@@ -70,6 +70,15 @@ export default class Album extends Component {
   }
   handleScroll = ({ y }) => {
     console.log(y)
+    // if (y < -20) {
+    //   this.setState({
+    //     bgImg: this.state.album.img
+    //   })
+    // } else {
+    //   this.setState({
+    //     bgImg: ''
+    //   })
+    // }
   }
   render() {
     return (
@@ -81,8 +90,8 @@ export default class Album extends Component {
         unmountOnExit
         onExited={() => this.props.history.goBack()}
       >
-        <Container bgImg={bgImg}>
-          <NavBar title="专辑" />
+        <Container>
+          <NavBar title="专辑" bgImg={this.state.bgImg} />
           <Scroll onScroll={(pos) => this.handleScroll(pos)}>
             <div>
               <AlbumDetail songs={this.state.songs} albumInfo={this.state.album} />

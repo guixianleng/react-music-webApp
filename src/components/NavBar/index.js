@@ -29,7 +29,7 @@ export default class NavBar extends Component {
   }
   render() {
     return (
-      <Header className="header">
+      <Header className="header" bgImg={this.props.bgImg}>
         <div className="header-back">
           <i
             className="iconfont"

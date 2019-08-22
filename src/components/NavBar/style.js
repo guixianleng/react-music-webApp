@@ -14,9 +14,10 @@ export const Header = styled.div`
     align-items: center;
     flex-wrap: nowrap;
     padding: 0 15px;
-    z-index: 9999;
-    background-color: transparent;
-    /* &::before {
+    z-index: 99;
+    transition: all .6s;
+    &::before {
+      display: ${props => props.bgImg ? '' : 'none'};
       content: "";
       position: absolute;
       top: 0;
@@ -24,8 +25,22 @@ export const Header = styled.div`
       bottom: 0;
       left: 0;
       z-index: -1;
-      filter: blur(5px);
-    }  */
+      filter: blur(20px);
+      background: url(${props => props.bgImg}) center center no-repeat;
+      background-size: cover;
+    }
+    
+    &::after {
+      display: ${props => props.bgImg ? '' : 'none'};
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -2;
+      background-color: rgba(0, 0, 0, 0.5)
+    }
     &-back {
       .iconfont {
         font-size: 22px;
@@ -35,7 +50,7 @@ export const Header = styled.div`
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 400
     }
   }
