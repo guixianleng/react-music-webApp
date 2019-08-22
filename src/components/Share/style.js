@@ -20,8 +20,8 @@ export const Container = styled.div`
         flex-wrap: wrap;
         margin: 12px 0;
         &-items {
-          flex-basis: 19%;
-          margin: 8px 11px;
+          flex-basis: 25%;
+          margin: 10px 0;
           text-align: center;
           > div {
             height: 50px;
