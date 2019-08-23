@@ -43,9 +43,9 @@ export const Container = styled.div`
       bottom: 60px;
       z-index: 999;
     }
-    ul {
+    .batch-ul {
       background-color: #fff;
-      > li {
+      .batch-li {
         display: flex;
         height: 60px;
         align-items: center;

@@ -5,7 +5,9 @@ export const Tab = styled.div`
   justify-content: space-around;
   align-items: center;
   text-align: center;
-  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  height: 40px;
   .nav-link {
     text-decoration: none;
     color: inherit;

@@ -1,5 +1,4 @@
 import React, { lazy, Suspense } from 'react'
-import { Redirect } from 'react-router-dom'
 
 const suspenseComponent = (Component) => {
   return (props) => (
@@ -21,62 +20,55 @@ const Singer = suspenseComponent(lazy(() => import('../connects/Singer')))
 
 const router = [
   {
-    path: '/',
+    path: '/recommend',
     component: Recommend,
     routes: [
       {
-        path: '/',
-        exact: true,
-        render: () => (
-          <Redirect to={'/recommend'} />
-        )
-      },
+        path: '/recommend/:id',
+        component: Album
+      }
+    ]
+  },
+  {
+    path: '/ranking',
+    component: Rank,
+    routes: [
       {
-        path: '/recommend/',
-        key: 'home',
-        component: Recommend,
-        routes: [
-          {
-            path: '/recommend/:id',
-            component: Album,
-          }
-        ]
-      },
+        path: '/ranking/:id',
+        component: Album
+      }
+    ]
+  },
+  {
+    path: '/singer',
+    component: Singers,
+    routes: [
       {
-        path: '/singers',
-        component: Singers,
-        key: 'singers',
-        routes: [
-          {
-            path: '/singers/:id',
-            component: Singer
-          }
-        ]
-      },
+        path: '/singer/:id',
+        component: Singer
+      }
+    ]
+  },
+  {
+    path: '/search',
+    component: Search,
+    routes: [
       {
-        path: '/rank',
-        component: Rank,
-        key: 'rank',
-        routes: [
-          {
-            path: '/rank/:id',
-            component: Album,
-          }
-        ]
-      },
-      {
-        path: '/album/:id',
-        exact: true,
-        key: 'album',
+        path: '/search/album/:id',
         component: Album
       },
       {
-        path: '/search',
-        exact: true,
-        key: 'search',
-        component: Search
+        path: '/search/singer/:id',
+        component: Singer
       }
     ]
+  },
+  {
+    component: () => (
+      <div style={{ marginTop: 100, textAlign: 'center' }}>
+        开发中...
+      </div>
+    )
   }
 ]
 

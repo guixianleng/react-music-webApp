@@ -1,0 +1,122 @@
+import React, { Component, Fragment } from 'react'
+import { forceCheck } from 'react-lazyload'
+
+import Scroll from '../../components/Scroll'
+import Loading from '../../components/Loading/Loading2'
+import { getRankingList } from "../../api/ranking"
+import { CODE_SUCCESS } from "../../api/config"
+import * as RankingModel from "../../models/ranking"
+import { Container, List, ListItem, RankList } from './style'
+import { transNumber } from '../../utils/decimal'
+
+export default class index extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      loading: true,
+      rankingList: []
+    }
+  }
+  componentDidMount() {
+    getRankingList().then((res) => {
+      console.log(res.data)
+      if (res) {
+        if (res.code === CODE_SUCCESS) {
+          let topList = []
+          res.data.topList.forEach(item => {
+            if (/MV/i.test(item.topTitle)) {
+              return
+            }
+            item.listenCount = transNumber(item.listenCount)
+            topList.push(RankingModel.createRankingByList(item))
+          })
+          this.setState({
+            loading: false,
+            rankingList: topList
+          })
+        }
+      }
+    })
+  }
+  render() {
+    return (
+      <Container>
+        <Scroll onScroll={() => { forceCheck() }}>
+          <div>
+            <Fragment>
+              <h2>QQ音乐巅峰榜</h2>
+              <List className="rank-ul" global={false}>
+                {
+                  this.state.rankingList.map(item => {
+                    return (
+                      <ListItem key={item.id} className="rank-li" trick={false}>
+                        <div className="rank-li_img">
+                          <img src={item.img} width="100%" height="100%" alt="ranking" />
+                          <div className="decorate">
+                            <div className="decorate-left">
+                              <i className="iconfont">&#xe721;</i>
+                              <span>{item.listenCount}</span>
+                            </div>
+                            <div className="decorate-bottom">
+                              <i className="iconfont">&#xe62c;</i>
+                            </div>
+                          </div>
+                        </div>
+                        <RankList className="ranking-list">
+                          {
+                            item.songs.map((song, index) => {
+                              return (
+                                <div className="song-rank" key={index}>
+                                  <span className="index">{index + 1}</span>
+                                  <span>{song.name}</span>
+                                  &nbsp;-&nbsp;
+                              <span className="singer">{song.singer}</span>
+                                </div>
+                              )
+                            })
+                          }
+                        </RankList>
+                        <div className="ranking-detail">
+                          <i className="iconfont">&#xe649;</i>
+                        </div>
+                      </ListItem>
+                    )
+                  })
+                }
+              </List>
+            </Fragment>
+            <Fragment>
+              <h2>全球榜</h2>
+              <List className="rank-ul" global>
+                {
+                  this.state.rankingList.map(item => {
+                    return (
+                      <ListItem key={item.id} className="rank-li" trick>
+                        <div className="rank-li_img">
+                          <img src={item.img} width="100%" height="100%" alt="ranking" />
+                          <div className="decorate">
+                            <div className="decorate-left">
+                              <i className="iconfont">&#xe721;</i>
+                              <span>{item.listenCount}</span>
+                            </div>
+                            <div className="decorate-bottom">
+                              <i className="iconfont">&#xe62c;</i>
+                            </div>
+                          </div>
+                          <div className="type-title">
+                            {item.title}
+                          </div>
+                        </div>
+                      </ListItem>
+                    )
+                  })
+                }
+              </List>
+            </Fragment>
+          </div>
+        </Scroll>
+        <Loading show={this.state.loading} />
+      </Container>
+    )
+  }
+}

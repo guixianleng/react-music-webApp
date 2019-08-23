@@ -116,7 +116,7 @@ export const Menu = styled.div`
     color: #FFF;
     .iconfont {
       font-size: 24px;
-      padding-right: 6px
+      padding-right: 2px
     }
     .favorite {
       color: #d81e06

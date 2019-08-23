@@ -69,16 +69,15 @@ export default class Album extends Component {
     })
   }
   handleScroll = ({ y }) => {
-    console.log(y)
-    // if (y < -20) {
-    //   this.setState({
-    //     bgImg: this.state.album.img
-    //   })
-    // } else {
-    //   this.setState({
-    //     bgImg: ''
-    //   })
-    // }
+    if (y < -20) {
+      this.setState({
+        bgImg: this.state.album.img
+      })
+    } else {
+      this.setState({
+        bgImg: ''
+      })
+    }
   }
   render() {
     return (

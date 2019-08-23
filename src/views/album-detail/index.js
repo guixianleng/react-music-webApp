@@ -50,10 +50,9 @@ export default class Detail extends Component {
           </div>
         </AlbumImg>
         <Menu>
-          <div>
+          <div onClick={this.handleFavorite.bind(this)}>
             <i
               className={`iconfont ${this.state.isFavorite ? 'favorite' : ''}`}
-              onClick={this.handleFavorite.bind(this)}
               dangerouslySetInnerHTML={{__html: this.state.isFavorite ? '&#xe60a;' : '&#xe64f;'}}
             >
             </i>

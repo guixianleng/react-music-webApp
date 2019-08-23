@@ -47,11 +47,11 @@ export default class index extends Component {
             <div className="wrapper-batch">
               <Scroll onScroll={() => { forceCheck() }}>
                 <div>
-                  <ul>
+                  <ul className="batch-ul">
                     {
                       songList.map((item, index) => {
                         return (
-                          <li key={item + index}>
+                          <li key={item + index} className="batch-li">
                             <div className="song-select">{index + 1}</div>
                             <div className="song-info">
                               <span>遇见</span>
