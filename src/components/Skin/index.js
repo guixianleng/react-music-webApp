@@ -53,7 +53,7 @@ export default class Skin extends Component {
             showLeft={false}
             title="皮肤中心"
             rightText="取消"
-            cancel={this.handleCancel.bind(this)}
+            deal={this.handleCancel.bind(this)}
           />
           <div className="skin">
             {

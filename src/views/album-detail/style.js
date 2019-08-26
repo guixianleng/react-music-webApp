@@ -43,11 +43,11 @@ export const AlbumImg = styled.div`
       color: #fff;
       font-size: 12px
     }
-  img {
-    width: 120px;
-    height: 120px;
-    border-radius: 4px;
-  }
+    img {
+      width: 120px;
+      height: 120px;
+      border-radius: 4px;
+    }
   }
   .desc_wrapper {
     flex: 1;
@@ -91,7 +91,7 @@ export const AlbumImg = styled.div`
       white-space: nowrap;
       color: #fff;
       font-size: 12px;
-      width: 180px;
+      width: 240px;
       display: inline-block
     }
     .iconfont {

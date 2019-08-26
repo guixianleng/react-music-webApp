@@ -64,7 +64,7 @@ class Scroll extends Component {
   }
   render() {
     return (
-      <ScrollDiv ref={this.scrollRef}>
+      <ScrollDiv ref={this.scrollRef} className="scroll-view">
         {/* 获取子组件 */}
         {this.props.children}
         {/* 滑到底部加载动画 */}

@@ -10,27 +10,31 @@ export default class NavBar extends Component {
   // 静态校验
   static propTypes = {
     showLeft: PropTypes.bool, // 显示回退箭头
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    more: PropTypes.bool,
     rightText: PropTypes.string,
-    cancel: PropTypes.func
+    deal: PropTypes.func // 右侧处理事件
   }
   // 默认props
   static defaultProps = {
     showLeft: true,
-    rightText: ''
+    rightText: '',
+    title: '',
+    more: false
   }
   // 回退
   handleBack() {
     window.history.back()
   }
   // 取消
-  handleCancel() {
-    this.props.cancel()
+  handleDeal() {
+    this.props.deal()
   }
   render() {
+    const label = '<i class="iconfont">&#xeb30;</i>'
     return (
       <Header className="header" bgImg={this.props.bgImg}>
-        <div className="header-back">
+        <div className="nav-back">
           <i
             className="iconfont"
             style={{ display: this.props.showLeft ? '' : 'none' }}
@@ -39,14 +43,14 @@ export default class NavBar extends Component {
             &#xeb15;
           </i>
         </div>
-        <div className="header-title">
+        <div className="nav-title">
           {this.props.title}
         </div>
         <div
-          className="header-right"
-          onClick={this.handleCancel.bind(this)}
+          className="nav-right"
+          onClick={this.handleDeal.bind(this)}
+          dangerouslySetInnerHTML={{__html: this.props.more ? label : `${this.props.rightText}`}}
         >
-          {this.props.rightText}
         </div>
       </Header>
     )

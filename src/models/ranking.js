@@ -3,11 +3,14 @@ import * as SongModel from "./song"
  * 排行榜类模型
  */
 export class Ranking {
-  constructor(id, title, img, listenCount, songs) {
+  constructor(id, title, img, imgH5, listenCount, commentNum, updateTime, songs) {
     this.id = id;
     this.title = title;
     this.img = img;
+    this.imgH5 = imgH5;
     this.listenCount = listenCount
+    this.commentNum = commentNum
+    this.updateTime = updateTime
     this.songs = songs;
   }
 }
@@ -24,7 +27,10 @@ export function createRankingByList(data) {
     data.id,
     data.topTitle,
     data.picUrl,
+    data.picH5,
     data.listenCount,
+    data.commentNum,
+    data.updateTime,
     songList
   );
 }
@@ -37,6 +43,10 @@ export function createRankingByDetail(data) {
     data.topID,
     data.ListName,
     data.pic_album,
+    data.pic_v12,
+    data.listennum,
+    data.comment_num,
+    data.update_time,
     []
   );
 }

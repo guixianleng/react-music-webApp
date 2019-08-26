@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
-// import emitter from '../../utils/events'
 import Scroll from '../../components/Scroll'
 import NavBar from '../../components/NavBar'
 import Loading from '../../components/Loading/Loading2'
 import AlbumDetail from '../album-detail'
 import { Container } from './style'
-
+// 专辑详情
 import { getAlbumInfo } from "../../api/recommend"
-import { getSongVKey } from "../../api/song"
-import { CODE_SUCCESS } from "../../api/config"
 import * as AlbumModel from "../../models/album"
+
+import { CODE_SUCCESS } from "../../api/config"
+import { getSongVKey } from "../../api/song"
 import * as SongModel from "../../models/song"
+
 
 export default class Album extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ export default class Album extends Component {
     this.state = {
       show: false,
       loading: true,
-      album: {},
+      album: {}, // 专辑
       songs: [],
       bgImg: ''
     }
@@ -29,6 +30,9 @@ export default class Album extends Component {
     this.setState({
       show: true
     })
+  }
+  // 专辑列表
+  getAlbumInfo () {
     getAlbumInfo(this.props.match.params.id).then((res) => {
       if (res) {
         if (res.code === CODE_SUCCESS) {
@@ -87,6 +91,9 @@ export default class Album extends Component {
         classNames="pop-right"
         appear={true}
         unmountOnExit
+        onEntered={() => {
+          this.getAlbumInfo()
+        }}
         onExited={() => this.props.history.goBack()}
       >
         <Container>

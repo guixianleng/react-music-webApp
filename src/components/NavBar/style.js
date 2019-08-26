@@ -41,17 +41,21 @@ export const Header = styled.div`
       z-index: -2;
       background-color: rgba(0, 0, 0, 0.5)
     }
-    &-back {
+    .nav-back,
+    .nav-right {
       .iconfont {
-        font-size: 22px;
+        font-size: 24px;
       }
     }
-    &-title {
+    .nav-title {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
       font-size: 18px;
       font-weight: 400
+    }
+    .nav-right {
+      font-size: 16px;
     }
   }
 `

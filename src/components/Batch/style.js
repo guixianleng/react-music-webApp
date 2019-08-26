@@ -41,7 +41,10 @@ export const Container = styled.div`
       left: 0;
       right: 0;
       bottom: 60px;
-      z-index: 999;
+      z-index: 99;
+      .scroll-view {
+        overflow: hidden
+      }
     }
     .batch-ul {
       background-color: #fff;

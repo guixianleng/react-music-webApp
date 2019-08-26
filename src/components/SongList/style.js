@@ -83,6 +83,8 @@ export const SongItem = styled.div`
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
+            height: 28px;
+            line-height: 28px;
             &:first-child {
               color: #333;
               font-size: 14px

@@ -11,6 +11,7 @@ const suspenseComponent = (Component) => {
 const Recommend = suspenseComponent(lazy(() => import('../views/recommend')))
 const Album = suspenseComponent(lazy(() => import('../views/Album')))
 const Rank = suspenseComponent(lazy(() => import('../views/rank')))
+const RankDetail = suspenseComponent(lazy(() => import('../views/rank-detail')))
 const Singers = suspenseComponent(lazy(() => import('../views/singer')))
 const Search = suspenseComponent(lazy(() => import('../connects/Search')))
 
@@ -35,7 +36,7 @@ const router = [
     routes: [
       {
         path: '/ranking/:id',
-        component: Album
+        component: RankDetail
       }
     ]
   },

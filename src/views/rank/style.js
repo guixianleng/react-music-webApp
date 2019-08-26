@@ -4,6 +4,7 @@ import style from '../../assets/style/variable'
 export const Container = styled.div`
   height: 100%;
   width: 100%;
+  background-color: #fff;
   h2 {
     text-align: center;
     font-size: 16px;
@@ -88,12 +89,15 @@ export const RankList = styled.div`
     padding: 10px 10px;
     ${style.noWrap()};
     > div {
-      margin: 5px 0;
       font-size: 14px;
       width: 100%;
       ${style.noWrap()};
       .index {
         margin-right: 10px
+      }
+      > span {
+        height: 24px;
+        line-height: 24px;
       }
     }
   }

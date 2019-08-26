@@ -20,7 +20,6 @@ class App extends Component {
       menuShow: false, // 显示菜单
       theme: setSkinStyle(skins[storage.getSkin()]) // 当前皮肤主题
     }
-    console.log(this)
   }
   // 显示菜单
   handleMenu(show) {

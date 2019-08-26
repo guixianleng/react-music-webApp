@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { forceCheck } from 'react-lazyload'
+import { renderRoutes } from "react-router-config"
 
 import Scroll from '../../components/Scroll'
 import Loading from '../../components/Loading/Loading2'
@@ -19,7 +20,6 @@ export default class index extends Component {
   }
   componentDidMount() {
     getRankingList().then((res) => {
-      console.log(res.data)
       if (res) {
         if (res.code === CODE_SUCCESS) {
           let topList = []
@@ -38,7 +38,16 @@ export default class index extends Component {
       }
     })
   }
+  // 详情页
+  handleDetail(url) {
+    return () => {
+      this.props.history.push({
+        pathname: url
+      })
+    }
+  }
   render() {
+    const { match, route } = this.props
     return (
       <Container>
         <Scroll onScroll={() => { forceCheck() }}>
@@ -49,7 +58,7 @@ export default class index extends Component {
                 {
                   this.state.rankingList.map(item => {
                     return (
-                      <ListItem key={item.id} className="rank-li" trick={false}>
+                      <ListItem key={item.id} className="rank-li" trick={false} onClick={this.handleDetail(`${match.url}/${item.id}`)}>
                         <div className="rank-li_img">
                           <img src={item.img} width="100%" height="100%" alt="ranking" />
                           <div className="decorate">
@@ -66,11 +75,11 @@ export default class index extends Component {
                           {
                             item.songs.map((song, index) => {
                               return (
-                                <div className="song-rank" key={index}>
+                                <div key={index}>
                                   <span className="index">{index + 1}</span>
                                   <span>{song.name}</span>
                                   &nbsp;-&nbsp;
-                              <span className="singer">{song.singer}</span>
+                                  <span>{song.singer}</span>
                                 </div>
                               )
                             })
@@ -116,6 +125,7 @@ export default class index extends Component {
           </div>
         </Scroll>
         <Loading show={this.state.loading} />
+        {renderRoutes(route.routes)}
       </Container>
     )
   }
