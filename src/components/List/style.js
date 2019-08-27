@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 export const ListWrapper = styled.div`
   max-width: 100%;
-  background-color: #f2f3f4;
+  /* background-color: #f2f3f4; */
+  display: ${props => props.show ? '' : 'none' };
   .title {
     font-weight: 400;
     text-align: center;

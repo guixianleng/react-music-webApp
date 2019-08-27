@@ -10,7 +10,7 @@ export default class List extends Component {
   render() {
     const { ListData } = this.props
     return (
-      <ListWrapper>
+      <ListWrapper show={ListData.length}>
         <h1 className="title">最新专辑</h1>
         <Lists>
           {

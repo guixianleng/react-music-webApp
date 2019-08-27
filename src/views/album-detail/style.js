@@ -1,37 +1,20 @@
 import styled from 'styled-components'
 
+export const Container = styled.div`
+  position: absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
+  bottom: 0
+`
+
 export const AlbumImg = styled.div`
   position: relative;
-  padding: 5px 20px;
-  padding-bottom: 30px;
-  margin-bottom: 20px;
+  padding: 5px 10px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   box-sizing: border-box;
-  width: 100%;
-  height: 275px;
-  .background {
-    z-index: -1;
-    background: url(${props => props.background}) center center no-repeat;
-    background-position: 0 0;
-    background-size: 100% 100%;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    filter: blur(20px);
-    transform-origin: center center;
-    transition: transform;
-    .filter {
-      position: absolute;
-      z-index: 10;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-    }
-  }
   .img_wrapper {
     width: 120px;
     height: 120px;
@@ -55,7 +38,7 @@ export const AlbumImg = styled.div`
     flex-direction: column;
     justify-content: space-around;
     height: 120px;
-    padding: 0 15px;
+    padding-left: 15px;
     .title {
       color: #fff;
       font-size: 16px;
@@ -107,7 +90,7 @@ export const Menu = styled.div`
   justify-content: space-between;
   box-sizing: border-box;
   padding: 0 30px;
-  margin: -80px 0 25px 0;
+  margin-top: 30px;
   > div {
     display: flex;
     line-height: 20px;

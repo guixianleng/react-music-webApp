@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
-import Scroll from '../../components/Scroll'
 import NavBar from '../../components/NavBar'
 import Loading from '../../components/Loading/Loading2'
 import AlbumDetail from '../album-detail'
@@ -46,6 +45,7 @@ export default class Album extends Component {
             this.getSongUrl(song, item.songmid)
             songs.push(song)
           })
+          console.log(album)
           this.setState({
             loading: false,
             album: album,
@@ -72,17 +72,6 @@ export default class Album extends Component {
       }
     })
   }
-  handleScroll = ({ y }) => {
-    if (y < -20) {
-      this.setState({
-        bgImg: this.state.album.img
-      })
-    } else {
-      this.setState({
-        bgImg: ''
-      })
-    }
-  }
   render() {
     return (
       <CSSTransition
@@ -98,12 +87,8 @@ export default class Album extends Component {
       >
         <Container>
           <NavBar title="专辑" bgImg={this.state.bgImg} />
-          <Scroll onScroll={(pos) => this.handleScroll(pos)}>
-            <div>
-              <AlbumDetail songs={this.state.songs} albumInfo={this.state.album} />
-            </div>
-          </Scroll>
-          <Loading show={this.state.loading} />
+          <AlbumDetail songList={this.state.songs} albumInfo={this.state.album} />
+          <Loading show={this.state.loading} bgColor />
         </Container>
       </CSSTransition>
     )

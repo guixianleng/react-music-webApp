@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 
+export const Content = styled.div`
+  position: relative;
+  height: 100%;
+`
+
 export const SongList = styled.div`
   border-radius: 10px;
   overflow: hidden;
@@ -50,9 +55,9 @@ export const SongList = styled.div`
 `
 export const SongItem = styled.div`
   &.song-list {
-    min-height: 60vh;
+    min-height: 100vh;
     height: auto;
-    margin-bottom: 52px;
+    padding-bottom: 52px;
     .song-ul {
       background-color: #fff;
       padding-bottom: 50px;

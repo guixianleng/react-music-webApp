@@ -11,6 +11,7 @@ export const Container = styled.div`
     color: #333;
     background-color: #fff;
     padding: 15px 0 0;
+    display: ${props => props.show ? 'none' : ''};
   }
 `
 

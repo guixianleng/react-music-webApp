@@ -2,26 +2,20 @@ import React, { Component } from 'react'
 
 import Scroll from '../../components/Scroll'
 import SongList from '../../components/SongList'
-import { Header, Content, Container } from './detailStyle'
-import Share from '../../components/Share'
+import { Header, Content, Container } from './style'
+import Batch from '../../components/Batch'
 
 export default class Detail extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showShare: false
+      showBatch: false // 显示批量操作
     }
     this.headerRef = React.createRef()
   }
   static defaultProps = {
     info: {},
     songs: []
-  }
-  // 分享
-  handleShare() {
-    this.setState({
-      showShare: false
-    })
   }
   handleScroll ({ y }) {
     let detailDOM = this.headerRef.current
@@ -31,37 +25,34 @@ export default class Detail extends Component {
       detailDOM.style.transform = transformChange
     }
   }
+  handleBatch (isShow) {
+    this.setState({
+      showBatch: isShow
+    })
+  }
   render() {
     const { songs, info } = this.props
     return (
       <Container>
         <Header bgImg={info.img}>
           <div className="background" ref={this.headerRef}>
-            <div className="filter">
-              <h1>巅峰榜</h1>
-              <div>热歌</div>
-            </div>
+            <div className="filter"></div>
           </div>
-          <div className="ranking-info">
-            <div className="update-time">{info.updateTime}更新</div>
-            <div className="comment">
-              <i className="iconfont">&#xe61a;</i>
-              <span>{info.commentNum > 999 ? `999+` : info.commentNum}</span>
-            </div>
-          </div>
+          {this.props.children}
         </Header>
         <Content className="detail-songs">
           <div className="view-scroll">
             <Scroll onScroll={(pos) => this.handleScroll(pos)}>
               <div>
-                <SongList songList={songs}></SongList>
+                <SongList songList={songs} batch={this.handleBatch.bind(this)}></SongList>
               </div>
             </Scroll>
           </div>
         </Content>
-        <Share
-          close={this.handleShare.bind(this)}
-          show={this.state.showShare} />
+        {/* 批量操作 */}
+        <Batch
+          close={this.handleBatch.bind(this, false)}
+          show={this.state.showBatch} />
       </Container>
     )
   }

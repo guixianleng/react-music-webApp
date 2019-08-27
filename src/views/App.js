@@ -49,13 +49,7 @@ class App extends Component {
                 title="Music webApp"
                 menu={this.handleMenu.bind(this)}
               />
-              <Tabs 
-                color={this.state.theme.color}
-              />
-              <div className="pull-down-desc">
-                <i className="iconfont">&#xe601;</i>
-                <span>首页根据您的听歌口味生成</span>
-              </div>
+              <Tabs color={this.state.theme.color} />
               <div className="app-content">
                 <Switch>
                   <Redirect from="/" to="/recommend" exact />

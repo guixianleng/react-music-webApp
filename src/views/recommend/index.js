@@ -71,7 +71,7 @@ export default class index extends Component {
             <RecommendList ListData={this.state.newAlbums} detail={this.handleDetail.bind(this)} />
           </div>
         </Scroll>
-        <Loading show={this.state.loading}/>
+        <Loading show={this.state.loading} />
         { renderRoutes(route.routes) }
       </Content>
     )

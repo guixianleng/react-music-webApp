@@ -1,27 +1,22 @@
-import React, { Component, Fragment } from 'react'
-import { SongList, SongItem } from './style'
-import Batch from '../../components/Batch'
+import React, { Component } from 'react'
+import { SongList, SongItem, Content } from './style'
 
 export default class index extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      showBatch: false
-    }
+    this.state = {  }
   }
   static defaultProps = {
     songList: []
   }
   // 批量操作
   handleBatch (pos) {
-    this.setState({
-      showBatch: pos
-    })
+    this.props.batch(pos)
   }
   render() {
     const { songList } = this.props
     return (
-      <Fragment>
+      <Content>
         <SongList>
           <div className="first_line">
             <div className="play_all">
@@ -53,11 +48,7 @@ export default class index extends Component {
             </ul>
           </SongItem>
         </SongList>
-        {/* 批量操作 */}
-        <Batch
-          close={this.handleBatch.bind(this, false)}
-          show={this.state.showBatch} />
-      </Fragment>
+      </Content>
     )
   }
 }

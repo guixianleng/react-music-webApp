@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
-// import Scroll from '../../components/Scroll'
 import NavBar from '../../components/NavBar'
 import Loading from '../../components/Loading/Loading2'
-import Detail from '../rank-detail/Detail'
+import Detail from '../detail'
 import { Container } from './style'
 
 // 排行榜详情
@@ -14,7 +13,6 @@ import * as RankingModel from '../../models/ranking'
 import { CODE_SUCCESS } from '../../api/config'
 import { getSongVKey } from '../../api/song'
 import * as SongModel from '../../models/song'
-
 
 export default class RankDetail extends Component {
   constructor(props) {
@@ -26,7 +24,6 @@ export default class RankDetail extends Component {
       songs: [],
       bgImg: ''
     }
-    this.detailRef = React.createRef()
   }
   componentDidMount() {
     this.setState({
@@ -52,7 +49,6 @@ export default class RankDetail extends Component {
             this.getSongUrl(song, item.data.songmid)
             songList.push(song)
           })
-          console.log(ranking)
           this.setState({
             loading: false,
             ranking: ranking,
@@ -98,6 +94,7 @@ export default class RankDetail extends Component {
     })
   }
   render() {
+    const info = this.state.ranking
     return (
       <CSSTransition
         in={this.state.show}
@@ -113,12 +110,22 @@ export default class RankDetail extends Component {
       >
         <Container>
           <NavBar more bgImg={this.state.bgImg} />
-          {/* <Scroll onScroll={(pos) => this.handleScroll(pos)}>
-            <div> */}
-              <Detail ref={this.detailRef} songs={this.state.songs} info={this.state.ranking} />
-            {/* </div>
-          </Scroll> */}
-          <Loading show={this.state.loading} />
+          <Detail songs={this.state.songs} info={info}>
+            <div className="insert-bg">
+              <div className="insert-top">
+                <h1>巅峰榜</h1>
+                <div>热歌</div>
+              </div>
+              <div className="insert-bottom">
+                <div className="update-time">{info.updateTime}更新</div>
+                <div className="comment">
+                  <i className="iconfont">&#xe61a;</i>
+                  <span>{info.commentNum > 999 ? `999+` : info.commentNum}</span>
+                </div>
+              </div>
+            </div>
+          </Detail>
+          <Loading show={this.state.loading} bgColor />
         </Container>
       </CSSTransition>
     )

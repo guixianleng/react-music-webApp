@@ -29,7 +29,7 @@ const LoadingDiv = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  background-color: #fff;
+  background-color: ${props => props.bgColor ? '#fff' : 'transparent'};
   z-index: 9999;
   div {
     width: 10px;
@@ -60,7 +60,7 @@ const LoadingDiv = styled.div`
 
 const Loading2 = (props) => {
   return (
-    <LoadingDiv show={props.show}>
+    <LoadingDiv show={props.show} bgColor={props.bgColor}>
       <div></div>
     </LoadingDiv>
   )

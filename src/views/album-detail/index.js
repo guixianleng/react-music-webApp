@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react'
-import SongList from '../../components/SongList'
-import { AlbumImg, Menu } from './style'
+import { AlbumImg, Menu, Container } from './style'
 import Share from '../../components/Share'
+import Detail from '../detail'
 
-export default class Detail extends Component {
+export default class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -12,62 +12,62 @@ export default class Detail extends Component {
     }
   }
   // 分享
-  handleShare () {
+  handleShare() {
     this.setState({
       showShare: false
     })
   }
   // 收藏
-  handleFavorite () {
+  handleFavorite() {
     this.setState({
       isFavorite: !this.state.isFavorite
     })
   }
   render() {
-    const { albumInfo } = this.props
+    const { albumInfo, songList } = this.props
     return (
       <Fragment>
-        <AlbumImg background={albumInfo.img}>
-          <div className="background">
-            <div className="filter"></div>
-          </div>
-          <div className="img_wrapper">
-            <img src={albumInfo.img} alt="" />
-            <div className="decorate">2019-08-21</div>
-          </div>
-          <div className="desc_wrapper">
-            <div className="title">{albumInfo.name}</div>
-            <div className="person">
-              <div className="avatar">
+        <Detail info={albumInfo} songs={songList}>
+          <Container>
+            <AlbumImg>
+              <div className="img_wrapper">
                 <img src={albumInfo.img} alt="" />
+                <div className="decorate">{albumInfo.publicTime}</div>
               </div>
-              <div className="name">{albumInfo.singer}</div>
-            </div>
-            <div className="brief">
-              <span dangerouslySetInnerHTML={{__html: `简介：${albumInfo.desc}`}}></span>
-              <i className="iconfont">&#xe649;</i>
-            </div>
-          </div>
-        </AlbumImg>
-        <Menu>
-          <div onClick={this.handleFavorite.bind(this)}>
-            <i
-              className={`iconfont ${this.state.isFavorite ? 'favorite' : ''}`}
-              dangerouslySetInnerHTML={{__html: this.state.isFavorite ? '&#xe60a;' : '&#xe64f;'}}
-            >
-            </i>
-            <span>收藏</span>
-          </div>
-          <div>
-            <i className="iconfont">&#xe61a;</i>
-            <span>评论</span>
-          </div>
-          <div onClick={() => this.setState({ showShare: true })}>
-            <i className="iconfont">&#xe632;</i>
-            <span>分享</span>
-          </div>
-        </Menu>
-        <SongList songList={this.props.songs}></SongList>
+              <div className="desc_wrapper">
+                <div className="title">{albumInfo.name}</div>
+                <div className="person">
+                  <div className="avatar">
+                    <img src={albumInfo.img} alt="" />
+                  </div>
+                  <div className="name">{albumInfo.singer}</div>
+                </div>
+                <div className="brief">
+                  <span dangerouslySetInnerHTML={{ __html: `简介：${albumInfo.desc}` }}></span>
+                  <i className="iconfont">&#xe649;</i>
+                </div>
+              </div>
+            </AlbumImg>
+            <Menu>
+              <div onClick={this.handleFavorite.bind(this)}>
+                <i
+                  className={`iconfont ${this.state.isFavorite ? 'favorite' : ''}`}
+                  dangerouslySetInnerHTML={{ __html: this.state.isFavorite ? '&#xe60a;' : '&#xe64f;' }}
+                >
+                </i>
+                <span>收藏</span>
+              </div>
+              <div>
+                <i className="iconfont">&#xe61a;</i>
+                <span>评论</span>
+              </div>
+              <div onClick={() => this.setState({ showShare: true })}>
+                <i className="iconfont">&#xe632;</i>
+                <span>分享</span>
+              </div>
+            </Menu>
+          </Container>
+        </Detail>
         <Share
           close={this.handleShare.bind(this)}
           show={this.state.showShare} />

@@ -49,7 +49,7 @@ export default class index extends Component {
   render() {
     const { match, route } = this.props
     return (
-      <Container>
+      <Container show={this.state.loading}>
         <Scroll onScroll={() => { forceCheck() }}>
           <div>
             <Fragment>

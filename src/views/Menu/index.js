@@ -38,6 +38,8 @@ export default class Menu extends Component {
         <CSSTransition
           in={this.props.show}
           timeout={300} classNames="fade-left"
+          appear={true}
+          unmountOnExit
           onEnter={() => {
             this.coverRef.current.style.display = "block";
           }}
