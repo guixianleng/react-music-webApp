@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { keyframes } from 'styled-components'
+import style from '../../assets/style/variable'
 
 const List = styled.ul`
   display: flex;
@@ -9,6 +10,7 @@ const List = styled.ul`
   flex-direction: row;
   flex-wrap: nowrap;
   background-color: #fff;
+  border-bottom: 1px solid ${style['border-color']};
 `
 
 // 点击切换动画
@@ -38,9 +40,9 @@ const ListItem = styled.li`
       position: absolute;
       left: 0;
       right: 0;
-      bottom: -1px;
+      bottom: 1px;
       height: 2px;
-      width: 100%;
+      width: ${props => props.width || '100%'};
       background-color: ${props => props.theme.backgroundColor};
       animation: ${animate} .3s ease-in-out;
     }
@@ -64,7 +66,7 @@ const ContainerAnimate = keyframes`
 
 const Container = styled.div`
   display: ${props => props.show ? '' : 'none'};
-  padding: 10px;
+  /* padding: 10px; */
   animation: ${ContainerAnimate} ease-in-out .3s;
 `
 

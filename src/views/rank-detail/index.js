@@ -3,6 +3,7 @@ import { CSSTransition } from 'react-transition-group'
 
 import NavBar from '../../components/NavBar'
 import Loading from '../../components/Loading/Loading2'
+import Share from '../../components/Share'
 import Detail from '../detail'
 import { Container } from './style'
 
@@ -22,7 +23,8 @@ export default class RankDetail extends Component {
       loading: true,
       ranking: {}, // 专辑
       songs: [],
-      bgImg: ''
+      bgImg: '',
+      showMore: false // 右上角事件处理
     }
   }
   componentDidMount() {
@@ -52,7 +54,8 @@ export default class RankDetail extends Component {
           this.setState({
             loading: false,
             ranking: ranking,
-            songs: songList
+            songs: songList,
+            bgImg: ranking.img
           })
         }
       }
@@ -71,30 +74,30 @@ export default class RankDetail extends Component {
       }
     })
   }
-  handleScroll = ({ y }) => {
-    // if (y < -20) {
-    //   this.setState({
-    //     bgImg: this.state.ranking.img
-    //   })
-    // } else {
-    //   this.setState({
-    //     bgImg: ''
-    //   })
-    // }
-    if (y > 0) {
-      const transformChange = `scale(${1 + y * 0.004}, ${1 + y * 0.004})`
-      let detailDOM = this.detailRef.current.headerRef.current
-      detailDOM.style.webkitTransform = transformChange
-      detailDOM.style.transform = transformChange
-    }
-  }
   componentWillUnmount() {
     this.setState({
       show: false
     })
   }
+  handleMore () {
+    this.setState({
+      showMore: !this.state.showMore
+    })
+  }
   render() {
     const info = this.state.ranking
+    const shareTypes = [
+      {
+        name: '加到歌单',
+        iconName: '&#xe605;',
+        id: 1
+      },
+      {
+        name: '分享',
+        iconName: '&#xe626;',
+        id: 2
+      }
+    ]
     return (
       <CSSTransition
         in={this.state.show}
@@ -109,8 +112,8 @@ export default class RankDetail extends Component {
         onExited={() => this.props.history.goBack()}
       >
         <Container>
-          <NavBar more bgImg={this.state.bgImg} />
-          <Detail songs={this.state.songs} info={info}>
+          <NavBar more bgImg={this.state.bgImg} deal={this.handleMore.bind(this)} />
+          <Detail songs={this.state.songs} info={info} showTabs>
             <div className="insert-bg">
               <div className="insert-top">
                 <h1>巅峰榜</h1>
@@ -126,6 +129,10 @@ export default class RankDetail extends Component {
             </div>
           </Detail>
           <Loading show={this.state.loading} bgColor />
+          <Share
+            shareTypes={shareTypes}
+            close={this.handleMore.bind(this)}
+            show={this.state.showMore} />
         </Container>
       </CSSTransition>
     )

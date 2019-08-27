@@ -58,7 +58,12 @@ export default class index extends Component {
                 {
                   this.state.rankingList.map(item => {
                     return (
-                      <ListItem key={item.id} className="rank-li" trick={false} onClick={this.handleDetail(`${match.url}/${item.id}`)}>
+                      <ListItem
+                        key={item.id}
+                        className="rank-li"
+                        trick={false}
+                        onClick={this.handleDetail(`${match.url}/${item.id}`)}
+                      >
                         <div className="rank-li_img">
                           <img src={item.img} width="100%" height="100%" alt="ranking" />
                           <div className="decorate">

@@ -42,6 +42,11 @@ export const Content = styled.div`
   .scroll-view {
     overflow: visible
   }
+  .detail-info {
+    padding: 15px;
+    line-height: 1.4;
+    font-size: 14px;
+  }
 `
 
 export const Container = styled.div`

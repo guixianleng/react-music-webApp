@@ -28,7 +28,7 @@ export default class index extends Component {
           </TabsItem>
           <TabsItem name="tab2" key="4">
             是根深蒂固多少
-          </TabsItem>          
+          </TabsItem>
         </Tabs>
       </div>
     )

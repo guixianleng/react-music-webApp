@@ -26,10 +26,10 @@ export const Header = styled.div`
       left: 0;
       z-index: -1;
       filter: blur(20px);
-      background: url(${props => props.bgImg}) center center no-repeat;
+      background: url(${props => props.bgImg}) top center no-repeat;
       background-size: cover;
+      opacity: 0.5
     }
-    
     &::after {
       display: ${props => props.bgImg ? '' : 'none'};
       content: "";

@@ -49,7 +49,8 @@ export default class Album extends Component {
           this.setState({
             loading: false,
             album: album,
-            songs: songs
+            songs: songs,
+            bgImg: album.img
           })
         }
       }

@@ -49,7 +49,7 @@ export default class NavBar extends Component {
         <div
           className="nav-right"
           onClick={this.handleDeal.bind(this)}
-          dangerouslySetInnerHTML={{__html: this.props.more ? label : `${this.props.rightText}`}}
+          dangerouslySetInnerHTML={{ __html: this.props.more ? label : `${this.props.rightText}` }}
         >
         </div>
       </Header>

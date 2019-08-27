@@ -4,11 +4,13 @@ import Scroll from '../../components/Scroll'
 import SongList from '../../components/SongList'
 import { Header, Content, Container } from './style'
 import Batch from '../../components/Batch'
+import { Tabs, TabsItem } from '../../baseUI/Tabs'
 
 export default class Detail extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      activeIndex: '1',
       showBatch: false // 显示批量操作
     }
     this.headerRef = React.createRef()
@@ -17,6 +19,7 @@ export default class Detail extends Component {
     info: {},
     songs: []
   }
+  // 滚动操作
   handleScroll ({ y }) {
     let detailDOM = this.headerRef.current
     if (y > 0) {
@@ -25,13 +28,20 @@ export default class Detail extends Component {
       detailDOM.style.transform = transformChange
     }
   }
+  // 批量处理
   handleBatch (isShow) {
     this.setState({
       showBatch: isShow
     })
   }
+  // 切换tab
+  handleChangeTabs (item) {
+    this.setState({
+      activeIndex: item.key
+    })
+  }
   render() {
-    const { songs, info } = this.props
+    const { songs, info, showTabs } = this.props
     return (
       <Container>
         <Header bgImg={info.img}>
@@ -44,7 +54,26 @@ export default class Detail extends Component {
           <div className="view-scroll">
             <Scroll onScroll={(pos) => this.handleScroll(pos)}>
               <div>
-                <SongList songList={songs} batch={this.handleBatch.bind(this)}></SongList>
+                <div style={{display: showTabs ? '' : 'none'}}>
+                  <Tabs
+                    activeIndex={this.state.activeIndex}
+                    onChange={this.handleChangeTabs.bind(this)}
+                  >
+                    <TabsItem name="单曲" key="1">
+                      <SongList songList={songs} batch={this.handleBatch.bind(this)}></SongList>
+                    </TabsItem>
+                    <TabsItem name="详情" key="2">
+                      <div
+                        className="detail-info"
+                        dangerouslySetInnerHTML={{ __html: info.info }}
+                      >
+                      </div>
+                    </TabsItem>
+                  </Tabs>
+                </div>
+                <div style={{display: showTabs ? 'none' : ''}}>
+                  <SongList songList={songs} batch={this.handleBatch.bind(this)}></SongList>
+                </div>
               </div>
             </Scroll>
           </div>
