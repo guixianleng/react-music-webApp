@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   position: fixed;
@@ -22,10 +22,14 @@ export const Container = styled.div`
       color: #fff;
       text-align: center;
       font-family: cursive;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       h1 {
-        margin-top: 100px;
-        font-size: 25px;
+        font-size: 30px;
         margin-bottom: 10px;
+        line-height: 1.2
       }
       > div {
         font-size: 50px;
@@ -34,8 +38,11 @@ export const Container = styled.div`
     &-bottom {
       position: relative;
       margin-top: 40px;
+      position: absolute;
+      bottom: 40px;
+      left: 0;
+      right: 0;
       > div {
-        display: inline-block;
         height: 35px;
         line-height: 35px;
       }
@@ -50,24 +57,11 @@ export const Container = styled.div`
         .iconfont {
           font-size: 30px;
           color: #fff;
-          &::after {
-            content: "";
-            position: absolute;
-            top: -2px;
-            right: -18px;
-            height: 15px;
-            width: 30px;
-            background: rgba(0, 0, 0, 1);
-          }
         }
         > span {
           font-size: 12px;
-          position: absolute;
-          top: -2px;
-          right: -20px;
-          height: 15px;
-          line-height: 15px;
-          padding: 0 3px;
+          padding-left: 2px;
+          vertical-align: text-bottom;
         }
       }
     }

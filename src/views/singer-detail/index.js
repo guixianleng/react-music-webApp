@@ -8,22 +8,23 @@ import Detail from '../detail'
 import { Container } from './style'
 
 // 排行榜详情
-import { getRankingInfo } from '../../api/ranking'
-import * as RankingModel from '../../models/ranking'
+import { getSingerInfo } from "../../api/singer"
+import { getSongVKey } from "../../api/song"
 
-import { CODE_SUCCESS } from '../../api/config'
-import { getSongVKey } from '../../api/song'
-import * as SongModel from '../../models/song'
+import { CODE_SUCCESS } from "../../api/config"
+import * as SingerModel from "../../models/singer"
+import * as SongModel from "../../models/song"
 
-export default class RankDetail extends Component {
+export default class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
       show: false,
       loading: true,
-      ranking: {}, // 专辑
+      singerInfo: {}, // 歌手信息
       songs: [],
-      showMore: false // 右上角事件处理
+      showMore: false, // 右上角事件处理
+      followed: false // 是否已关注
     }
   }
   componentDidMount() {
@@ -32,28 +33,27 @@ export default class RankDetail extends Component {
     })
   }
   // 排行榜列表
-  getRankingInfo() {
-    getRankingInfo(this.props.match.params.id).then((res) => {
+  getSingerInfo() {
+    getSingerInfo(this.props.match.params.id).then((res) => {
       if (res) {
         if (res.code === CODE_SUCCESS) {
-          const obj = Object.assign({}, res.topinfo, {
-            update_time: res.update_time,
-            comment_num: res.comment_num
-          })
-          let ranking = RankingModel.createRankingByDetail(obj)
-          ranking.info = res.topinfo.info
-          let songList = []
-          res.songlist.forEach(item => {
-            if (item.data.pay.payplay === 1) { return }
-            let song = SongModel.createSong(item.data)
+          let singer = SingerModel.createSingerByDetail(res.data)
+          singer.desc = res.data.desc
+
+          let songList = res.data.list
+          let songs = []
+          songList.forEach(item => {
+            if (item.musicData.pay.payplay === 1) { return }
+            let song = SongModel.createSong(item.musicData)
             // 获取歌曲vkey
-            this.getSongUrl(song, item.data.songmid)
-            songList.push(song)
+            this.getSongUrl(song, song.mId)
+            songs.push(song)
           })
+          console.log(res.data, singer)
           this.setState({
             loading: false,
-            ranking: ranking,
-            songs: songList
+            singerInfo: singer,
+            songs: songs
           })
         }
       }
@@ -83,7 +83,7 @@ export default class RankDetail extends Component {
     })
   }
   render() {
-    const info = this.state.ranking
+    const info = this.state.singerInfo
     const shareTypes = [
       {
         name: '加到歌单',
@@ -105,22 +105,24 @@ export default class RankDetail extends Component {
         unmountOnExit
         onEntered={() => {
           // 进入动画结束后获取数据再渲染，避免大数量渲染造成动画卡顿
-          this.getRankingInfo()
+          this.getSingerInfo()
         }}
         onExited={() => this.props.history.goBack()}
       >
         <Container>
-          <NavBar more bgImg={info.img} deal={this.handleMore.bind(this)} />
-          <Detail songs={this.state.songs} info={info} showTabs>
+          <NavBar more bgImg={this.state.bgImg} deal={this.handleMore.bind(this)} />
+          <Detail songs={this.state.songs} info={info}>
             <div className="insert-bg">
-              <div className="insert-top">
-                <h1>{info.title}</h1>
-              </div>
-              <div className="insert-bottom">
-                <div className="update-time">{info.updateTime}更新</div>
-                <div className="comment">
-                  <i className="iconfont">&#xe61a;</i>
-                  <span>{info.commentNum > 999 ? `999+` : info.commentNum}</span>
+              <div className="info">
+                <h1>{info.name}</h1>
+                <div className="info-footer">
+                  <span
+                    className={this.state.followed ? 'followed' : ''}
+                    onClick={() => { this.setState({ followed: !this.state.followed }) }}
+                  >
+                    {this.state.followed ? '已关注' : '关注'}
+                  </span>
+                  <span>个人主页</span>
                 </div>
               </div>
             </div>

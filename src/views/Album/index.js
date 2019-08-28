@@ -21,8 +21,7 @@ export default class Album extends Component {
       show: false,
       loading: true,
       album: {}, // 专辑
-      songs: [],
-      bgImg: ''
+      songs: []
     }
   }
   componentDidMount() {
@@ -35,6 +34,7 @@ export default class Album extends Component {
     getAlbumInfo(this.props.match.params.id).then((res) => {
       if (res) {
         if (res.code === CODE_SUCCESS) {
+          console.log(res.data)
           let album = AlbumModel.createAlbumByDetail(res.data)
           album.desc = res.data.desc
           let songList = res.data.list
@@ -45,12 +45,10 @@ export default class Album extends Component {
             this.getSongUrl(song, item.songmid)
             songs.push(song)
           })
-          console.log(album)
           this.setState({
             loading: false,
             album: album,
-            songs: songs,
-            bgImg: album.img
+            songs: songs
           })
         }
       }
@@ -74,6 +72,7 @@ export default class Album extends Component {
     })
   }
   render() {
+    const info = this.state.album
     return (
       <CSSTransition
         in={this.state.show}
@@ -87,8 +86,8 @@ export default class Album extends Component {
         onExited={() => this.props.history.goBack()}
       >
         <Container>
-          <NavBar title="专辑" bgImg={this.state.bgImg} />
-          <AlbumDetail songList={this.state.songs} albumInfo={this.state.album} />
+          <NavBar title={info.name} bgImg={info.img} />
+          <AlbumDetail songList={this.state.songs} albumInfo={info} />
           <Loading show={this.state.loading} bgColor />
         </Container>
       </CSSTransition>

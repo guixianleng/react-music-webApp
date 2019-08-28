@@ -16,16 +16,19 @@ const List = styled.ul`
 // 点击切换动画
 const animate = keyframes`
   from {
-    transform: scaleX(0)
+    transform: scaleX(0);
+    transform-origin: -100% 50%
   }
   to {
-    transform: scaleX(1)
+    transform: scaleX(1);
+    transform-origin: -100% 50%
   }
 `
 
 const ListItem = styled.li`
   width: 100%;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 500;
   height: 50px;
   line-height: 50px;
   color: inherit;
@@ -38,11 +41,12 @@ const ListItem = styled.li`
       content: "";
       display: block;
       position: absolute;
-      left: 0;
+      left: 50%;
+      transform: translateX(-50%);
       right: 0;
       bottom: 1px;
       height: 2px;
-      width: ${props => props.width || '100%'};
+      width: ${props => props.width || '50px'};
       background-color: ${props => props.theme.backgroundColor};
       animation: ${animate} .3s ease-in-out;
     }

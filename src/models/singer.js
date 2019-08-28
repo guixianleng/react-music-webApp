@@ -27,6 +27,7 @@ export function createSingerBySearch(data) {
  * 通过歌手详情创建歌手对象函数
  */
 export function createSingerByDetail(data) {
+  console.log(data, 222)
   return new Singer(
     data.singer_id,
     data.singer_mid,

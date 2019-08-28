@@ -21,7 +21,7 @@ export const Header = styled.header`
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.5);
     }
   }
 `
@@ -33,7 +33,7 @@ export const Content = styled.div`
     bottom: 50px;
     left: 0;
     right: 0;
-    height: 100%;
+    height: calc(100vh - 330px);
   }
   .view-scroll {
     width: 100%;

@@ -23,9 +23,11 @@ export default class Detail extends Component {
   handleScroll ({ y }) {
     let detailDOM = this.headerRef.current
     if (y > 0) {
-      const transformChange = `scale(${1 + y * 0.004}, ${1 + y * 0.004})`
+      const transformChange = `scale(${1 + y * 0.003}, ${1 + y * 0.003})`
       detailDOM.style.webkitTransform = transformChange
       detailDOM.style.transform = transformChange
+    } else {
+      detailDOM.style.height = `${300 + y}px`
     }
   }
   // 批量处理
