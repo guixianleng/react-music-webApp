@@ -4,7 +4,6 @@ import style from '../../assets/style/variable'
 export const Container = styled.div`
   height: 100%;
   width: 100%;
-  background-color: #fff;
   h2 {
     text-align: center;
     font-size: 16px;
@@ -22,15 +21,17 @@ export const List = styled.ul`
     flex-direction: row;
     flex-wrap: wrap;
     background-color: #fff;
+    justify-content: space-between;
     padding: ${props => props.global ? '10px 5px' : '10px 0'};
   }
 `
 
 export const ListItem = styled.li`
   &.rank-li {
-    padding: ${props => props.trick ? '0 1px 45px': '0 10px 15px'};
+    padding: ${props => props.trick ? '0 0px 45px': '0 10px 15px'};
     display: flex;
     align-items: center;
+    width: ${props => props.trick ? '33%' : ''};
     .rank-li_img {
       width: ${props => props.trick ? '32vw' : '27vw'};
       height: ${props => props.trick ? '32vw' : '27vw'};

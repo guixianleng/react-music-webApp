@@ -55,7 +55,7 @@ export const SongList = styled.div`
 `
 export const SongItem = styled.div`
   &.song-list {
-    min-height: 80vh;
+    min-height: 70vh;
     height: auto;
     .song-ul {
       background-color: #fff;

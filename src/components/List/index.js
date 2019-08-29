@@ -25,7 +25,7 @@ export default class List extends Component {
                       <img src={album.img + "?param=300x300"} width="100%" height="100%" alt="music"/>
                     </LazyLoad>
                     <div className="decorate-bottom">
-                      <i className="iconfont">&#xe710;</i>
+                      <i className="iconfont">&#xe62c;</i>
                     </div>
                   </div>
                   <div className="desc">{album.name}</div>

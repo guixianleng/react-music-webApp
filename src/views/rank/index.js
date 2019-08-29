@@ -1,24 +1,27 @@
 import React, { Component, Fragment } from 'react'
 import { forceCheck } from 'react-lazyload'
-import { renderRoutes } from "react-router-config"
+import { renderRoutes } from 'react-router-config'
 
 import Scroll from '../../components/Scroll'
 import Loading from '../../components/Loading/Loading2'
-import { getRankingList } from "../../api/ranking"
-import { CODE_SUCCESS } from "../../api/config"
-import * as RankingModel from "../../models/ranking"
 import { Container, List, ListItem, RankList } from './style'
 import { transNumber } from '../../utils/decimal'
+
+import { getRankingList } from '../../api/ranking'
+import { CODE_SUCCESS } from '../../api/config'
+import * as RankingModel from '../../models/ranking'
 
 export default class index extends Component {
   constructor(props) {
     super(props)
     this.state = {
       loading: true,
+      pullDownLoading: false,
       rankingList: []
     }
   }
   componentDidMount() {
+    // 获取排行榜
     getRankingList().then((res) => {
       if (res) {
         if (res.code === CODE_SUCCESS) {
@@ -46,11 +49,21 @@ export default class index extends Component {
       })
     }
   }
+  handlePullDown = () => {
+    console.log('下拉')
+    this.setState({
+      pullDownLoading: true
+    })
+  }
   render() {
     const { match, route } = this.props
     return (
       <Container show={this.state.loading}>
-        <Scroll onScroll={() => { forceCheck() }}>
+        <Scroll
+          onScroll={() => { forceCheck() }}
+          pullDown={() => this.handlePullDown()}
+          pullDownLoading={this.state.pullDownLoading}
+        >
           <div>
             <Fragment>
               <h2>QQ音乐巅峰榜</h2>

@@ -9,39 +9,18 @@ export const Container = styled.div`
   z-index: 100;
   background-color: #f0f0f0;
   .insert {
-    &-bg {
-      position: absolute;
-      top: 0;
-      right: 0;
-      left: 0;
-      bottom: 0;
-      color: #fff;
-      text-align: center;
-    }
     &-top {
-      color: #fff;
-      text-align: center;
       font-family: cursive;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      margin: auto;
+      width: 250px;
       h1 {
-        font-size: 30px;
-        margin-bottom: 10px;
-        line-height: 1.2
-      }
-      > div {
-        font-size: 50px;
+        font-size: 36px;
+        line-height: 1.2;
+        margin-bottom: 20px;
       }
     }
     &-bottom {
       position: relative;
-      margin-top: 40px;
-      position: absolute;
-      bottom: 40px;
-      left: 0;
-      right: 0;
       > div {
         height: 35px;
         line-height: 35px;

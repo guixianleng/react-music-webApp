@@ -49,7 +49,6 @@ export default class Index extends Component {
             this.getSongUrl(song, song.mId)
             songs.push(song)
           })
-          console.log(res.data, singer)
           this.setState({
             loading: false,
             singerInfo: singer,
@@ -112,18 +111,16 @@ export default class Index extends Component {
         <Container>
           <NavBar more bgImg={this.state.bgImg} deal={this.handleMore.bind(this)} />
           <Detail songs={this.state.songs} info={info}>
-            <div className="insert-bg">
-              <div className="info">
-                <h1>{info.name}</h1>
-                <div className="info-footer">
-                  <span
-                    className={this.state.followed ? 'followed' : ''}
-                    onClick={() => { this.setState({ followed: !this.state.followed }) }}
-                  >
-                    {this.state.followed ? '已关注' : '关注'}
-                  </span>
-                  <span>个人主页</span>
-                </div>
+            <div className="info">
+              <h1>{info.name}</h1>
+              <div className="info-footer">
+                <span
+                  className={this.state.followed ? 'followed' : ''}
+                  onClick={() => { this.setState({ followed: !this.state.followed }) }}
+                >
+                  {this.state.followed ? '已关注' : '关注'}
+                </span>
+                <span>个人主页</span>
               </div>
             </div>
           </Detail>

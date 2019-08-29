@@ -14,6 +14,7 @@ export default class Detail extends Component {
       showBatch: false // 显示批量操作
     }
     this.headerRef = React.createRef()
+    this.insertRef = React.createRef()
   }
   static defaultProps = {
     info: {},
@@ -22,6 +23,8 @@ export default class Detail extends Component {
   // 滚动操作
   handleScroll ({ y }) {
     let detailDOM = this.headerRef.current
+    let insertDOM = this.insertRef.current
+    // 滑动样式修改
     if (y > 0) {
       const transformChange = `scale(${1 + y * 0.003}, ${1 + y * 0.003})`
       detailDOM.style.webkitTransform = transformChange
@@ -29,6 +32,8 @@ export default class Detail extends Component {
     } else {
       detailDOM.style.height = `${300 + y}px`
     }
+    // 控制插入的样式
+    insertDOM.style.bottom = `${40 - y}px`
   }
   // 批量处理
   handleBatch (isShow) {
@@ -50,7 +55,9 @@ export default class Detail extends Component {
           <div className="background" ref={this.headerRef}>
             <div className="filter"></div>
           </div>
-          {this.props.children}
+          <div className="insert-wrapper" ref={this.insertRef}>
+            {this.props.children}
+          </div>
         </Header>
         <Content className="detail-songs">
           <div className="view-scroll">

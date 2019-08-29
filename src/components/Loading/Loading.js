@@ -1,17 +1,18 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled, { keyframes } from 'styled-components'
 
 const Dance = keyframes`
   0%, 40%, 100%{
-    transform: scaleY(0.6);
+    transform: scaleY(0.4);
     transform-origin: center 100%;
   }
   20%{
-    transform: scaleY(1.6);
+    transform: scaleY(1.2);
   }
 `;
+
 const LoadingDiv = styled.div`
-  display: ${props => props.show ? '' : 'none'};
   height: 10px;
   width: 100%;
   margin: auto;
@@ -19,7 +20,7 @@ const LoadingDiv = styled.div`
   font-size: 10px;
   > div {
     display: inline-block;
-    background-color: ${props => props.color || '#D43C33'};
+    background-color: ${props => props.theme.color};
     height: 100%;
     width: 2px;
     margin-right: 4px;
@@ -41,7 +42,7 @@ const LoadingDiv = styled.div`
 
 const Loading = (props) => {
   return (
-    <LoadingDiv color={props.themeColor} show={props.show}>
+    <LoadingDiv>
       <div></div>
       <div></div>
       <div></div>
@@ -50,6 +51,14 @@ const Loading = (props) => {
       <span>{props.title}</span>
     </LoadingDiv>
   )
+}
+
+Loading.defaultProps = {
+  title: ''
+}
+
+Loading.propTypes = {
+  title: PropTypes.string
 }
 
 export default Loading

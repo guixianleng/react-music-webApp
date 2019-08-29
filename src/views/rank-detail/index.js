@@ -112,16 +112,14 @@ export default class RankDetail extends Component {
         <Container>
           <NavBar more bgImg={info.img} deal={this.handleMore.bind(this)} />
           <Detail songs={this.state.songs} info={info} showTabs>
-            <div className="insert-bg">
-              <div className="insert-top">
-                <h1>{info.title}</h1>
-              </div>
-              <div className="insert-bottom">
-                <div className="update-time">{info.updateTime}更新</div>
-                <div className="comment">
-                  <i className="iconfont">&#xe61a;</i>
-                  <span>{info.commentNum > 999 ? `999+` : info.commentNum}</span>
-                </div>
+            <div className="insert-top">
+              <h1>{info.title}</h1>
+            </div>
+            <div className="insert-bottom">
+              <div className="update-time">{info.updateTime}更新</div>
+              <div className="comment">
+                <i className="iconfont">&#xe61a;</i>
+                <span>{info.commentNum > 999 ? `999+` : info.commentNum}</span>
               </div>
             </div>
           </Detail>

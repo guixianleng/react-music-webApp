@@ -1,13 +1,5 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
-  position: absolute;
-  top: 70px;
-  left: 0;
-  right: 0;
-  bottom: 0
-`
-
 export const AlbumImg = styled.div`
   position: relative;
   padding: 5px 10px;
@@ -42,9 +34,10 @@ export const AlbumImg = styled.div`
     .title {
       color: #fff;
       font-size: 16px;
-      line-height: 1.4
+      line-height: 1.4;
+      text-align: left;
     }
-    .person{
+    .person {
       display: flex;
       .avatar{
         width: 20px;
@@ -102,7 +95,8 @@ export const Menu = styled.div`
       padding-right: 2px
     }
     .favorite {
-      color: #d81e06
+      color: #d81e06;
+      transition: color .3s;
     }
   }
 `

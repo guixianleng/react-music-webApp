@@ -22,7 +22,7 @@ export default class index extends Component {
       areaKey: 'all',
       sexyKey: 'all',
       singers: [],
-      opacity: 0
+      opacity: 1
     }
     this.timer = null
     // 分类
@@ -182,7 +182,7 @@ export default class index extends Component {
   }
   handleScroll ({ y }) {
     forceCheck()
-    this.handleShowLetter()
+    // this.handleShowLetter()
   }
   render() {
     const { match, route } = this.props
@@ -243,7 +243,7 @@ export default class index extends Component {
           </Labels>
         </ContentLabels>
         <div className="singer-list">
-          <Scroll onScroll={(pos) => this.handleScroll(pos)}>
+          <Scroll onScroll={(pos) => this.handleScroll(pos)} refresh={true}>
             <div>
               {singersList}
             </div>

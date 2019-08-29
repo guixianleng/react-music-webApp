@@ -13,9 +13,9 @@ export const PullUpLoading = styled.div`
   left:0;
   right:0;
   bottom: 5px;
-  width: 60px;
-  height: 60px;
   margin: auto;
+  height: 20px;
+  line-height: 20px;
   z-index: 100;
   display: ${props => props.pullUp ? '' : 'none'}
 `
@@ -24,7 +24,8 @@ export const PullDownLoading = styled.div`
   left:0;
   right:0;
   top: 0px;
-  height: 30px;
+  height: 20px;
+  line-height: 20px;
   margin: auto;
   z-index: 100;
   display: ${props => props.pullDown ? '' : 'none'}

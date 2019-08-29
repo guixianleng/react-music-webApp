@@ -10,7 +10,7 @@ export const Container = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    padding-left: 20px;
+    padding-left: 10px;
     background-color: #fff;
     .singer-wrapper {
       margin: 10px 0;
@@ -58,7 +58,7 @@ export const Labels = styled.ul`
 `;
 
 export const LabelsItem = styled.li`
-  padding: 4px 0;
+  padding: 3px 0;
   color: inherit;
   text-align: center;
   font-size: 12px;
