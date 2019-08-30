@@ -37,7 +37,8 @@ export default class Menu extends Component {
       <div>
         <CSSTransition
           in={this.props.show}
-          timeout={300} classNames="fade-left"
+          timeout={300}
+          classNames="fade-left"
           appear={true}
           unmountOnExit
           onEnter={() => {

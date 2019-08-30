@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import BScroll from 'better-scroll'
 import PropTypes from 'prop-types'
 
-import Loading from '../../components/Loading/Loading'
+import Loading from '../../baseUI/Loading/Loading'
 import { debounce } from '../../utils'
 import { ScrollDiv, PullUpLoading, PullDownLoading } from './style'
 

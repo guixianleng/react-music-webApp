@@ -4,7 +4,7 @@ import LazyLoad, { forceCheck } from 'react-lazyload'
 
 import Scroll from '../../components/Scroll'
 import HScroll from '../../baseUI/HScroll'
-import Loading from '../../components/Loading/Loading2'
+import Loading from '../../baseUI/Loading/Loading2'
 
 import { getSingerList } from '../../api/singer'
 import { CODE_SUCCESS } from '../../api/config'

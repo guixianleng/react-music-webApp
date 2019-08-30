@@ -5,7 +5,7 @@ export const Container = styled.div`
   &.share {
     ${style.fixedPosition()};
     height: 100vh;
-    z-index: 9999;
+    z-index: 100;
     background-color: rgba(0, 0, 0, .5);
     .wrapper-share {
       position: absolute;

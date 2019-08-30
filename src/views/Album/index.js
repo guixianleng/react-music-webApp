@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
 import NavBar from '../../components/NavBar'
-import Loading from '../../components/Loading/Loading2'
+import Loading from '../../baseUI/Loading/Loading2'
 import AlbumDetail from '../album-detail'
 import { Container } from './style'
 // 专辑详情

@@ -3,7 +3,7 @@ import { forceCheck } from 'react-lazyload'
 import { renderRoutes } from 'react-router-config'
 
 import Scroll from '../../components/Scroll'
-import Loading from '../../components/Loading/Loading2'
+import Loading from '../../baseUI/Loading/Loading2'
 import { Container, List, ListItem, RankList } from './style'
 import { transNumber } from '../../utils/decimal'
 

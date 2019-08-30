@@ -8,7 +8,7 @@ import { Content } from './style'
 import Scroll from '../../components/Scroll'
 import Slider from '../../components/Slider'
 import RecommendList from '../../components/List'
-import Loading from '../../components/Loading/Loading2'
+import Loading from '../../baseUI/Loading/Loading2'
 
 export default class index extends Component {
   constructor (props) {

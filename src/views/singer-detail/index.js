@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
 import NavBar from '../../components/NavBar'
-import Loading from '../../components/Loading/Loading2'
+import Loading from '../../baseUI/Loading/Loading2'
 import Share from '../../components/Share'
 import Detail from '../components/detail'
 import { Container } from './style'

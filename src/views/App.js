@@ -8,6 +8,7 @@ import { AppDiv } from './style'
 import Menu from './Menu'
 import Header from '../components/Header'
 import Tabs from '../components/Tabs'
+import MiniPlayer from '../components/Player/MiniPlayer'
 
 import storage from '../utils/storage'
 import { skins, setSkinStyle } from '../utils/skin'
@@ -56,11 +57,12 @@ class App extends Component {
                   { renderRoutes(router) }
                 </Switch>
               </div>
-              <Menu
-                show={this.state.menuShow}
-                closeMenu={this.handleMenu.bind(this, false)}
-              />
             </AppDiv>
+            <Menu
+              show={this.state.menuShow}
+              closeMenu={this.handleMenu.bind(this, false)}
+            />
+            <MiniPlayer />
           </Router>
         </ThemeProvider>
       </Fragment>
