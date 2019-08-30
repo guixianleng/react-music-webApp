@@ -3,8 +3,7 @@ import style from '../../assets/style/variable'
 
 export const Container = styled.div`
   height: 100%;
-  background-color: #fff;
-  padding: 10px;
+  margin-bottom: 10px;
   .title {
     font-size: 14px;
     color: #666;
@@ -18,8 +17,8 @@ export const NavSearch = styled.header`
     padding: 10px;
     display: flex;
     align-items: center;
-    background-color: ${props => props.theme.backgroundColor};
-    color: #FFF;
+    /* background-color: ${props => props.theme.backgroundColor}; */
+    color: #333;
     .search-input {
       flex: 2;
       padding: 8px 10px;
@@ -30,7 +29,7 @@ export const NavSearch = styled.header`
       color: #333;
     }
     .search-button {
-      margin-left: 15px;
+      margin-left: 10px;
       font-size: 14px;
     }
   }
@@ -39,7 +38,8 @@ export const NavSearch = styled.header`
 export const Hot = styled.div`
   &.search-hot {
     font-size: 14px;
-    margin: 20px 0 0;
+    padding: 20px 10px 10px;
+    background-color: #fff;
     .hot-list {
       display: flex;
       align-items: center;
@@ -60,6 +60,8 @@ export const Hot = styled.div`
 
 export const HistoryContent = styled.div`
   display: ${props => props.show ? 'none' : ''};
+  padding: 0 10px;
+  background-color: #fff;
   .top {
     border-bottom: 1px solid ${style['border-color']};
     display: flex;
@@ -79,6 +81,7 @@ export const HistoryContent = styled.div`
 `
 export const History = styled.ul`
   height: 100%;
+  padding-bottom: 10px
 `
 
 export const HistoryItem = styled.li`
@@ -93,5 +96,45 @@ export const HistoryItem = styled.li`
     height: 40px;
     line-height: 40px;
     display: inline-block
+  }
+`
+
+export const ResultContent = styled.div`
+  position: fixed;
+  top: 153px;
+  bottom: 52px;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  display: ${props => props.show ? '' : 'none'}
+`
+
+export const ResultList = styled.ul`
+  
+`
+
+export const ResultItem = styled.li`
+  border-bottom: 1px solid ${style['border-color']};
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 15px;
+  .iconfont {
+    flex-basis: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    text-align: center;
+  }
+  > span {
+    flex-basis: 100%;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    ${style.noWrap()};
+    margin-right: 6px;
+    > em {
+      color: ${props => props.theme.color}
+    }
   }
 `

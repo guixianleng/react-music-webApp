@@ -2,12 +2,13 @@
  *  歌曲类模型
  */
 export class Song {
-  constructor(id, mId, name, img, duration, url, singer) {
+  constructor(id, mId, name, img, duration, hLight, url, singer) {
     this.id = id;
     this.mId = mId;
     this.name = name;
     this.img = img;
     this.duration = duration;
+    this.hLight = hLight;
     this.url = url;
     this.singer = singer;
   }
@@ -23,6 +24,7 @@ export function createSong(data) {
     data.songname,
     `http://y.gtimg.cn/music/photo_new/T002R300x300M000${data.albummid}.jpg?max_age=2592000`,
     data.interval,
+    data.songname_hilight,
     "",
     filterSinger(data.singer)
   );

@@ -4,16 +4,16 @@ import { CSSTransition } from 'react-transition-group'
 import NavBar from '../../components/NavBar'
 import Loading from '../../components/Loading/Loading2'
 import Share from '../../components/Share'
-import Detail from '../detail'
+import Detail from '../components/detail'
 import { Container } from './style'
 
 // 排行榜详情
-import { getSingerInfo } from "../../api/singer"
-import { getSongVKey } from "../../api/song"
+import { getSingerInfo } from '../../api/singer'
+import { getSongVKey } from '../../api/song'
 
-import { CODE_SUCCESS } from "../../api/config"
-import * as SingerModel from "../../models/singer"
-import * as SongModel from "../../models/song"
+import { CODE_SUCCESS } from '../../api/config'
+import * as SingerModel from '../../models/singer'
+import * as SongModel from '../../models/song'
 
 export default class Index extends Component {
   constructor(props) {
@@ -39,7 +39,6 @@ export default class Index extends Component {
         if (res.code === CODE_SUCCESS) {
           let singer = SingerModel.createSingerByDetail(res.data)
           singer.desc = res.data.desc
-
           let songList = res.data.list
           let songs = []
           songList.forEach(item => {
@@ -125,6 +124,7 @@ export default class Index extends Component {
             </div>
           </Detail>
           <Loading show={this.state.loading} bgColor />
+          {/* 分享 */}
           <Share
             shareTypes={shareTypes}
             close={this.handleMore.bind(this)}

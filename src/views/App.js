@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components' // 换肤
 
 import { renderRoutes } from 'react-router-config'
 import router from '../router'
-import { AppDiv } from './AppDiv'
+import { AppDiv } from './style'
 import Menu from './Menu'
 import Header from '../components/Header'
 import Tabs from '../components/Tabs'

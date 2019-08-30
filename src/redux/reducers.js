@@ -18,12 +18,21 @@ function skin (defaultSkin = initState.skin, action) {
   }
 }
 
-// 设置历史搜索
+// 添加或移除搜索历史
 function historySearch (defaultList = initState.historyList, action) {
   switch (action.type) {
     case ActionTypes.SET_HISTORY:
-      storage.setHistorySearch(action.keyword, action.add)
-      return action.keyword
+      let searchList = storage.getHistorySearch()
+      if (!action.add) {
+        let index = searchList.findIndex(item => item === action.keyword)
+        if (index === -1) {
+          searchList.unshift(action.keyword)
+        }
+      } else {
+        searchList = action.keyword
+      }
+      storage.setHistorySearch(searchList)
+      return searchList
     default:
       return defaultList
   }

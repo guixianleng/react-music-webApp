@@ -4,7 +4,7 @@ import { CSSTransition } from 'react-transition-group'
 import NavBar from '../../components/NavBar'
 import Loading from '../../components/Loading/Loading2'
 import Share from '../../components/Share'
-import Detail from '../detail'
+import Detail from '../components/detail'
 import { Container } from './style'
 
 // 排行榜详情

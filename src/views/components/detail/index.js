@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-import Scroll from '../../components/Scroll'
-import SongList from '../../components/SongList'
+import Scroll from '../../../components/Scroll'
+import SongList from '../../../components/SongList'
 import { Header, Content, Container } from './style'
-import Batch from '../../components/Batch'
-import { Tabs, TabsItem } from '../../baseUI/Tabs'
+import Batch from '../../../components/Batch'
+import { Tabs, TabsItem } from '../../../baseUI/Tabs'
 
 export default class Detail extends Component {
   constructor(props) {

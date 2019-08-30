@@ -196,7 +196,11 @@ export default class index extends Component {
             <LazyLoad
               placeholder={<img width="100%" height="100%" src={require('../../assets/images/user.png')} alt="music" />}
               height={50}>
-              <img src={singer.img} width="100%" height="100%" alt="singer" />
+              <img src={singer.img} width="100%" height="100%" alt="singer" 
+                onError={(e) => {
+                  e.currentTarget.src = require("../../assets/images/user.png")
+                }}
+              />
             </LazyLoad>
           </div>
           <div className="singer-name">

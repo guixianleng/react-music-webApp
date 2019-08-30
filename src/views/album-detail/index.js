@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { AlbumImg, Menu } from './style'
 import Share from '../../components/Share'
-import Detail from '../detail'
+import Detail from '../components/detail'
 
 export default class Index extends Component {
   constructor(props) {

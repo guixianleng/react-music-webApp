@@ -28,14 +28,7 @@ const storage = {
     return list ? JSON.parse(list) : []
   },
   // 设置历史搜索
-  setHistorySearch (key, add = null) {
-    let list = window.localStorage.getItem('history_search')
-    list = list ? JSON.parse(list) : []
-    if (!add) {
-      list.push(key)
-    } else {
-      list = key
-    }
+  setHistorySearch (list) {
     window.localStorage.setItem('history_search', JSON.stringify(list))
   }
 }
