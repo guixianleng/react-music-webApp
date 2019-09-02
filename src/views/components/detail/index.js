@@ -47,6 +47,9 @@ export default class Detail extends Component {
       activeIndex: item.key
     })
   }
+  handlePlay (index) {
+    this.props.paly(index)
+  }
   render() {
     const { songs, info, showTabs } = this.props
     return (
@@ -81,7 +84,11 @@ export default class Detail extends Component {
                   </Tabs>
                 </div>
                 <div style={{display: showTabs ? 'none' : ''}}>
-                  <SongList songList={songs} batch={this.handleBatch.bind(this)}></SongList>
+                  <SongList
+                    songList={songs}
+                    batch={this.handleBatch.bind(this)}
+                    palyAll={this.handlePlay.bind(this)}
+                  />
                 </div>
               </div>
             </Scroll>

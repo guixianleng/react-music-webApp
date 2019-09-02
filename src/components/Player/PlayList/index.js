@@ -2,35 +2,34 @@ import React, { Component } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
 import Scroll from '../../Scroll'
-import { Container, NavHeader, SongList } from './style'
+import { Container, SongList } from './style'
 
 export default class index extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      triggerModel: 0,
-      songs: [1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
-    }
+    this.state = {  }
+  }
+  static defaultProps = {
+    mode: 0
   }
   handleDelete(key) {
     console.log('删除', key)
   }
-  handleClose() {
-    this.props.close()
+  // 关闭
+  handleClose = () => {
+    this.props.showList(false)
   }
   // 切换播放模式
-  handleTriggerModel() {
-    let model = this.state.triggerModel
-    ++model
-    if (model > 2) {
-      model = 0
+  handlePlayMode() {
+    let mode = this.props.mode
+    ++mode
+    if (mode > 2) {
+      mode = 0
     }
-    this.setState({
-      triggerModel: model
-    })
+    this.props.changMode(mode)
   }
   render() {
-    const playModel = [
+    const playMode = [
       {
         name: '随机播放',
         icon: '&#xe66b;'
@@ -44,6 +43,7 @@ export default class index extends Component {
         icon: '&#xe609;'
       }
     ]
+    const { mode } = this.props
     return (
       <CSSTransition
         in={this.props.show}
@@ -53,31 +53,32 @@ export default class index extends Component {
         unmountOnExit>
         {/*  onClick={this.handleClose.bind(this)} */}
         <Container className="player-list">
+          <div className="cover-bg"></div>
           <header>
-            <div onClick={() => { this.handleTriggerModel() }}>
+            <div onClick={() => { this.handlePlayMode() }}>
               <i className="iconfont"
-                dangerouslySetInnerHTML={{ __html: playModel[`${this.state.triggerModel}`].icon }}
+                dangerouslySetInnerHTML={{ __html: playMode[`${mode}`].icon }}
               ></i>
               <span>
-                {playModel[`${this.state.triggerModel}`].name}
-                <i style={{ display: this.state.triggerModel === 0 ? '' : 'none' }}>({this.state.songs.length}首)</i>
+                {playMode[`${mode}`].name}
+                <i style={{ display: mode === 0 ? '' : 'none' }}>({this.props.playSongs.length}首)</i>
               </span>
             </div>
             <div onClick={this.handleDelete.bind(this, 'all')}>
               <i className="iconfont">&#xe64a;</i>
             </div>
           </header>
-            <Scroll>
-              <div>
-          <SongList>
+          <Scroll>
+            <div>
+              <SongList>
                 <ul className="list-ul">
                   {
-                    this.state.songs.map((item, index) => {
+                    this.props.playSongs.map((item, index) => {
                       return (
                         <li key={item + index} className="list-li">
                           <div className="info">
-                            <span>遇见</span>
-                            <span> - 童珺</span>
+                            <span>{item.name}</span>
+                            <span> - {item.singer}</span>
                           </div>
                           <div className="more" onClick={this.handleDelete.bind(this, index)}>
                             <i className="iconfont">&#xe64a;</i>
@@ -87,10 +88,10 @@ export default class index extends Component {
                     })
                   }
                 </ul>
-          </SongList>
-              </div>
-            </Scroll>
-          <div className="player-close" onClick={this.handleClose.bind(this)}>关闭</div>
+              </SongList>
+            </div>
+          </Scroll>
+          <div className="player-close" onClick={this.handleClose}>关闭</div>
         </Container>
       </CSSTransition>
     )

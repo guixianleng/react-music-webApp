@@ -1,41 +1,47 @@
 import React, { Component } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
-import PlayerList from '../PlayerList'
 import { Container } from './style'
-import demo from '../../../assets/images/demo_bg.jpg'
 
 export default class index extends Component {
   constructor(props) {
     super(props)
     this.miniPlayerRef = React.createRef()
     this.state = {
-      playStatus: false, // 播放或暂停
-      showPlayerList: false
+      playStatus: false // 播放或暂停
     }
   }
   // 显示全屏播放器
   handleShow () {
-    console.log('显示全屏播放器')
-    // if (this.props.song.url) {
-    //   this.props.showPlayer()
-    // }
+    if (this.props.currentSong.url) {
+      this.props.showPlayer(true)
+    }
   }
   // 暂停或播放
   handlePlay () {
-    console.log('暂停或者播放')
-    this.setState({
-      playStatus: !this.state.playStatus
-    })
+    if (this.props.currentSong.url) {
+      this.setState({
+        playStatus: !this.state.playStatus
+      })
+    }
   }
   // 播放列表
-  handlePlayList () {
-    console.log('显示播放列表')
-    this.setState({
-      showPlayerList: true
-    })
+  showPlayList () {
+    if (this.props.currentSong.url) {
+      this.props.showList(true)
+    }
   }
   render() {
+    const { currentSong } = this.props
+    let imgStyle = {}
+    // 控制图片动画帧
+    if (this.state.playStatus) {
+      imgStyle.WebkitAnimationPlayState = 'running'
+      imgStyle.animationPlayState = 'running'
+    } else {
+      imgStyle.WebkitAnimationPlayState = 'paused'
+      imgStyle.animationPlayState = 'paused'
+    }
     return (
       <CSSTransition
         in={!this.props.show}
@@ -45,27 +51,31 @@ export default class index extends Component {
         unmountOnExit>
         <Container ref={this.miniPlayerRef}>
           <div className="mini-player">
-            <div className="mini-player__left rotate" onClick={() => { this.handleShow() }}>
-              <img src={demo} alt="music" />
+            <div
+              className="mini-player__left rotate"
+              onClick={() => { this.handleShow() }}
+              style={imgStyle}
+            >
+              <img src={currentSong.img} alt="music" onError={(e) => {
+                e.currentTarget.src = require('../../../assets/images/music.png')
+              }} />
             </div>
             <div className="mini-player__center" onClick={() => { this.handleShow() }}>
               <span>
-                遇到（伴奏）
+                {
+                  currentSong.name
+                }
               </span>
             </div>
             <div className="mini-player__right">
               <i
                 className="iconfont"
                 onClick={() => { this.handlePlay() }}
-                dangerouslySetInnerHTML={{__html: this.state.playStatus ? '&#xe666;' : '&#xe669;'}}
+                dangerouslySetInnerHTML={{__html: this.state.playStatus ? '&#xe669;' : '&#xe666;'}}
                 ></i>
-              <i className="iconfont" onClick={() => { this.handlePlayList() }}>&#xe614;</i>
+              <i className="iconfont" onClick={() => { this.showPlayList(true) }}>&#xe614;</i>
             </div>
           </div>
-          <PlayerList
-            show={this.state.showPlayerList}
-            close={() => { this.setState({ showPlayerList: false }) }}
-          />
         </Container>
       </CSSTransition>
     )

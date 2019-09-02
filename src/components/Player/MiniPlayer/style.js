@@ -15,8 +15,6 @@ export const Container = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  height: 52px;
-  line-height: 52px;
   background-color: #fff;
   border-top: 1px solid ${style['border-color']};
   .mini-player {
@@ -25,9 +23,10 @@ export const Container = styled.div`
     flex-direction: row;
     flex-wrap: nowrap;
     padding: 0 10px;
+    height: 52px;
     &__left {
-      width: 46px;
-      height: 46px;
+      width: 45px;
+      height: 45px;
       &.rotate {
         animation: ${Rotate} 16s linear infinite;
       }
@@ -35,6 +34,7 @@ export const Container = styled.div`
         width: 100%;
         height: 100%;
         border-radius: 50%;
+        transform-origin: center center;
       }
     }
     &__center {

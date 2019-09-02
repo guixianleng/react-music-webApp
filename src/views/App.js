@@ -8,7 +8,7 @@ import { AppDiv } from './style'
 import Menu from './Menu'
 import Header from '../components/Header'
 import Tabs from '../components/Tabs'
-import MiniPlayer from '../components/Player/MiniPlayer'
+import Plyer from '../connects/player'
 
 import storage from '../utils/storage'
 import { skins, setSkinStyle } from '../utils/skin'
@@ -19,7 +19,8 @@ class App extends Component {
     super(props)
     this.state = {
       menuShow: false, // 显示菜单
-      theme: setSkinStyle(skins[storage.getSkin()]) // 当前皮肤主题
+      theme: setSkinStyle(skins[storage.getSkin()]), // 当前皮肤主题
+      showPlayer: false // 显示播放器
     }
   }
   // 显示菜单
@@ -39,6 +40,11 @@ class App extends Component {
   // 事件销毁
   componentWillUnmount() {
     emitter.removeListener(this.eventEmitter)
+  }
+  handleClosePlayer () {
+    this.setState({
+      showPlayer: false
+    })
   }
   render() {
     return (
@@ -62,7 +68,10 @@ class App extends Component {
               show={this.state.menuShow}
               closeMenu={this.handleMenu.bind(this, false)}
             />
-            <MiniPlayer />
+            <Plyer
+              show={this.state.showPlayer}
+              close={this.handleClosePlayer.bind(this)}
+            />
           </Router>
         </ThemeProvider>
       </Fragment>

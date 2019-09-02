@@ -13,13 +13,17 @@ export default class index extends Component {
   handleBatch (pos) {
     this.props.batch(pos)
   }
+  // 播放歌曲
+  handlePlay = (index) => {
+    this.props.palyAll(index)
+  }
   render() {
     const { songList } = this.props
     return (
       <Content>
         <SongList>
           <div className="first_line">
-            <div className="play_all">
+            <div className="play_all" onClick={() => { this.handlePlay('all') }}>
               <i className="iconfont">&#xe710;</i>
               <span>全部播放<span className="sum">({songList.length})</span></span>
             </div>
@@ -34,7 +38,7 @@ export default class index extends Component {
                   return (
                     <li key={item + index} className="song-li">
                       <div className="index">{index + 1}</div>
-                      <div className="info">
+                      <div className="info" onClick={() => { this.handlePlay(index) }}>
                         <span>{item.name}</span>
                         <span>{item.singer}</span>
                       </div>

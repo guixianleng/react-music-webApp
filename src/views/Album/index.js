@@ -34,7 +34,6 @@ export default class Album extends Component {
     getAlbumInfo(this.props.match.params.id).then((res) => {
       if (res) {
         if (res.code === CODE_SUCCESS) {
-          console.log(res.data)
           let album = AlbumModel.createAlbumByDetail(res.data)
           album.desc = res.data.desc
           let songList = res.data.list
@@ -71,6 +70,17 @@ export default class Album extends Component {
       }
     })
   }
+  // 播放歌曲
+  handlePlayAll = (key) => {
+    if (this.state.songs.length > 0) {
+      //添加播放歌曲列表
+      this.props.setSongs(this.state.songs)
+      // 当前歌曲
+      this.props.changeCurrentSong(this.state.songs[0])
+      // 显示播放器
+      this.props.showMusicPlayer(true)
+    }
+  }
   render() {
     const info = this.state.album
     return (
@@ -87,7 +97,7 @@ export default class Album extends Component {
       >
         <Container>
           <NavBar title={info.name} bgImg={info.img} />
-          <AlbumDetail songList={this.state.songs} albumInfo={info} />
+          <AlbumDetail songList={this.state.songs} albumInfo={info} palyAll={this.handlePlayAll} />
           <Loading show={this.state.loading} bgColor />
         </Container>
       </CSSTransition>

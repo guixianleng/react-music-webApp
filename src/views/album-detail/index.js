@@ -23,11 +23,15 @@ export default class Index extends Component {
       isFavorite: !this.state.isFavorite
     })
   }
+  // 播放歌曲
+  handlePlay = (key) => {
+    this.props.palyAll(key)
+  }
   render() {
     const { albumInfo, songList } = this.props
     return (
       <Fragment>
-        <Detail info={albumInfo} songs={songList}>
+        <Detail info={albumInfo} songs={songList} paly={this.handlePlay.bind(this)}>
           <AlbumImg>
             <div className="img_wrapper">
               <img src={albumInfo.img} alt="" />

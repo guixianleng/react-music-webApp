@@ -7,15 +7,26 @@ export const Container = styled.div`
     bottom: 45px;
     left: 0;
     right: 0;
-    height: 50vh;
+    height: 345px;
+    background-color: ${props => props.bgColor || '#fff'};
+    opacity: .98;
     z-index: 100;
-    background-color: rgba(0, 0, 0, .5);
-    > header {
+    zoom: 1;
+    .cover-bg {
       position: fixed;
-      top: 48%;
-      transform: translateY(-48%);
+      top: 0;
+      bottom: 0;
       left: 0;
       right: 0;
+      background-color: rgba(0, 0, 0, .5);
+      z-index: -2;
+    }
+    > header {
+      position: fixed;
+      bottom: 390px;
+      left: 0;
+      right: 0;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -53,10 +64,9 @@ export const Container = styled.div`
 `
 
 export const SongList = styled.div`
-  background-color: #fff;
-  opacity: .97;
   .list-ul {
-    padding: 0 10px 10px;
+    padding: 0 10px;
+    background-color: ${props => props.bgColor || '#fff'};
     .list-li {
       display: flex;
       align-items: center;
