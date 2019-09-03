@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { showPlayer, changeSong, setSong } from '../redux/actions'
+import { showPlayer, setCurrentSong, setSongs, changeIndex } from '../redux/actions'
 import Player from '../components/Player'
 
 const mapStateToProps = (state) => ({
@@ -8,7 +8,9 @@ const mapStateToProps = (state) => ({
   // 当前歌曲
   currentSong: state.currentSong,
   // 播放歌曲列表
-  playSongs: state.getSongsList
+  playSongs: state.songsList,
+  // 设置当前歌曲号
+  currentIndex: state.currentIndex
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -16,10 +18,13 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(showPlayer(status))
   },
   changeCurrentSong: (song) => {
-    dispatch(changeSong(song))
+    dispatch(setCurrentSong(song))
   },
   setSongs: (song) => {
-    dispatch(setSong(song))
+    dispatch(setSongs(song))
+  },
+  changeCurrentIndex: (index) => {
+    dispatch(changeIndex(index))
   }
 })
 

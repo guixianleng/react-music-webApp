@@ -31,7 +31,7 @@ export default class Index extends Component {
     const { albumInfo, songList } = this.props
     return (
       <Fragment>
-        <Detail info={albumInfo} songs={songList} paly={this.handlePlay.bind(this)}>
+        <Detail info={albumInfo} songs={songList} playAll={this.handlePlay.bind(this)}>
           <AlbumImg>
             <div className="img_wrapper">
               <img src={albumInfo.img} alt="" />

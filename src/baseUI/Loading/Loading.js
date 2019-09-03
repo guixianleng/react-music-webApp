@@ -13,11 +13,12 @@ const Dance = keyframes`
 `;
 
 const LoadingDiv = styled.div`
-  height: 10px;
-  width: 100%;
+  height: ${props => props.height + 'px'};
+  width: ${props => props.width + 'px'};
   margin: auto;
   text-align: center;
   font-size: 10px;
+  display: ${props => props.show ? '' : 'none'};
   > div {
     display: inline-block;
     background-color: ${props => props.theme.color};
@@ -25,6 +26,7 @@ const LoadingDiv = styled.div`
     width: 2px;
     margin-right: 4px;
     animation: ${Dance} 1s infinite;
+    animation-play-state: ${props => props.playStatus ? 'running' : 'paused'};
     &:nth-child(2) {
       animation-delay: -0.4s;
     }
@@ -41,24 +43,39 @@ const LoadingDiv = styled.div`
 `
 
 const Loading = (props) => {
+  const { show, title, height, playStatus, width } = props
   return (
-    <LoadingDiv>
+    <LoadingDiv
+      show={show}
+      height={height}
+      playStatus={playStatus}
+      width={width}
+    >
       <div></div>
       <div></div>
       <div></div>
       <div></div>
       <div></div>
-      <span>{props.title}</span>
+      <span>{title}</span>
     </LoadingDiv>
   )
 }
 
 Loading.defaultProps = {
-  title: ''
+  title: '',
+  show: true,
+  height: 10,
+  width: 60,
+  // 动画播放状态
+  playStatus: true
 }
 
 Loading.propTypes = {
-  title: PropTypes.string
+  title: PropTypes.string,
+  show: PropTypes.bool,
+  height: PropTypes.number,
+  playStatus: PropTypes.bool,
+  width: PropTypes.number
 }
 
 export default Loading

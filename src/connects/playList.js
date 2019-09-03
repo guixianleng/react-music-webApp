@@ -1,20 +1,23 @@
 import { connect } from 'react-redux'
-import { changeSong, setSong } from '../redux/actions'
+import { setCurrentSong, removeSong, changeIndex } from '../redux/actions'
 import PlayList from '../components/Player/PlayList'
 
 const mapStateToProps = (state) => ({
   // 当前歌曲
   currentSong: state.currentSong,
   // 播放歌曲列表
-  playSongs: state.getSongsList
+  playSongs: state.songsList
 })
 
 const mapDispatchToProps = (dispatch) => ({
   changeCurrentSong: (song) => {
-    dispatch(changeSong(song))
+    dispatch(setCurrentSong(song))
   },
-  setSongs: (song) => {
-    dispatch(setSong(song))
+  changeCurrentIndex: (index) => {
+    dispatch(changeIndex(index))
+  },
+  removeSong: (id) => {
+    dispatch(removeSong(id))
   }
 })
 

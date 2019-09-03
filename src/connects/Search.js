@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { changeSong, setSong, setHistory } from '../redux/actions'
+import { setCurrentSong, setSongs, setHistory } from '../redux/actions'
 import Search from '../views/search'
 
 const mapStateToProps = (state) => ({
@@ -12,10 +12,10 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(setHistory(keyword, add))
   },
   changeCurrentSong: (song) => {
-    dispatch(changeSong(song))
+    dispatch(setCurrentSong(song))
   },
   setSongs: (song) => {
-    dispatch(setSong(song))
+    dispatch(setSongs(song))
   }
 })
 

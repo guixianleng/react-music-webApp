@@ -67,6 +67,8 @@ export const SongList = styled.div`
   .list-ul {
     padding: 0 10px;
     background-color: ${props => props.bgColor || '#fff'};
+    min-height: 60vh;
+    height: auto;
     .list-li {
       display: flex;
       align-items: center;
@@ -78,18 +80,20 @@ export const SongList = styled.div`
         align-items: center;
         ${style.noWrap()};
         > span {
-          &:first-child {
-            color: #333;
-            max-width: 80%;
-            display: inline-block;
-            ${style.noWrap()};
-            font-size: 14px;
-            padding-right: 4px;
-          }
-          &:last-child {
-            font-size: 12px;
-            color: #999;
-          }
+          height: 20px;
+          line-height: 25px;
+        }
+        &-name {
+          color: #333;
+          max-width: 80%;
+          display: inline-block;
+          ${style.noWrap()};
+          font-size: 14px;
+          padding-right: 4px;
+        }
+        &-singer {
+          font-size: 12px;
+          color: #999;
         }
       }
       .more {

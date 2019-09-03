@@ -12,3 +12,9 @@ const debounce = (func, delay) => {
 }
 
 export {debounce}
+
+export const findIndex = (song, list) => {
+  return list.findIndex(item => {
+    return song.id === item.id
+  })
+}

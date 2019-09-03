@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux'
 import storage from '../utils/storage'
 import * as ActionTypes from './actionTypes'
+import { findIndex } from '../utils'
 
 const initState = { // 默认数据
   skin: storage.getSkin(),
   historyList: storage.getHistorySearch() || [],
   showPlayer: false, // 是否显示全屏播放器
   currentSong: storage.getCurrentSong(), // 当前歌曲
+  currentIndex: storage.getCurrentIndex(),
   songs: storage.getSongs() // 歌曲列表
 }
 
@@ -57,31 +59,57 @@ function showPlayer (showStatus = initState.showPlayer, action) {
 // 设置当前歌曲
 function currentSong (currentSong = initState.currentSong, action) {
   switch (action.type) {
-    case ActionTypes.CHANGE_SONG:
+    case ActionTypes.SET_CURRENT_SONG:
+      storage.setCurrentSong(action.song)
       return action.song
     default:
       return currentSong
   }
 }
 
-// 更新歌曲列表（新增或删除）
-function getSongsList (songsList = initState.songs, action) {
+// 设置当前歌曲号
+function currentIndex (index = initState.currentIndex, action) {
   switch (action.type) {
-    case ActionTypes.SET_SONG:
+    case ActionTypes.CHANGE_INDEX:
+      storage.setCurrentIndex(action.index)
+      return action.index
+    default:
+      return index
+  }
+}
+
+// 更新歌曲列表（新增或删除）
+function songsList (songsList = initState.songs, action) {
+  switch (action.type) {
+    case ActionTypes.SET_SONGS:
+      let newSongs = []
+      /**
+       * 无数据直接新增
+       */
       if (action.songs.length > 1) {
-        return action.songs
-      } else {
-        let newSongs = [...songsList]
+        newSongs = action.songs
+      } else { // 新加入数据加入最前面
+        newSongs = [...songsList]
         let addSong = action.songs[0]
-        let index = newSongs.findIndex(song => song.id === addSong.id)
+        let index = findIndex(addSong, newSongs)
+        let currentIndex = storage.getCurrentIndex()
         if (index === -1) {
-          newSongs.push(addSong)
+          // 插入当前歌曲的下一个位置
+          newSongs.splice(currentIndex, 0, addSong)
         }
-        return newSongs
       }
-    case ActionTypes.REMOVE_SONG_FROM_LIST:
-      let newSongs = songsList.filter(song => song.id !== action.id)
+      storage.setSongs(newSongs)
       return newSongs
+    case ActionTypes.REMOVE_SONG_FROM_LIST:
+      /**
+       * all 清空歌曲列表
+       */
+      let newSongsList = []
+      if (action.id !== 'all') {
+        newSongsList = songsList.filter(song => song.id !== action.id)
+      }
+      storage.setSongs(newSongsList)
+      return newSongsList
     default: 
       return songsList
   }
@@ -92,7 +120,8 @@ const reducer = combineReducers({
   historySearch,
   showPlayer,
   currentSong,
-  getSongsList
+  currentIndex,
+  songsList
 })
 
 export default reducer

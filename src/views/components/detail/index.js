@@ -48,7 +48,7 @@ export default class Detail extends Component {
     })
   }
   handlePlay (index) {
-    this.props.paly(index)
+    this.props.playAll(index)
   }
   render() {
     const { songs, info, showTabs } = this.props
@@ -72,7 +72,11 @@ export default class Detail extends Component {
                     onChange={this.handleChangeTabs.bind(this)}
                   >
                     <TabsItem name="单曲" key="1">
-                      <SongList songList={songs} batch={this.handleBatch.bind(this)}></SongList>
+                      <SongList
+                        songList={songs}
+                        batch={this.handleBatch.bind(this)}
+                        playAll={this.handlePlay.bind(this)}
+                      />
                     </TabsItem>
                     <TabsItem name="详情" key="2">
                       <div
@@ -87,7 +91,7 @@ export default class Detail extends Component {
                   <SongList
                     songList={songs}
                     batch={this.handleBatch.bind(this)}
-                    palyAll={this.handlePlay.bind(this)}
+                    playAll={this.handlePlay.bind(this)}
                   />
                 </div>
               </div>

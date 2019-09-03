@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const ListWrapper = styled.div`
   max-width: 100%;
-  /* background-color: #f2f3f4; */
+  background-color: #fff;
   display: ${props => props.show ? '' : 'none' };
   .title {
     font-weight: 400;
@@ -18,7 +18,6 @@ export const Lists = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  flex-direction：row;
 `
 
 export const ListItem = styled.div`

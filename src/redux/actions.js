@@ -10,22 +10,26 @@ export function showPlayer(showStatus) {
   return { type: ActionTypes.SHOW_PLAYER, showStatus };
 }
 
-// 设置歌曲
-export function setSong (songs) {
-  return { type: ActionTypes.SET_SONG, songs }
+// 设置歌曲列表
+export function setSongs (songs) {
+  return { type: ActionTypes.SET_SONGS, songs }
 }
 
-// 更改歌曲
-export function changeSong (song) {
-  return { type: ActionTypes.CHANGE_SONG, song }
+// 设置当前歌曲
+export function setCurrentSong (song) {
+  return { type: ActionTypes.SET_CURRENT_SONG, song }
 }
 
 // 删除歌曲
 export function removeSong(id) {
-  return { type: ActionTypes.REMOVE_SONG_FROM_LIST, id };
+  return { type: ActionTypes.REMOVE_SONG_FROM_LIST, id }
 }
 
 // 设置历史搜索
 export function setHistory (keyword, add) {
   return { type: ActionTypes.SET_HISTORY, keyword, add }
+}
+
+export function changeIndex (index) {
+  return { type: ActionTypes.CHANGE_INDEX, index }
 }

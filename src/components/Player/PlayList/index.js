@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
 import Scroll from '../../Scroll'
+import Loading from '../../../baseUI/Loading/Loading'
 import { Container, SongList } from './style'
 
 export default class index extends Component {
@@ -12,8 +13,11 @@ export default class index extends Component {
   static defaultProps = {
     mode: 0
   }
-  handleDelete(key) {
-    console.log('删除', key)
+  handleDelete = (id) => {
+    if (id === 'all') {
+      this.props.showList(false)
+    }
+    this.props.removeSong(id)
   }
   // 关闭
   handleClose = () => {
@@ -27,6 +31,11 @@ export default class index extends Component {
       mode = 0
     }
     this.props.changMode(mode)
+  }
+  // 切换当前歌曲
+  handleCurrentPlay = (song, index) => {
+    this.props.changeCurrentSong(song)
+    this.props.changeCurrentIndex(index)
   }
   render() {
     const playMode = [
@@ -43,7 +52,7 @@ export default class index extends Component {
         icon: '&#xe609;'
       }
     ]
-    const { mode } = this.props
+    const { mode, currentIndex, playStatus } = this.props
     return (
       <CSSTransition
         in={this.props.show}
@@ -53,7 +62,7 @@ export default class index extends Component {
         unmountOnExit>
         {/*  onClick={this.handleClose.bind(this)} */}
         <Container className="player-list">
-          <div className="cover-bg"></div>
+          <div className="cover-bg" onClick={this.handleClose}></div>
           <header>
             <div onClick={() => { this.handlePlayMode() }}>
               <i className="iconfont"
@@ -64,7 +73,7 @@ export default class index extends Component {
                 <i style={{ display: mode === 0 ? '' : 'none' }}>({this.props.playSongs.length}首)</i>
               </span>
             </div>
-            <div onClick={this.handleDelete.bind(this, 'all')}>
+            <div onClick={() => { this.handleDelete('all') }}>
               <i className="iconfont">&#xe64a;</i>
             </div>
           </header>
@@ -75,12 +84,15 @@ export default class index extends Component {
                   {
                     this.props.playSongs.map((item, index) => {
                       return (
-                        <li key={item + index} className="list-li">
+                        <li key={item + index} className="list-li" onClick={() => { this.handleCurrentPlay(item, index) }}>
                           <div className="info">
-                            <span>{item.name}</span>
-                            <span> - {item.singer}</span>
+                            <span className="info-name">{item.name}</span>
+                            <span className="info-singer"> - {item.singer}</span>
+                            <div style={{width: '60px'}}>
+                              <Loading show={index === currentIndex} height={16} playStatus={playStatus}/>
+                            </div>
                           </div>
-                          <div className="more" onClick={this.handleDelete.bind(this, index)}>
+                          <div className="more" onClick={() => { this.handleDelete(item.id) }}>
                             <i className="iconfont">&#xe64a;</i>
                           </div>
                         </li>

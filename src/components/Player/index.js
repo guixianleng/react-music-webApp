@@ -14,13 +14,16 @@ export default class index extends Component {
     this.playImgRef = React.createRef()
     this.audioRef = React.createRef()
     this.state = {
-      showPlayer: false, // 全屏播放器
       playStatus: false, // 播放状态
       mode: 0, // 播放模式
       showPlayList: false // 显示播放列表
     }
     // 初始化当前歌曲
     this.currentSong = new Song(0, '', '', '', 0, '', '')
+  }
+  // 默认props
+  static defaultProps = {
+    currentIndex: 0
   }
   // 显示或隐藏播放器
   handleShowPlayer = (key) => {
@@ -39,31 +42,29 @@ export default class index extends Component {
   }
   // 显示播放列表
   showPlayList = (key) => {
-    this.setState({
-      showPlayList: key
-    })
+    if (this.props.playSongs.length > 0) {
+      this.setState({
+        showPlayList: key
+      })
+    }
   }
   // 播放或暂停
   handlePlay = () => {
+    let audioDOM = this.audioRef.current
+    if (!this.state.playStatus) {
+      if (!audioDOM.src) {
+        audioDOM.src = this.currentSong.url
+      }
+      audioDOM.play()
+    } else {
+      audioDOM.pause()
+    }
     this.setState({
       playStatus: !this.state.playStatus
     })
   }
-  playSong () {
-    let audioDOM = this.audioRef.current
-    let currentSong = this.props.currentSong
-    if (currentSong && currentSong.url) {
-      // 当前歌曲发生变化
-      if (this.currentSong.id !== currentSong.id) {
-        this.currentSong = currentSong
-        if (audioDOM) {
-          audioDOM.src = this.currentSong.url
-          // 加载资源，ios需要调用此方法
-          audioDOM.load()
-        }
-      }
-    }
-    
+  componentDidMount () {
+    let audioDOM = this.audioRef.current    
     audioDOM.addEventListener('canplay', () => {
       audioDOM.play()
       this.setState({
@@ -78,6 +79,21 @@ export default class index extends Component {
   // 下一首
   handleNext = () => {
 
+  }
+  // 更改当前歌曲序
+  handleCurrentIndex = (index) => {
+    this.currentSong = this.props.playSongs[index]
+    this.props.changeCurrentSong(this.currentSong)
+    this.props.changeCurrentIndex(index)
+  }
+  handleUpdateTime = (e) => {
+    // console.log(e)
+  }
+  handleEnd = () => {
+    console.log('结束')
+  }
+  handleError = () => {
+    alert('播放歌曲出错！')
   }
   render() {
     // 播放模式
@@ -104,8 +120,20 @@ export default class index extends Component {
       imgStyle.WebkitAnimationPlayState = 'paused'
       imgStyle.animationPlayState = 'paused'
     }
-    // currentIndex, 
-    // const { currentSong } = this.props
+    const { currentSong, currentIndex } = this.props
+    if (currentSong && currentSong.url) {
+      // 当前歌曲发生变化
+      if (this.currentSong.id !== currentSong.id) {
+        this.currentSong = currentSong
+        let audioDOM = this.audioRef.current
+        if (audioDOM) {
+          console.log(this.currentSong.url, '切歌')
+          audioDOM.src = this.currentSong.url
+          // 加载资源，ios需要调用此方法
+          audioDOM.load()
+        }
+      }
+    }
     return (
       <div>
         <CSSTransition
@@ -113,9 +141,6 @@ export default class index extends Component {
           timeout={300}
           classNames="pop"
           appear={true}
-          onEnter={() => {
-            this.playSong()
-          }}
           unmountOnExit>
           <Container ref={this.playerBgRef} bgImg={this.currentSong.img}>
             <NavHeader>
@@ -179,14 +204,21 @@ export default class index extends Component {
               </div>
             </Footer>
             <div className="background"></div>
-            <audio ref={this.audioRef}></audio>
           </Container>
         </CSSTransition>
+        <audio
+          ref={this.audioRef}
+          onTimeUpdate={this.handleUpdateTime}
+          onEnded={this.handleEnd}
+          onError={this.handleError}
+        ></audio>
         {/* mini播放器 */}
         <MiniPlayer
           show={this.props.showPlayer}
           showList={this.showPlayList}
           currentSong={this.currentSong}
+          controlPlay={this.handlePlay}
+          playStatus={this.state.playStatus}
           showPlayer={() => { this.handleShowPlayer(true) }}
         />
         {/* 播放列表 */}
@@ -195,6 +227,9 @@ export default class index extends Component {
           changMode={this.handlePlayMode}
           showList={this.showPlayList}
           show={this.state.showPlayList}
+          currentIndex={currentIndex}
+          playStatus={this.state.playStatus}
+          changeCurrentIndex={this.handleCurrentIndex}
         />
       </div>
     )

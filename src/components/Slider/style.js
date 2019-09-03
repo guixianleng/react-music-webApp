@@ -6,6 +6,7 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   margin: auto;
+  background-color: #fff;
   .slider-container {
     position: relative;
     width: 96%;

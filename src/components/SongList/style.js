@@ -6,8 +6,6 @@ export const Content = styled.div`
 `
 
 export const SongList = styled.div`
-  border-radius: 10px;
-  overflow: hidden;
   .first_line {
     box-sizing: border-box;
     padding: 15px 0;
@@ -59,7 +57,7 @@ export const SongItem = styled.div`
     height: auto;
     .song-ul {
       background-color: #fff;
-      padding-bottom: 50px;
+      padding-bottom: 10px;
       .song-li {
         display: flex;
         height: 60px;

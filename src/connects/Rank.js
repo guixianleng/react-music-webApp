@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
 import { showPlayer, setCurrentSong, setSongs, changeIndex } from '../redux/actions'
-import Album from '../views/Album'
+import RankDetail from '../views/rank-detail'
 
 const mapDispatchToProps = (dispatch) => ({
-  // 显示隐藏播放器 
+  // 显示隐藏播放器
   showMusicPlayer: (status) => {
     dispatch(showPlayer(status))
   },
@@ -21,4 +21,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 })
 
-export default connect(null, mapDispatchToProps)(Album)
+export default connect(null, mapDispatchToProps)(RankDetail)

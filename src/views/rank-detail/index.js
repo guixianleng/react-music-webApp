@@ -77,10 +77,32 @@ export default class RankDetail extends Component {
       show: false
     })
   }
+  // header事件处理
   handleMore () {
     this.setState({
       showMore: !this.state.showMore
     })
+  }
+  // 播放歌曲
+  handlePlayAll = (key) => {
+    if (this.state.songs.length > 0) {
+      let songsList = []
+      let index = 0
+      if (key === 'all') {
+        songsList = this.state.songs
+        // 显示播放器
+        this.props.showMusicPlayer(true)
+      } else {
+        songsList = [this.state.songs[key]]
+        index = key
+      }
+      //添加播放歌曲列表
+      this.props.setSongs(songsList)
+      // 设置当前歌曲
+      this.props.changeCurrentSong(this.state.songs[index])
+      // 设置序号
+      this.props.changeCurrentIndex(index)
+    }
   }
   render() {
     const info = this.state.ranking
@@ -111,7 +133,7 @@ export default class RankDetail extends Component {
       >
         <Container>
           <NavBar more bgImg={info.img} deal={this.handleMore.bind(this)} />
-          <Detail songs={this.state.songs} info={info} showTabs>
+          <Detail songs={this.state.songs} info={info} showTabs playAll={this.handlePlayAll}>
             <div className="insert-top">
               <h1>{info.title}</h1>
             </div>

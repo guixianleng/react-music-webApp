@@ -21,7 +21,7 @@ export class Ranking {
 export function createRankingByList(data) {
   const songList = [];
   data.songList.forEach(item => {
-    songList.push(new SongModel.Song(0, "", item.songname, "", 0, "", item.singername));
+    songList.push(new SongModel.Song(0, "", item.songname, "", "", 0, "", item.singername));
   });
   return new Ranking(
     data.id,

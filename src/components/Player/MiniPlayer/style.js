@@ -41,7 +41,7 @@ export const Container = styled.div`
       flex: 2;
       padding: 0 10px;
       font-size: 14px;
-      ${style.noWrap()}
+      ${style.noWrap()};
     }
     &__right {
       .iconfont {
@@ -49,6 +49,12 @@ export const Container = styled.div`
         padding-left: 15px;
         font-size: 24px;
         color: ${props => props.theme.color};
+      }
+    }
+    .is_disabled {
+      color: #666;
+      .iconfont {
+        color: #bcbec2;
       }
     }
   }

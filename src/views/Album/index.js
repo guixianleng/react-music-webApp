@@ -76,7 +76,9 @@ export default class Album extends Component {
       //添加播放歌曲列表
       this.props.setSongs(this.state.songs)
       // 当前歌曲
-      this.props.changeCurrentSong(this.state.songs[0])
+      let index = key === 'all' ? 0 : key
+      this.props.changeCurrentSong(this.state.songs[index])
+      this.props.changeCurrentIndex(index)
       // 显示播放器
       this.props.showMusicPlayer(true)
     }
