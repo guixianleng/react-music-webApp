@@ -1,4 +1,4 @@
-# React + redux 简易版QQ音乐webApp
+# React + Redux 简易版QQ音乐webApp
 
 ## 项目查看运行：
 ```shell
@@ -235,9 +235,15 @@ class Scroll extends Component {
 export default Scroll
 
 ```
-
-第一次使用react写项目，感觉学到的东西还是挺多的，慢慢成长，逐渐积累吧！
+## 第一次react写项目
+感觉学到的东西还是挺多的，慢慢成长，逐渐积累吧！
 
 - 务实自己js、css基础
-- react算是入门成功了
-- redux的实现原理、组件化流程和开发
+- react入门成功
+- redux的实现原理、组件化开发
+- 踩过的坑都是知识的积累
+
+## react学习资源：
+- [React.js小书](http://huziketang.mangojuice.top/books/react/)，react/redux介绍的很细
+- [Redux中文文档](http://cn.redux.js.org/)
+- [React中文文档](https://react.docschina.org/)
