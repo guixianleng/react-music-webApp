@@ -38,7 +38,7 @@ $ npm run start
 ![排行榜](https://github.com/guixianleng/images-store/blob/master/images/rank.gif?raw=true)
 
 ### 3. 歌手
-![歌手](https://github.com/guixianleng/images-store/blob/master/images/rank.gif?raw=true)
+![歌手](https://github.com/guixianleng/images-store/blob/master/images/singer.gif?raw=true)
 
 ### 4. 搜索
 ![搜索](https://github.com/guixianleng/images-store/blob/master/images/search.gif?raw=true)
