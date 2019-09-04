@@ -86,7 +86,7 @@ export const Middle = styled.div`
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    border: 10px solid rgba(221, 221, 221, 0.1);
+    border: 8px solid rgba(221, 221, 221, 0.1);
     img {
       width: 100%;
       height: 100%;

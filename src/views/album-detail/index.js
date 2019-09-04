@@ -24,14 +24,14 @@ export default class Index extends Component {
     })
   }
   // 播放歌曲
-  handlePlay = (key) => {
-    this.props.palyAll(key)
+  handlePlay = (id, key) => {
+    this.props.palyAll(id, key)
   }
   render() {
     const { albumInfo, songList } = this.props
     return (
       <Fragment>
-        <Detail info={albumInfo} songs={songList} playAll={this.handlePlay.bind(this)}>
+        <Detail info={albumInfo} songs={songList} playAll={this.handlePlay}>
           <AlbumImg>
             <div className="img_wrapper">
               <img src={albumInfo.img} alt="" />

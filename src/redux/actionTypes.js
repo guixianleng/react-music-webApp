@@ -18,3 +18,6 @@ export const SET_HISTORY = 'SET_HISTORY'
 
 // 当前歌曲号
 export const CHANGE_INDEX = 'CHANGE_INDEX'
+
+// 更改播放模式
+export const PLAY_MODE = 'PLAY_MODE'

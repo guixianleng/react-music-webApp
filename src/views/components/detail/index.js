@@ -47,8 +47,8 @@ export default class Detail extends Component {
       activeIndex: item.key
     })
   }
-  handlePlay (index) {
-    this.props.playAll(index)
+  handlePlay (id, index) {
+    this.props.playAll(id, index)
   }
   render() {
     const { songs, info, showTabs } = this.props

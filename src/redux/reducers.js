@@ -8,8 +8,9 @@ const initState = { // 默认数据
   historyList: storage.getHistorySearch() || [],
   showPlayer: false, // 是否显示全屏播放器
   currentSong: storage.getCurrentSong(), // 当前歌曲
-  currentIndex: storage.getCurrentIndex(),
-  songs: storage.getSongs() // 歌曲列表
+  currentIndex: storage.getCurrentIndex(), // 当前歌曲序号
+  songs: storage.getSongs(), // 歌曲列表
+  mode: storage.getPlayMode() // 播放模式
 }
 
 // 设置皮肤
@@ -91,11 +92,14 @@ function songsList (songsList = initState.songs, action) {
       } else { // 新加入数据加入最前面
         newSongs = [...songsList]
         let addSong = action.songs[0]
-        let index = findIndex(addSong, newSongs)
-        let currentIndex = storage.getCurrentIndex()
+        let index = findIndex(addSong.id, newSongs)
+        let currentSongId = storage.getCurrentIndex()
+        // 当前播放歌曲的位置
+        let currentId = findIndex(currentSongId, newSongs)
+        // 不存在列表中，则插入
         if (index === -1) {
           // 插入当前歌曲的下一个位置
-          newSongs.splice(currentIndex, 0, addSong)
+          newSongs.splice(currentId + 1, 0, addSong)
         }
       }
       storage.setSongs(newSongs)
@@ -115,13 +119,25 @@ function songsList (songsList = initState.songs, action) {
   }
 }
 
+// 更改播放模式
+function playMode (defaultMode = initState.mode, action) {
+  switch (action.type) {
+    case ActionTypes.PLAY_MODE:
+      storage.setPlayMode(action.mode)
+      return action.mode
+    default:
+      return defaultMode
+  }
+}
+
 const reducer = combineReducers({
   skin,
   historySearch,
   showPlayer,
   currentSong,
   currentIndex,
-  songsList
+  songsList,
+  playMode
 })
 
 export default reducer

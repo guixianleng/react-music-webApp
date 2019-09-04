@@ -4,6 +4,7 @@ import { CSSTransition } from 'react-transition-group'
 import { Container, NavHeader, Middle, Footer } from './style'
 import MiniPlayer from './MiniPlayer'
 import PlayList from '../../connects/playList'
+import { findIndex, rand } from '../../utils'
 
 import { Song } from '../../models/song'
 
@@ -15,7 +16,6 @@ export default class index extends Component {
     this.audioRef = React.createRef()
     this.state = {
       playStatus: false, // 播放状态
-      mode: 0, // 播放模式
       showPlayList: false // 显示播放列表
     }
     // 初始化当前歌曲
@@ -36,9 +36,7 @@ export default class index extends Component {
     if (mode > 2) {
       mode = 0
     }
-    this.setState({
-      mode: mode
-    })
+    this.props.changePlayMode(mode)
   }
   // 显示播放列表
   showPlayList = (key) => {
@@ -48,10 +46,10 @@ export default class index extends Component {
       })
     }
   }
-  // 播放或暂停
+  // 控制当前歌曲的播放或暂停
   handlePlay = () => {
     let audioDOM = this.audioRef.current
-    if (!this.state.playStatus) {
+    if (!this.state.playStatus) { // 暂停状态
       if (!audioDOM.src) {
         audioDOM.src = this.currentSong.url
       }
@@ -64,7 +62,7 @@ export default class index extends Component {
     })
   }
   componentDidMount () {
-    let audioDOM = this.audioRef.current    
+    let audioDOM = this.audioRef.current
     audioDOM.addEventListener('canplay', () => {
       audioDOM.play()
       this.setState({
@@ -73,24 +71,98 @@ export default class index extends Component {
     }, false)
   }
   // 上一首
-  handlePrevious = () => {
-
+  handlePrev = () => {
+    let playList = this.props.playSongs
+    let currentId = this.props.currentIndex
+    // 列表是否只有一首歌
+    if (playList.length === 1) {
+      this.handleLoop()
+      return
+    }
+    let index = this.handleModeIndex(playList, currentId) - 1
+    /**
+     * 若为 0，表示当前歌曲为列表最后一个
+     */
+    if (index < 0) index = playList.length - 1
+    console.log(index, '上一首')
+    this.handleTogglePlay(playList[index])
   }
   // 下一首
   handleNext = () => {
-
+    let playList = this.props.playSongs
+    let currentId = this.props.currentIndex
+    // 列表是否只有一首歌
+    if (playList.length === 1) {
+      this.handleLoop()
+      return
+    }
+    let index = this.handleModeIndex(playList, currentId) + 1
+    /**
+     * 若为列表长度，表示当前歌曲为列表第一个
+     */
+    if (index === playList.length) index = 0
+    console.log(index, '下一首')
+    this.handleTogglePlay(playList[index])
   }
-  // 更改当前歌曲序
-  handleCurrentIndex = (index) => {
+  // 循环播放
+  handleLoop = () => {
+    // 重置
+    this.audioRef.current.currentTime = 0
+    this.setState({
+      playStatus: true
+    })
+    this.audioRef.current.play()
+  }
+  /**
+   * 播放模式下的index
+   * @list 播放列表
+   * @id 当前歌曲的id
+   */
+  handleModeIndex = (list, id) => {
+    let type = this.props.mode
+    /**
+     * 0 随机播放
+     * 1 单曲循环
+     * 2 列表循环
+     */
+    switch (type) {
+      case 0: 
+        return rand(list.length - 1)
+      case 1: 
+        return findIndex(id, list)
+      default:
+        return findIndex(id, list)
+    }
+  }
+  // 上下切歌操作
+  handleTogglePlay = (song) => {
+    this.setState({
+      playStatus: true
+    })
+    // 更改
+    this.props.changeCurrentSong(song)
+    this.props.changeCurrentIndex(song.id)
+    this.audioRef.current.play()
+  }
+  // 更改当前歌曲和当前歌曲序号
+  handleCurrent = (index) => {
     this.currentSong = this.props.playSongs[index]
     this.props.changeCurrentSong(this.currentSong)
     this.props.changeCurrentIndex(index)
   }
+  // 实时更新进度条
   handleUpdateTime = (e) => {
     // console.log(e)
   }
+  // 当前歌曲播放结束
   handleEnd = () => {
     console.log('结束')
+    // 模式为单曲播放
+    if (this.props.mode === 1) {
+      this.handleLoop()
+    } else {
+      this.handleNext()
+    }
   }
   handleError = () => {
     alert('播放歌曲出错！')
@@ -127,7 +199,7 @@ export default class index extends Component {
         this.currentSong = currentSong
         let audioDOM = this.audioRef.current
         if (audioDOM) {
-          console.log(this.currentSong.url, '切歌')
+          console.log('切歌')
           audioDOM.src = this.currentSong.url
           // 加载资源，ios需要调用此方法
           audioDOM.load()
@@ -180,13 +252,13 @@ export default class index extends Component {
               </div>
               {/* 播放选项 */}
               <div className="player-control">
-                <div onClick={() => { this.handlePlayMode(this.state.mode) }}>
+                <div onClick={() => { this.handlePlayMode(this.props.mode) }}>
                   <i
                     className="iconfont"
-                    dangerouslySetInnerHTML={{ __html: playMode[`${this.state.mode}`].icon }}
+                    dangerouslySetInnerHTML={{ __html: playMode[`${this.props.mode}`].icon }}
                   ></i>
                 </div>
-                <div onClick={this.handlePrevious}>
+                <div onClick={this.handlePrev}>
                   <i className="iconfont previous">&#xe60c;</i>
                 </div>
                 <div onClick={this.handlePlay}>
@@ -206,6 +278,7 @@ export default class index extends Component {
             <div className="background"></div>
           </Container>
         </CSSTransition>
+        {/* 音频标签 */}
         <audio
           ref={this.audioRef}
           onTimeUpdate={this.handleUpdateTime}
@@ -223,13 +296,12 @@ export default class index extends Component {
         />
         {/* 播放列表 */}
         <PlayList
-          mode={this.state.mode}
-          changMode={this.handlePlayMode}
           showList={this.showPlayList}
           show={this.state.showPlayList}
           currentIndex={currentIndex}
           playStatus={this.state.playStatus}
-          changeCurrentIndex={this.handleCurrentIndex}
+          controlPlay={this.handlePlay}
+          changeCurrentIndex={this.handleCurrent}
         />
       </div>
     )
