@@ -74,6 +74,13 @@ export const SongList = styled.div`
       align-items: center;
       height: 40px;
       border-bottom: 1px solid ${style['border-color']};
+      &.active-li {
+        .info {
+          > span {
+            color: ${props => props.theme.color}
+          }
+        }
+      }
       .info {
         flex-basis: 100%;
         display: flex;

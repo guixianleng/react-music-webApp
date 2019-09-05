@@ -101,7 +101,9 @@ export const Middle = styled.div`
 export const Footer = styled.div`
   position: absolute;
   bottom: 0;
-  width: 100%;
+  left: 0;
+  right: 0;
+  padding: 0 25px;
   height: 120px;
   .player-progress {
     display: flex;
@@ -112,7 +114,8 @@ export const Footer = styled.div`
     font-weight: 400;
     .current-time,
     .total-time {
-      width: 40px;
+      flex-basis: 30px;
+      color: #fff;
     }
     .current-time {
       text-align: left
@@ -127,7 +130,6 @@ export const Footer = styled.div`
   .player-control {
     display: flex;
     margin-top: 10px;
-    padding: 0 30px;
     color: #FFF;
     text-align: center;
     align-items: center;

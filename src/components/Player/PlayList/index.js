@@ -20,10 +20,14 @@ export default class index extends Component {
       this.props.showList(false)
       this.props.showMusicPlayer(false)
       this.props.controlPlay(false)
+      this.props.changeCurrentSong({})
+      this.props.removeSong(id)
+      return false
     }
     let currentId = findIndex(id, this.props.playSongs)
-    console.log(currentId)
-    // this.props.changeCurrentIndex(this.props.playSongs[currentId + 1].id)
+    const currentSong = this.props.playSongs[currentId + 1]
+    this.props.changeCurrentIndex(currentSong.id)
+    this.props.changeCurrentSong(currentSong)
     this.props.removeSong(id)
   }
   // 关闭
@@ -90,8 +94,11 @@ export default class index extends Component {
                   {
                     this.props.playSongs.map((item, index) => {
                       return (
-                        <li key={item + index} className="list-li" onClick={() => { this.handleCurrentPlay(item) }}>
-                          <div className="info">
+                        <li
+                          key={item + index}
+                          className={`list-li ${item.id === currentIndex ? 'active-li' : ''}`}
+                        >
+                          <div className="info" onClick={() => { this.handleCurrentPlay(item) }}>
                             <span className="info-name">{item.name}</span>
                             <span className="info-singer"> - {item.singer}</span>
                             <div style={{width: '60px'}}>

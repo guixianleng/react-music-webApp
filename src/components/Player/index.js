@@ -4,7 +4,8 @@ import { CSSTransition } from 'react-transition-group'
 import { Container, NavHeader, Middle, Footer } from './style'
 import MiniPlayer from './MiniPlayer'
 import PlayList from '../../connects/playList'
-import { findIndex, rand } from '../../utils'
+import Progress from '../Progress'
+import { findIndex, rand, getCurrentTime } from '../../utils'
 
 import { Song } from '../../models/song'
 
@@ -16,7 +17,9 @@ export default class index extends Component {
     this.audioRef = React.createRef()
     this.state = {
       playStatus: false, // 播放状态
-      showPlayList: false // 显示播放列表
+      showPlayList: false, // 显示播放列表
+      currentTime: 0, // 当前播放时间点
+      progress: 0 // 播放进度
     }
     // 初始化当前歌曲
     this.currentSong = new Song(0, '', '', '', 0, '', '')
@@ -151,8 +154,13 @@ export default class index extends Component {
     this.props.changeCurrentIndex(index)
   }
   // 实时更新进度条
-  handleUpdateTime = (e) => {
-    // console.log(e)
+  handleUpdateTime = () => {
+    let audioDOM = this.audioRef.current
+    let percent = audioDOM.currentTime / audioDOM.duration
+    this.setState({
+      currentTime: audioDOM.currentTime,
+      progress: !isNaN(percent) ? percent : 0
+    })
   }
   // 当前歌曲播放结束
   handleEnd = () => {
@@ -166,6 +174,21 @@ export default class index extends Component {
   }
   handleError = () => {
     alert('播放歌曲出错！')
+  }
+  handleChangeProgress = (percent) => {
+    const newCurrentTime = percent * this.currentSong.duration
+    let audioDOM = this.audioRef.current
+    console.log(percent, newCurrentTime)
+    this.setState({
+      currentTime: newCurrentTime
+    })
+    audioDOM.currentTime = newCurrentTime
+    audioDOM.play()
+    if (!this.state.playStatus) {
+      this.setState({
+        playStatus: true
+      })
+    }
   }
   render() {
     // 播放模式
@@ -239,16 +262,18 @@ export default class index extends Component {
             <Footer>
               {/* 进度条 */}
               <div className="player-progress">
-                {/* <span className="current-time">
-                  {getTime(this.state.currentTime)}
-                </span>
-                <div className="play-progress">
-                  <Progress progress={this.state.playProgress}
-                    onClick={this.handleClick}
-                    onDrag={this.handleDrag}
-                    onDragEnd={this.handleDragEnd} />
+                <div className="current-time">
+                  {getCurrentTime(this.state.currentTime)}
                 </div>
-                <span className="total-time">{getTime(song.duration)}</span> */}
+                <div className="play-progress">
+                  <Progress
+                    progress={this.state.progress}
+                    changeProgress={this.handleChangeProgress}
+                  />
+                </div>
+                <div className="total-time">
+                  {getCurrentTime(this.currentSong.duration)}
+                </div>
               </div>
               {/* 播放选项 */}
               <div className="player-control">
