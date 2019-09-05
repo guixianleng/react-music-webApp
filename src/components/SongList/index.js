@@ -22,12 +22,12 @@ export default class index extends Component {
     return (
       <Content>
         <SongList>
-          <div className="first_line">
-            <div className="play_all" onClick={() => { this.handlePlay(null, 'all') }}>
+          <div className="song-top">
+            <div className="song-top__all" onClick={() => { this.handlePlay(null, 'all') }}>
               <i className="iconfont">&#xe710;</i>
               <span>全部播放<span className="sum">({songList.length})</span></span>
             </div>
-            <div className="add_list" onClick={this.handleBatch.bind(this, true)}>
+            <div className="song-top__list" onClick={this.handleBatch.bind(this, true)}>
               <i className="iconfont">&#xe610;</i>
             </div>
           </div>

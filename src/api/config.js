@@ -20,7 +20,9 @@ const URL = {
   /* 歌手详情 */
   singerInfo: "https://c.y.qq.com/v8/fcg-bin/fcg_v8_singer_track_cp.fcg",
   /* 歌曲vkey */
-  songVkey: "https://c.y.qq.com/base/fcgi-bin/fcg_music_express_mobile3.fcg"
+  songVkey: "https://c.y.qq.com/base/fcgi-bin/fcg_music_express_mobile3.fcg",
+  /* 歌词 */
+  lyrics: "http://music.xiaoying.love/api/lyric?"
 };
 
 const PARAM = {

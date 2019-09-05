@@ -29,8 +29,8 @@ const ListItem = styled.li`
   width: 100%;
   font-size: 16px;
   font-weight: 500;
-  height: 50px;
-  line-height: 50px;
+  height: 46px;
+  line-height: 46px;
   color: inherit;
   text-align: center;
   touch-action: none;
@@ -70,7 +70,6 @@ const ContainerAnimate = keyframes`
 
 const Container = styled.div`
   display: ${props => props.show ? '' : 'none'};
-  /* padding: 10px; */
   animation: ${ContainerAnimate} ease-in-out .3s;
 `
 

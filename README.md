@@ -16,11 +16,11 @@ $ npm run start
   - [x] QQ排行榜
   - [x] 全球榜(假数据)
 - [x] 歌手
-  - [ ] 列表
-  - [ ] 条件搜索
+  - [x] 列表
+  - [x] 条件搜索
 - [x] 搜索功能
-  - [ ] 热门搜索
-  - [ ] 自定义搜索
+  - [x] 热门搜索
+  - [x] 自定义搜索
 - [x] 播放器
   - [x] 迷你播放器
   - [x] 歌曲列表
@@ -28,6 +28,7 @@ $ npm run start
   - [x] 上一首
   - [x] 下一首
   - [x] 暂停
+  - [ ] 进度条
 - [x] 换肤
 
 ## 功能演示：
@@ -241,9 +242,10 @@ export default Scroll
 - 务实自己js、css基础
 - react入门成功
 - redux的实现原理、组件化开发
-- 踩过的坑都是知识的积累
 
 ## react学习资源：
 - [React.js小书](http://huziketang.mangojuice.top/books/react/)，react/redux介绍的很细
 - [Redux中文文档](http://cn.redux.js.org/)
 - [React中文文档](https://react.docschina.org/)
+- [技术胖React系列](https://juejin.im/post/5d085be0f265da1bac401937)
+- [技术胖Redux系列](https://juejin.im/post/5d3e3c42e51d45590a445c37)

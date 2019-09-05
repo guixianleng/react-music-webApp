@@ -6,15 +6,15 @@ export const Content = styled.div`
 `
 
 export const SongList = styled.div`
-  .first_line {
+  .song-top {
     box-sizing: border-box;
-    padding: 15px 0;
+    padding: 12px 0;
     position: relative;
     justify-content: space-between;
     border-bottom: 1px solid #e4e4e4;
     align-items: center;
     background-color: #fff;
-    .play_all {
+    &__all {
       display: inline-block;
       margin-left: 10px;
       line-height: 24px;
@@ -29,11 +29,8 @@ export const SongList = styled.div`
         font-size: 16px;
         color: #333;
       }
-      > span {
-        vertical-align: top;
-      }
     }
-    .add_list {
+    &__list {
       display: flex;
       align-items: center;
       position: absolute;

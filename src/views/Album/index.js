@@ -10,7 +10,7 @@ import { getAlbumInfo } from "../../api/recommend"
 import * as AlbumModel from "../../models/album"
 
 import { CODE_SUCCESS } from "../../api/config"
-import { getSongVKey } from "../../api/song"
+import { getSongVKey, getSongLyric } from "../../api/song"
 import * as SongModel from "../../models/song"
 
 
@@ -58,6 +58,7 @@ export default class Album extends Component {
       show: false
     })
   }
+  // 获取歌曲地址
   getSongUrl(song, mId) {
     getSongVKey(mId).then((res) => {
       if (res) {
@@ -66,6 +67,20 @@ export default class Album extends Component {
             let item = res.data.items[0]
             song.url = `http://dl.stream.qqmusic.qq.com/${item.filename}?vkey=${item.vkey}&guid=3655047200&fromtag=66`
           }
+        }
+      }
+    })
+  }
+  // 获取歌词 失败（跨域了）
+  getSongLyric (mId) {
+    getSongLyric(mId).then(res => {
+      if (res) {
+        if (res.code === CODE_SUCCESS) {
+          console.log('歌词', res.code)
+          // if (res.data.items) {
+          //   let item = res.data.items[0]
+          //   song.url = `http://dl.stream.qqmusic.qq.com/${item.filename}?vkey=${item.vkey}&guid=3655047200&fromtag=66`
+          // }
         }
       }
     })
