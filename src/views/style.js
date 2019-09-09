@@ -7,7 +7,7 @@ export const AppDiv = styled.div`
   position: relative;
   &-content {
     position: fixed;
-    top: 91px;
+    top: 90px;
     left: 0;
     bottom: 52px;
     width: 100%;

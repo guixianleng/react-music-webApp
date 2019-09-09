@@ -88,7 +88,7 @@ export const ContentLabels = styled.div`
 export const NavContainer  = styled.div`
   box-sizing: border-box;
   position: fixed;
-  top: 91px;
+  top: 90px;
   width: 100%;
   padding: 5px;
   overflow: hidden;

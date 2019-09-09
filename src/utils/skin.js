@@ -24,7 +24,7 @@ skins.qqGreen = Object.assign({}, skins.normal, {
 
 // 芒果黄
 skins.mangoYellow = Object.assign({}, skins.normal, {
-  backgroundColor: '#31C27C',
+  backgroundColor: '#FFA500',
   themeColor: '#FFA500'
 })
 
@@ -34,7 +34,7 @@ skins.coolBlack = {
   bgColor: '#212121',
   borderColor: '#5C5E61',
   color: '#FFF',
-  themeColor: '#31C27C'
+  themeColor: '#B82525'
 }
 
 // 酷狗蓝

@@ -46,6 +46,7 @@ export const Container = styled.div`
       flex-direction: column;
       color: ${props => props.theme.color};
       span {
+        ${style.noWrap()};
         &:last-child {
           font-size: 12px;
           color: #666;

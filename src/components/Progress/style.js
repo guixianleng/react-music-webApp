@@ -11,7 +11,7 @@ export const Content = styled.div`
     &-load {
       position: absolute;
       height: 100%;
-      background: ${props => props.theme.backgroundColor};
+      background: ${props => props.theme.themeColor};
     }
     &-btn {
       position: absolute;
