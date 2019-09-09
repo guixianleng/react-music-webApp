@@ -5,6 +5,7 @@ import { CODE_SUCCESS } from '../../api/config'
 // import * as SingerModel from '../../models/singer'
 // import * as AlbumModel from '../../models/album'
 import * as SongModel from '../../models/song'
+import { getSongVKey } from "../../api/song"
 
 import Scroll from '../../components/Scroll'
 import { Container, NavSearch, Hot, HistoryContent, History, HistoryItem, ResultContent, ResultList, ResultItem } from './style'
@@ -46,15 +47,31 @@ export default class index extends Component {
     })
   }
 
+  // 获取歌曲地址
+  getSongUrl(song, mId) {
+    getSongVKey(mId).then((res) => {
+      if (res) {
+        if (res.code === CODE_SUCCESS) {
+          if (res.data.items) {
+            let item = res.data.items[0]
+            song.url = `http://dl.stream.qqmusic.qq.com/${item.filename}?vkey=${item.vkey}&guid=3655047200&fromtag=66`
+          }
+        }
+      }
+    })
+  }
+
   searchKey (keywords) {
     search(keywords).then((res) => {
       if (res) {
-        console.log(res)
         if (res.code === CODE_SUCCESS) {
           let dataList = []
           res.data.song.list.forEach((data) => {
             if (data.pay.payplay === 1) { return }
-            dataList.push(SongModel.createSong(data))
+            let song = SongModel.createSong(data)
+            // 获取歌曲 vkey
+            this.getSongUrl(song, data.songmid)
+            dataList.push(song)
           })
           this.setState({
             results: dataList
@@ -96,6 +113,17 @@ export default class index extends Component {
         searchList: []
       })
     }
+  }
+  // 点击搜索结果
+  handleResult = (song) => {
+    console.log(song)
+    this.props.setSongs([song])
+    // 设置当前歌曲
+    this.props.changeCurrentSong(song)
+    // 设置序号
+    this.props.changeCurrentIndex(song.id)
+    // 隐藏
+    this.props.showMusicPlayer(true)
   }
   render() {
     return (
@@ -164,7 +192,7 @@ export default class index extends Component {
                   this.state.results.map((item, index) => {
                     if (index > 9) return ''
                     return (
-                      <ResultItem key={item + index}>
+                      <ResultItem key={item + index} onClick={() => { this.handleResult(item) }}>
                         <i className="iconfont">&#xe604;</i>
                         <span dangerouslySetInnerHTML={{ __html: item.hLight }}>
                         </span>

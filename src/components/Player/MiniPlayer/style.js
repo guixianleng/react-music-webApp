@@ -42,6 +42,15 @@ export const Container = styled.div`
       padding: 0 10px;
       font-size: 14px;
       ${style.noWrap()};
+      display: flex;
+      flex-direction: column;
+      span {
+        &:last-child {
+          font-size: 12px;
+          color: #666;
+          padding-top: 5px;
+        }
+      }
     }
     &__right {
       .iconfont {

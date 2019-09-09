@@ -68,6 +68,11 @@ export default class index extends Component {
                   currentSong.name || 'QQ音乐，让生活充满音乐'
                 }
               </span>
+              <span>
+                {
+                  currentSong.singer || ''
+                }
+              </span>
             </div>
             <div className={`mini-player__right ${disabled ? 'is_disabled' : ''}`}>
               <i

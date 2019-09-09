@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { setCurrentSong, setSongs, setHistory } from '../redux/actions'
+import { showPlayer, setCurrentSong, changeIndex, setHistory, setSongs } from '../redux/actions'
 import Search from '../views/search'
 
 const mapStateToProps = (state) => ({
@@ -11,11 +11,19 @@ const mapDispatchToProps = (dispatch) => ({
   setHistory: (keyword, add) => {
     dispatch(setHistory(keyword, add))
   },
+  // 显示隐藏播放器
+  showMusicPlayer: (status) => {
+    dispatch(showPlayer(status))
+  },
   changeCurrentSong: (song) => {
     dispatch(setCurrentSong(song))
   },
-  setSongs: (song) => {
-    dispatch(setSongs(song))
+  changeCurrentIndex: (song) => {
+    dispatch(changeIndex(song))
+  },
+  // 设置歌曲列表
+  setSongs: (songs) => {
+    dispatch(setSongs(songs))
   }
 })
 

@@ -75,10 +75,34 @@ export default class Index extends Component {
       show: false
     })
   }
-  handleMore () {
+  handleMore = () => {
     this.setState({
       showMore: !this.state.showMore
     })
+  }
+  handlePlayAll = (id, key) => {
+    if (this.state.songs.length > 0) {
+      let songsList = []
+      let index = 0
+      let currentId = null
+      if (key === 'all') {
+        songsList = this.state.songs
+        currentId = this.state.songs[0].id
+        // 显示播放器
+        this.props.showMusicPlayer(true)
+      } else {
+        songsList = [this.state.songs[key]]
+        index = key
+        currentId = id
+      }
+      console.log(id, index, currentId)
+      //添加播放歌曲列表
+      this.props.setSongs(songsList)
+      // 设置当前歌曲
+      this.props.changeCurrentSong(this.state.songs[index])
+      // 设置序号
+      this.props.changeCurrentIndex(currentId)
+    }
   }
   render() {
     const info = this.state.singerInfo
@@ -108,8 +132,8 @@ export default class Index extends Component {
         onExited={() => this.props.history.goBack()}
       >
         <Container>
-          <NavBar more bgImg={this.state.bgImg} deal={this.handleMore.bind(this)} />
-          <Detail songs={this.state.songs} info={info}>
+          <NavBar more bgImg={this.state.bgImg} deal={this.handleMore} />
+          <Detail songs={this.state.songs} info={info} playAll={this.handlePlayAll}>
             <div className="info">
               <h1>{info.name}</h1>
               <div className="info-footer">
@@ -127,7 +151,7 @@ export default class Index extends Component {
           {/* 分享 */}
           <Share
             shareTypes={shareTypes}
-            close={this.handleMore.bind(this)}
+            close={this.handleMore}
             show={this.state.showMore} />
         </Container>
       </CSSTransition>

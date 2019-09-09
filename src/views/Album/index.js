@@ -126,7 +126,7 @@ export default class Album extends Component {
       >
         <Container>
           <NavBar title={info.name} bgImg={info.img} />
-          <AlbumDetail songList={this.state.songs} albumInfo={info} palyAll={this.handlePlayAll} />
+          <AlbumDetail songList={this.state.songs} albumInfo={info} playAll={this.handlePlayAll} />
           <Loading show={this.state.loading} bgColor />
         </Container>
       </CSSTransition>

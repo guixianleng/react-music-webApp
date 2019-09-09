@@ -175,6 +175,7 @@ export default class index extends Component {
   handleError = () => {
     alert('播放歌曲出错！')
   }
+  // 进度条
   handleChangeProgress = (percent) => {
     const newCurrentTime = percent * this.currentSong.duration
     let audioDOM = this.audioRef.current
@@ -190,6 +191,7 @@ export default class index extends Component {
       })
     }
   }
+  
   render() {
     // 播放模式
     const playMode = [

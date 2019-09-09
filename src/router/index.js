@@ -11,12 +11,11 @@ const suspenseComponent = (Component) => {
 const Recommend = suspenseComponent(lazy(() => import('../views/recommend')))
 const Rank = suspenseComponent(lazy(() => import('../views/rank')))
 const Singers = suspenseComponent(lazy(() => import('../views/singer')))
-const SingerDetail = suspenseComponent(lazy(() => import('../views/singer-detail')))
-const Search = suspenseComponent(lazy(() => import('../connects/Search')))
 
 const Album = suspenseComponent(lazy(() => import('../connects/album')))
 const RankDetail = suspenseComponent(lazy(() => import('../connects/Rank')))
-const Singer = suspenseComponent(lazy(() => import('../connects/Singer')))
+const SingerDetail = suspenseComponent(lazy(() => import('../connects/Singer')))
+const Search = suspenseComponent(lazy(() => import('../connects/Search')))
 
 const router = [
   {
@@ -59,7 +58,7 @@ const router = [
       },
       {
         path: '/search/singer/:id',
-        component: Singer
+        component: SingerDetail
       }
     ]
   },

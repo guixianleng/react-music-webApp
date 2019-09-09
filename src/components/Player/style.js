@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components'
+import style from '../../assets/style/variable'
 
 export const Rotate = keyframes`
   from {
@@ -71,6 +72,10 @@ export const NavHeader = styled.header`
   .iconfont {
     font-size: 24px;
     color: #fff;
+  }
+  .player-title {
+    ${style.noWrap()};
+    padding: 0 20px;
   }
 `
 

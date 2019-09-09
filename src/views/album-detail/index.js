@@ -25,7 +25,7 @@ export default class Index extends Component {
   }
   // 播放歌曲
   handlePlay = (id, key) => {
-    this.props.palyAll(id, key)
+    this.props.playAll(id, key)
   }
   render() {
     const { albumInfo, songList } = this.props
