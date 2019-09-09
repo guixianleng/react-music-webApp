@@ -19,7 +19,9 @@ export default class Skin extends Component {
         { key: 'coolBlack', name: '炫酷黑', color: '#212121' },
         { key: 'kuGouBlue', name: '酷狗蓝', color: '#2CA2F9' },
         { key: 'netBaseRed', name: '网易红', color: '#D43C33' },
-        { key: 'qqGreen', name: 'QQ绿', color: '#31C27C' }
+        { key: 'qqGreen', name: 'QQ绿', color: '#31C27C' },
+        { key: 'lovelyPink', name: '芭比粉', color: '#FF7A9E' },
+        { key: 'elegantPurple', name: '优雅紫', color: '#341677' }
       ]
     }
   }

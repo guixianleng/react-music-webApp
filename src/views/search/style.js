@@ -4,6 +4,7 @@ import style from '../../assets/style/variable'
 export const Container = styled.div`
   height: 100%;
   margin-bottom: 10px;
+  background-color: ${props => props.theme.bgColor};
   .title {
     font-size: 14px;
     color: #666;
@@ -17,8 +18,7 @@ export const NavSearch = styled.header`
     padding: 10px;
     display: flex;
     align-items: center;
-    /* background-color: ${props => props.theme.backgroundColor}; */
-    color: #333;
+    color: ${props => props.theme.color};
     .search-input {
       flex: 2;
       padding: 8px 10px;
@@ -39,7 +39,7 @@ export const Hot = styled.div`
   &.search-hot {
     font-size: 14px;
     padding: 20px 10px 10px;
-    background-color: #fff;
+    background-color: ${props => props.theme.bgColor};
     .hot-list {
       display: flex;
       align-items: center;
@@ -47,11 +47,11 @@ export const Hot = styled.div`
       flex-wrap: wrap;
     }
     .hot-item {
-      border: 1px solid ${style['border-color']};
+      border: 1px solid ${props => props.theme.borderColor};
       padding: 0 12px;
       height: 28px;
       line-height: 28px;
-      color: #333;
+      color: ${props => props.theme.color};
       border-radius: 20px;
       margin: 10px 6px 0 0;
     }
@@ -61,9 +61,9 @@ export const Hot = styled.div`
 export const HistoryContent = styled.div`
   display: ${props => props.show ? 'none' : ''};
   padding: 0 10px;
-  background-color: #fff;
+  background-color: ${props => props.theme.bgColor};
   .top {
-    border-bottom: 1px solid ${style['border-color']};
+    border-bottom: 1px solid ${props => props.theme.borderColor};
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -85,12 +85,13 @@ export const History = styled.ul`
 `
 
 export const HistoryItem = styled.li`
-  border-bottom: 1px solid ${style['border-color']};
+  border-bottom: 1px solid ${props => props.theme.borderColor};
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 40px;
   font-size: 15px;
+  color: ${props => props.theme.color};
   > span {
     width: 100%;
     height: 40px;
@@ -105,7 +106,7 @@ export const ResultContent = styled.div`
   bottom: 52px;
   left: 0;
   right: 0;
-  background-color: #fff;
+  background-color: ${props => props.theme.bgColor};
   display: ${props => props.show ? '' : 'none'}
 `
 
@@ -114,11 +115,12 @@ export const ResultList = styled.ul`
 `
 
 export const ResultItem = styled.li`
-  border-bottom: 1px solid ${style['border-color']};
+  border-bottom: 1px solid ${props => props.theme.borderColor};
   display: flex;
   align-items: center;
   justify-content: flex-start;
   font-size: 15px;
+  color: ${props => props.theme.color};
   .iconfont {
     flex-basis: 40px;
     height: 40px;
@@ -134,7 +136,7 @@ export const ResultItem = styled.li`
     ${style.noWrap()};
     margin-right: 6px;
     > em {
-      color: ${props => props.theme.color}
+      color: ${props => props.theme.themeColor}
     }
   }
 `

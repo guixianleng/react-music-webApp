@@ -21,7 +21,7 @@ const LoadingDiv = styled.div`
   display: ${props => props.show ? '' : 'none'};
   > div {
     display: inline-block;
-    background-color: ${props => props.theme.color};
+    background-color: ${props => props.theme.themeColor};
     height: 100%;
     width: 2px;
     margin-right: 4px;

@@ -6,7 +6,7 @@ export const HeaderDiv = styled.header`
   text-align: center;
   position: relative;
   background-color: ${props => props.theme.backgroundColor};
-  color: #fff;
+  color: #FFF;
   .header {
     &-more {
       position: absolute;

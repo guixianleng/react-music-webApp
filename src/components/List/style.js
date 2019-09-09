@@ -2,14 +2,14 @@ import styled from 'styled-components'
 
 export const ListWrapper = styled.div`
   max-width: 100%;
-  background-color: #fff;
+  background-color: ${props => props.theme.bgColor};
   display: ${props => props.show ? '' : 'none' };
   .title {
     font-weight: 400;
     text-align: center;
     font-size: 16px;
     line-height: 50px;
-    color: inherit;
+    color: ${props => props.theme.color};
   }
 `
 
@@ -57,15 +57,15 @@ export const ListItem = styled.div`
     padding: 0 2px;
     text-align: left;
     font-size: 12px;
-    line-height: 1.2;
-    color: #333;
+    line-height: 1.4;
+    color: ${props => props.theme.color};
     &-singer {
       padding: 0 2px;
-      margin-top: 5px;
+      margin-top: 2px;
       font-size: 12px;
       color: #999;
       margin-bottom: 15px;
-      line-height: 1.2;
+      line-height: 1.4;
     }
   }
 `

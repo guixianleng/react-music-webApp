@@ -10,6 +10,7 @@ export const Container = styled.div`
     height: 100%;
     z-index: 99;
     background-color: #f5f5f5;
+    color: ${props => props.theme.color};
     .footer {
       height: 40px;
       display: flex;
@@ -18,10 +19,10 @@ export const Container = styled.div`
       bottom: 0;
       left: 0;
       right: 0;
-      background-color: #fff;
+      background-color: ${props => props.theme.bgColor};
       z-index: 100;
       padding: 10px 0;
-      border-top: 1px solid ${style['border-color']};
+      border-top: 1px solid ${props => props.theme.borderColor};
       > div {
         flex: 1;
         text-align: center;
@@ -47,13 +48,13 @@ export const Container = styled.div`
       }
     }
     .batch-ul {
-      background-color: #fff;
+      background-color: ${props => props.theme.bgColor};
       .batch-li {
         display: flex;
         height: 60px;
         align-items: center;
         box-sizing: border-box;
-        border-bottom: 1px solid ${style['border-color']};
+        border-bottom: 1px solid ${props => props.theme.borderColor};
         .song {
           &-select {
             flex-basis: 60px;
@@ -71,10 +72,10 @@ export const Container = styled.div`
             ${style.noWrap()};
             > span {
               ${style.noWrap()};
+              height: 24px;
+              line-height: 24px;
               &:first-child {
-                color: #333;
                 font-size: 14px;
-                padding: 5px 0;
               }
               &:last-child {
                 font-size: 12px;

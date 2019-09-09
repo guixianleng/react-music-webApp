@@ -15,8 +15,8 @@ export const Container = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #fff;
-  border-top: 1px solid ${style['border-color']};
+  background-color: ${props => props.theme.bgColor};
+  border-top: 1px solid ${props => props.theme.borderColor};
   .mini-player {
     display: flex;
     align-items: center;
@@ -44,6 +44,7 @@ export const Container = styled.div`
       ${style.noWrap()};
       display: flex;
       flex-direction: column;
+      color: ${props => props.theme.color};
       span {
         &:last-child {
           font-size: 12px;
@@ -57,7 +58,7 @@ export const Container = styled.div`
         display: inline-block;
         padding-left: 15px;
         font-size: 24px;
-        color: ${props => props.theme.color};
+        color: ${props => props.theme.themeColor};
       }
     }
     .is_disabled {

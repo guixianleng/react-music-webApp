@@ -4,11 +4,11 @@ import style from '../../assets/style/variable'
 export const Container = styled.div`
   height: 100%;
   width: 100%;
+  background-color: ${props => props.theme.bgColor};
+  color: ${props => props.theme.color};
   h2 {
     text-align: center;
     font-size: 16px;
-    color: #333;
-    background-color: #fff;
     padding: 15px 0 0;
     display: ${props => props.show ? 'none' : ''};
   }
@@ -20,7 +20,6 @@ export const List = styled.ul`
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
-    background-color: #fff;
     justify-content: space-between;
     padding: ${props => props.global ? '10px 5px' : '10px 0'};
   }

@@ -6,12 +6,13 @@ export const Container = styled.div`
   height: 100%;
   .singer-list {
     position: absolute;
-    top: 122px;
+    top: 129px;
     left: 0;
     right: 0;
     bottom: 0;
     padding-left: 10px;
-    background-color: #fff;
+    background-color: ${props => props.theme.bgColor};
+    color: ${props => props.theme.color};
     .singer-wrapper {
       margin: 10px 0;
       display: flex;
@@ -35,7 +36,7 @@ export const Container = styled.div`
         width: 100%;
         font-size: 14px;
         height: 50px;
-        border-bottom: 1px solid ${style['border-color']};
+        border-bottom: 1px solid ${props => props.theme.borderColor};
         display: flex;
         align-items: center;
         ${style.noWrap()};
@@ -63,7 +64,7 @@ export const LabelsItem = styled.li`
   text-align: center;
   font-size: 12px;
   &.selected {
-    color: ${props => props.theme.color};
+    color: ${props => props.theme.themeColor};
   }
 `;
 
@@ -73,12 +74,13 @@ export const ContentLabels = styled.div`
   transform: translateY(-60%);
   right: 10px;
   z-index: 100;
-  background-color: #f5f5f5;
+  background-color: ${props => props.theme.bgColor || '#f5f5f5'};
+  color: ${props => props.theme.color};
   border-radius: 10px;
   width: 10px;
   padding: 4px;
-  border: 1px solid ${style['border-color']};
-  box-shadow: 1px 1px 1px ${style['border-color']};
+  border: 1px solid ${props => props.theme.borderColor};
+  box-shadow: 1px 1px 1px ${props => props.theme.borderColor};
   opacity: ${props => props.opacity};
   transition: opacity 2s;
 `;
@@ -86,13 +88,15 @@ export const ContentLabels = styled.div`
 export const NavContainer  = styled.div`
   box-sizing: border-box;
   position: fixed;
-  top: 85px;
+  top: 91px;
   width: 100%;
   padding: 5px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  color: ${props => props.theme.color};
+  background-color: ${props => props.theme.bgColor};
   .scroll-view {
-    border-bottom: 1px solid ${style['border-color']};
+    border-bottom: 1px solid ${props => props.theme.borderColor};
   }
 `;

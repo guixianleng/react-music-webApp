@@ -56,7 +56,7 @@ export const Container = styled.div`
         color: #1CC09E
       }
       .close {
-        border-top: 1px solid ${style['border-color']};
+        border-top: 1px solid ${props => props.theme.borderColor};
         padding: 15px 0;
         text-align: center;
         font-size: 16px;

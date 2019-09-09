@@ -6,11 +6,11 @@ export const Tab = styled.div`
   align-items: center;
   text-align: center;
   margin-bottom: 10px;
-  background-color: #fff;
+  background-color: ${props => props.theme.bgColor};
   height: 40px;
   .nav-link {
     text-decoration: none;
-    color: inherit;
+    color: ${props => props.theme.color};
     display: block;
     width: 100%;
     &__active {
@@ -20,7 +20,7 @@ export const Tab = styled.div`
         content: "";
         height: 2px;
         width: 100%;
-        background-color: ${props => props.theme.backgroundColor};
+        background-color: ${props => props.theme.themeColor};
         position: absolute;
         bottom: -12px;
         left: 0;

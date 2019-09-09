@@ -56,7 +56,7 @@ class App extends Component {
                 title="Music webApp"
                 menu={this.handleMenu.bind(this)}
               />
-              <Tabs color={this.state.theme.color} />
+              <Tabs color={this.state.theme.themeColor} />
               <div className="app-content">
                 <Switch>
                   <Redirect from="/" to="/recommend" exact />

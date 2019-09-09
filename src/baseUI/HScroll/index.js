@@ -20,7 +20,7 @@ const ListItem = styled.li`
   text-align: center;
   box-sizing: border-box;
   &.selected {
-    color: ${props => props.theme.color}
+    color: ${props => props.theme.themeColor}
   }
 `
 
@@ -56,7 +56,6 @@ class HScroll extends React.Component{
   }
 
   handleClick (item) {
-    console.log(item)
     this.props.clickTag(item.key)
   }
 

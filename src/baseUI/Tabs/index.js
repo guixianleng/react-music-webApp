@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { keyframes } from 'styled-components'
-import style from '../../assets/style/variable'
 
 const List = styled.ul`
   display: flex;
@@ -9,8 +8,8 @@ const List = styled.ul`
   align-items: center;
   flex-direction: row;
   flex-wrap: nowrap;
-  background-color: #fff;
-  border-bottom: 1px solid ${style['border-color']};
+  background-color: ${props => props.theme.bgColor};
+  border-bottom: 1px solid ${props => props.theme.borderColor};
 `
 
 // 点击切换动画
@@ -31,11 +30,11 @@ const ListItem = styled.li`
   font-weight: 500;
   height: 46px;
   line-height: 46px;
-  color: inherit;
+  color: ${props => props.theme.color};
   text-align: center;
   touch-action: none;
   &.selected {
-    color: ${props => props.theme.color};
+    color: ${props => props.theme.themeColor};
     position: relative;
     &::after {
       content: "";
@@ -47,7 +46,7 @@ const ListItem = styled.li`
       bottom: 1px;
       height: 2px;
       width: ${props => props.width || '50px'};
-      background-color: ${props => props.theme.backgroundColor};
+      background-color: ${props => props.theme.themeColor};
       animation: ${animate} .3s ease-in-out;
     }
   }

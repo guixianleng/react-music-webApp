@@ -7,7 +7,7 @@ export const Container = styled.header`
   top: 0;
   left: 0;
   right: 0;
-  color: #333;
+  color: ${props => props.theme.color};
   font-size: 16px;
   height: 50px;
   display: flex;
@@ -16,7 +16,7 @@ export const Container = styled.header`
   flex-wrap: nowrap;
   padding: 0 15px;
   z-index: 100;
-  background-color: #fff;
+  background-color: ${props => props.theme.bgColor};
 `
 
 const Header = (props) => {

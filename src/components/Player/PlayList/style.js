@@ -34,7 +34,7 @@ export const Container = styled.div`
       height: 45px;
       line-height: 45px;
       background-color: #fff;
-      border-bottom: 1px solid ${style['border-color']};
+      border-bottom: 1px solid ${props => props.theme.borderColor};
       > div {
         .iconfont {
           font-size: 20px;
@@ -49,7 +49,7 @@ export const Container = styled.div`
       }
     }
     .player-close {
-      border-top: 1px solid ${style['border-color']};
+      border-top: 1px solid ${props => props.theme.borderColor};
       text-align: center;
       font-size: 15px;
       position: fixed;
@@ -73,11 +73,11 @@ export const SongList = styled.div`
       display: flex;
       align-items: center;
       height: 40px;
-      border-bottom: 1px solid ${style['border-color']};
+      border-bottom: 1px solid ${props => props.theme.borderColor};
       &.active-li {
         .info {
           > span {
-            color: ${props => props.theme.color}
+            color: ${props => props.theme.themeColor}
           }
         }
       }
