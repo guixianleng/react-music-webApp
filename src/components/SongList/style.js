@@ -52,6 +52,7 @@ export const SongItem = styled.div`
   &.song-list {
     min-height: 70vh;
     height: auto;
+    background: ${props => props.theme.bgColor};
     .song-ul {
       background-color: ${props => props.theme.bgColor};
       padding-bottom: 10px;

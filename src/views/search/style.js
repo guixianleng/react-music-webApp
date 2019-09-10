@@ -27,6 +27,7 @@ export const NavSearch = styled.header`
       border: none;
       outline: none;
       color: #333;
+      border-radius: 4px;
     }
     .search-button {
       margin-left: 10px;

@@ -74,7 +74,7 @@ export const ContentLabels = styled.div`
   transform: translateY(-60%);
   right: 10px;
   z-index: 100;
-  background-color: ${props => props.theme.bgColor || '#f5f5f5'};
+  background-color: ${props => props.theme.bgColor};
   color: ${props => props.theme.color};
   border-radius: 10px;
   width: 10px;
@@ -82,7 +82,7 @@ export const ContentLabels = styled.div`
   border: 1px solid ${props => props.theme.borderColor};
   box-shadow: 1px 1px 1px ${props => props.theme.borderColor};
   opacity: ${props => props.opacity};
-  transition: opacity 2s;
+  transition: opacity 1.5s;
 `;
 
 export const NavContainer  = styled.div`

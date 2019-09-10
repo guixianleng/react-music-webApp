@@ -166,6 +166,7 @@ export default class index extends Component {
       pathname: url
     })
   }
+  // 滚动的时候显示右侧按字母搜索
   handleShowLetter () {
     if (this.timer) {
       this.setState({
@@ -182,7 +183,7 @@ export default class index extends Component {
   }
   handleScroll ({ y }) {
     forceCheck()
-    // this.handleShowLetter()
+    this.handleShowLetter()
   }
   render() {
     const { match, route } = this.props

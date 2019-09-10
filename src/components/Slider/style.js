@@ -21,7 +21,7 @@ export const Container = styled.div`
       height: 100%;
     }
     .swiper-pagination-bullet-active {
-      background: ${props => props.theme.color || '#31C27C'};
+      background: ${props => props.theme.themeColor};
     }
   }
 `
