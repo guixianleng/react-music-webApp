@@ -179,7 +179,6 @@ export default class index extends Component {
   handleChangeProgress = (percent) => {
     const newCurrentTime = percent * this.currentSong.duration
     let audioDOM = this.audioRef.current
-    console.log(percent, newCurrentTime)
     this.setState({
       currentTime: newCurrentTime
     })

@@ -7,18 +7,20 @@ export const Content = styled.div`
     top: 13px;
     height: 4px;
     border-radius: 4px;
-    background: rgba(255,255,255,.1);
+    background: rgba(255, 255, 255, 0.2);
     &-load {
       position: absolute;
+      left: 0;
       height: 100%;
-      background: ${props => props.theme.themeColor};
+      background-color: ${props => props.theme.themeColor};
     }
     &-btn {
       position: absolute;
       top: -6px;
+      left: 0;
       width: 15px;
       height: 15px;
-      background-color: #FFF;
+      background-color: ${props => props.theme.themeColor};
       border-radius: 50%;
     }
   }
