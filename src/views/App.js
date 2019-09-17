@@ -11,7 +11,7 @@ import Tabs from '../components/Tabs'
 import Plyer from '../connects/player'
 
 import storage from '../utils/storage'
-import { skins, setSkinStyle } from '../utils/skin'
+import { setSkinStyle } from '../utils/skin'
 import emitter from '../utils/events'
 
 class App extends Component {
@@ -19,7 +19,7 @@ class App extends Component {
     super(props)
     this.state = {
       menuShow: false, // 显示菜单
-      theme: setSkinStyle(skins[storage.getSkin()]), // 当前皮肤主题
+      theme: setSkinStyle(storage.getSkin().name, storage.getSkin().color), // 当前皮肤主题
       showPlayer: false // 显示播放器
     }
   }

@@ -9,10 +9,10 @@ export function setSkin(skin) {
 }
 
 // 显示播放器
-export function showPlayer(showStatus) {
+export function showPlayer(status) {
   return {
     type: ActionTypes.SHOW_PLAYER,
-    showStatus
+    status
   };
 }
 

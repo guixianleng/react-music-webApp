@@ -61,14 +61,24 @@ skins.elegantPurple = Object.assign({}, skins.normal, {
   themeColor: '#341677'
 })
 
-const setSkinStyle = (skin) => {
-  if (!skin) {
-    return false
+// 暗金色
+skins.gold = Object.assign({}, skins.normal, {
+  backgroundColor: '#9B7300',
+  themeColor: '#9B7300'
+})
+
+const setSkinStyle = (name, color) => {
+  // 若为自定义
+  if (name === 'userDefined') {
+    skins.userDefined = Object.assign({}, skins.normal, {
+      backgroundColor: color,
+      themeColor: color
+    })
   }
-  return skin
+  return skins[name]
 }
 
 // 设置皮肤
-setSkinStyle(skins[storage.getSkin()])
+setSkinStyle(storage.getSkin().name, storage.getSkin().color)
 
 export { skins, setSkinStyle }

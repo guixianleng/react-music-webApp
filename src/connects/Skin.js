@@ -3,7 +3,7 @@ import { setSkin } from '../redux/actions'
 import Skin from '../components/Skin'
 
 const mapStateToProps = (state) => ({
-  currentSkin: state.skin
+  currentSkin: state.skin.name
 })
 
 const mapDispatchToProps = (dispatch) => ({

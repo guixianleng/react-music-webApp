@@ -48,12 +48,12 @@ function historySearch (defaultList = initState.historyList, action) {
 }
 
 // 显示或隐藏播放器
-function showPlayer (showStatus = initState.showPlayer, action) {
+function showPlayer (status = initState.showPlayer, action) {
   switch (action.type) {
     case ActionTypes.SHOW_PLAYER:
-      return action.showStatus
+      return action.status
     default:
-      return showStatus
+      return status
   }
 }
 

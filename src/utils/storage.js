@@ -1,12 +1,16 @@
 const storage = {
   // 设置皮肤
   setSkin(key) {
-    window.localStorage.setItem('skin', key)
+    window.localStorage.setItem('skin', JSON.stringify(key))
   },
   // 获取皮肤
   getSkin() {
+    const defaultSkin = {
+      name: 'qqGreen',
+      color: '#31C27C'
+    }
     const skin = window.localStorage.getItem('skin')
-    return !skin ? 'qqGreen' : skin
+    return !skin ? JSON.parse(defaultSkin) : JSON.parse(skin)
   },
   // 设置当前歌曲
   setCurrentSong(song) {
@@ -50,7 +54,7 @@ const storage = {
   getPlayMode() {
     const mode = window.localStorage.getItem('paly_mode')
     return mode ? Number(mode) : 0
-  },
+  }
 }
 
 export default storage
