@@ -236,12 +236,6 @@ class Scroll extends Component {
 export default Scroll
 
 ```
-## 第一次react写项目
-感觉学到的东西还是挺多的，慢慢成长，逐渐积累吧！
-
-- 务实自己js、css基础
-- react入门成功
-- redux的实现原理、组件化开发
 
 ## react学习资源：
 - [React.js小书](http://huziketang.mangojuice.top/books/react/)，react/redux介绍的很细
